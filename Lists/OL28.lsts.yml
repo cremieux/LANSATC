@@ -1,0 +1,11 @@
+﻿List:
+  Name:               VCS Test
+  Stored As:          Repository
+
+  Objects:
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - VCSMain:
+      Type:               Web Page
