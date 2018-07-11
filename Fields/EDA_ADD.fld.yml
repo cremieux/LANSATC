@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               eda_add
+  Type:               NVarChar
+  Length:             50
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "eda_add"
+      Label:              "eda_add"
+      Heading1:           "eda_add"
+
+  - FRA:
+      Description:        "eda_add"
+      Label:              "eda_add"
+      Heading1:           "eda_add"

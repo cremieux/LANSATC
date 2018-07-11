@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               grp_type
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "grp_type"
+      Label:              "grp_type"
+      Heading1:           "grp_type"
+
+  - FRA:
+      Description:        "grp_type"
+      Label:              "grp_type"
+      Heading1:           "grp_type"

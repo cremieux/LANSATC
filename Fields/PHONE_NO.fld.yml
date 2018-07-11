@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               phone_no
+  Type:               NVarChar
+  Length:             20
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "phone_no"
+      Label:              "phone_no"
+      Heading1:           "phone_no"
+
+  - FRA:
+      Description:        "phone_no"
+      Label:              "phone_no"
+      Heading1:           "phone_no"

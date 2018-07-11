@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               tax_id
+  Type:               NVarChar
+  Length:             15
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "tax_id"
+      Label:              "tax_id"
+      Heading1:           "tax_id"
+
+  - FRA:
+      Description:        "tax_id"
+      Label:              "tax_id"
+      Heading1:           "tax_id"

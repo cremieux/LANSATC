@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               license
+  Type:               NVarChar
+  Length:             20
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "license"
+      Label:              "license"
+      Heading1:           "license"
+
+  - FRA:
+      Description:        "license"
+      Label:              "license"
+      Heading1:           "license"

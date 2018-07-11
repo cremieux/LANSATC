@@ -1,0 +1,24 @@
+﻿Field:
+  Name:               iv_parts_rate
+  Type:               Signed
+  Length:             10
+  Decimals:           4
+  Default Value:      "*SQLNULL"
+  Edit Mask:          3
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "iv_parts_rate"
+      Label:              "iv_parts_rate"
+      Heading1:           "iv_parts_rate"
+
+  - FRA:
+      Description:        "iv_parts_rate"
+      Label:              "iv_parts_rate"
+      Heading1:           "iv_parts_rate"

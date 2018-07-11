@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               EMPNUMBER
+  Type:               NChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "EMPNUMBER"
+      Label:              "EMPNUMBER"
+      Heading1:           "EMPNUMBER"
+
+  - FRA:
+      Description:        "EMPNUMBER"
+      Label:              "EMPNUMBER"
+      Heading1:           "EMPNUMBER"

@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               billing
+  Type:               NVarChar
+  Length:             200
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "billing"
+      Label:              "billing"
+      Heading1:           "billing"
+
+  - FRA:
+      Description:        "billing"
+      Label:              "billing"
+      Heading1:           "billing"

@@ -1,0 +1,11 @@
+﻿List:
+  Name:               APP 09
+  Stored As:          Repository
+
+  Objects:
+  - set_vendor:
+      Type:               File
+      Qualifier:          DBO
+
+  - A09Main:
+      Type:               Web Page

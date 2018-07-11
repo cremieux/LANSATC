@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               alt_vendor_id
+  Type:               NVarChar
+  Length:             15
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "alt_vendor_id"
+      Label:              "alt_vendor_id"
+      Heading1:           "alt_vendor_id"
+
+  - FRA:
+      Description:        "alt_vendor_id"
+      Label:              "alt_vendor_id"
+      Heading1:           "alt_vendor_id"

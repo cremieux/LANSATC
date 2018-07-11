@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Demo App
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - DMOMain:
+      Type:               Web Page

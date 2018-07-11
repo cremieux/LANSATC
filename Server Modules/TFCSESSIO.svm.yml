@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               TFCSession
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('TFCSESSION')
+    
+    Define Field(#TFCUserName) Type(*STRING)
+    Define Field(#TFCPassword) Type(*STRING)
+    Define Field(#TFCReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#TFCUserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#TFCPassword) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#TFCReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #TFCReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

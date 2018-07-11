@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               fax
+  Type:               NVarChar
+  Length:             20
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "fax"
+      Label:              "fax"
+      Heading1:           "fax"
+
+  - FRA:
+      Description:        "fax"
+      Label:              "fax"
+      Heading1:           "fax"

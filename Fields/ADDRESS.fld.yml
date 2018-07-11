@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               address
+  Type:               NVarChar
+  Length:             30
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "address"
+      Label:              "address"
+      Heading1:           "address"
+
+  - FRA:
+      Description:        "address"
+      Label:              "address"
+      Heading1:           "address"

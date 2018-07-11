@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               corp_yn
+  Type:               NVarChar
+  Length:             1
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "corp_yn"
+      Label:              "corp_yn"
+      Heading1:           "corp_yn"
+
+  - FRA:
+      Description:        "corp_yn"
+      Label:              "corp_yn"
+      Heading1:           "corp_yn"

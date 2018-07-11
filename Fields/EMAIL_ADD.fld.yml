@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               email_add
+  Type:               NVarChar
+  Length:             50
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "email_add"
+      Label:              "email_add"
+      Heading1:           "email_add"
+
+  - FRA:
+      Description:        "email_add"
+      Label:              "email_add"
+      Heading1:           "email_add"

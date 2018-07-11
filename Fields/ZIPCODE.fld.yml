@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               zipcode
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "zipcode"
+      Label:              "zipcode"
+      Heading1:           "zipcode"
+
+  - FRA:
+      Description:        "zipcode"
+      Label:              "zipcode"
+      Heading1:           "zipcode"

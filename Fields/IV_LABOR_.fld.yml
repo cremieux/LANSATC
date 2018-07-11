@@ -1,0 +1,24 @@
+﻿Field:
+  Name:               iv_labor_rate
+  Type:               Signed
+  Length:             10
+  Decimals:           4
+  Default Value:      "*SQLNULL"
+  Edit Mask:          3
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "iv_labor_rate"
+      Label:              "iv_labor_rate"
+      Heading1:           "iv_labor_rate"
+
+  - FRA:
+      Description:        "iv_labor_rate"
+      Label:              "iv_labor_rate"
+      Heading1:           "iv_labor_rate"

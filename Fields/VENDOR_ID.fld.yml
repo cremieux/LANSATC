@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               vendor_id
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "vendor_id"
+      Label:              "vendor_id"
+      Heading1:           "vendor_id"
+
+  - FRA:
+      Description:        "vendor_id"
+      Label:              "vendor_id"
+      Heading1:           "vendor_id"

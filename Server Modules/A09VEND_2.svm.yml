@@ -1,0 +1,76 @@
+﻿ServerModule:
+  Name:               A09VendorsServer
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Vendors Server"
+
+  - FRA:
+      Description:        "Vendors Server"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('A09SESSION')
+    
+    Def_List Name(#List) Fields(#vendor_id #name #address #city) Type(*WORKING) Entrys(*MAX)
+    
+    Group_By Name(#Fields) Fields(#vendor_id #name #address #city #state #zipcode #phone_no #fax #comments #corp_yn #tax_id #license #grp_type #rating #email_add #eda_add #billing #udf1 #udf2 #udf3 #udf4 #udf5 #udf6 #iv_labor_rate #iv_parts_rate #tax_rate #alt_vendor_id #add_by #add_dt #upd_by #upd_dt)
+    
+    Srvroutine Name(Find) Session(*REQUIRED)
+    Field_Map For(*INPUT) Field(#STD_STRNG) Parameter_Name(Filter)
+    List_Map For(*OUTPUT) List(#List)
+    
+    #STD_STRNG := #STD_STRNG.UpperCase.Trim
+    
+    Select Fields(#List) From_File(set_vendor) Io_Error(*NEXT) Val_Error(*NEXT)
+    
+    If ((#STD_STRNG = *BLANKS) *OrIf (#name.UpperCase.Contains( #STD_STRNG )) *OrIf (#address.UpperCase.Contains( #STD_STRNG )) *OrIf (#city.UpperCase.Contains( #STD_STRNG )))
+    
+    Add_Entry To_List(#List)
+    
+    Endif
+    
+    Endselect
+    
+    Endroutine
+    
+    Srvroutine Name(Read) Session(*REQUIRED)
+    Field_Map For(*INPUT) Field(#vendor_id)
+    Group_Map For(*OUTPUT) Group(#Fields)
+    
+    Fetch Fields(#Fields) From_File(set_vendor) With_Key(#vendor_id) Io_Error(*NEXT) Val_Error(*NEXT)
+    
+    Endroutine
+    
+    Srvroutine Name(Save) Session(*REQUIRED)
+    Group_Map For(*INPUT) Group(#Fields)
+    Field_Map For(*OUTPUT) Field(#STD_CODE) Parameter_Name(ReturnCode)
+    
+    Update Fields(#Fields) In_File(set_vendor) With_Key(#vendor_id) Io_Error(*NEXT) Val_Error(*NEXT)
+    
+    If_Status Is(*NORECORD)
+    
+    Insert Fields(#Fields) To_File(set_vendor) Io_Error(*NEXT) Val_Error(*NEXT)
+    
+    Endif
+    
+    If_Status Is(*OKAY)
+    
+    #STD_CODE := "OK"
+    
+    Else
+    
+    #STD_CODE := "ER"
+    
+    Endif
+    
+    Endroutine
+    
+    Srvroutine Name(Delete) Session(*REQUIRED)
+    Field_Map For(*INPUT) Field(#vendor_id)
+    
+    Delete From_File(set_vendor) With_Key(#vendor_id) Io_Error(*NEXT) Val_Error(*NEXT)
+    
+    Endroutine
+    
+    End_Com

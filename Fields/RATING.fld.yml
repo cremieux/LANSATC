@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               rating
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "rating"
+      Label:              "rating"
+      Heading1:           "rating"
+
+  - FRA:
+      Description:        "rating"
+      Label:              "rating"
+      Heading1:           "rating"

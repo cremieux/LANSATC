@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               DMOSession
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('DMOSESSION')
+    
+    Define Field(#DMOUserName) Type(*STRING)
+    Define Field(#DMOPassword) Type(*STRING)
+    Define Field(#DMOReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#DMOUserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#DMOPassword) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#DMOReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #DMOReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

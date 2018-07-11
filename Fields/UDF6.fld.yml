@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               udf6
+  Type:               NVarChar
+  Length:             30
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "udf6"
+      Label:              "udf6"
+      Heading1:           "udf6"
+
+  - FRA:
+      Description:        "udf6"
+      Label:              "udf6"
+      Heading1:           "udf6"

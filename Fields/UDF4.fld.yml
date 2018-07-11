@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               udf4
+  Type:               NVarChar
+  Length:             30
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "udf4"
+      Label:              "udf4"
+      Heading1:           "udf4"
+
+  - FRA:
+      Description:        "udf4"
+      Label:              "udf4"
+      Heading1:           "udf4"

@@ -1,0 +1,24 @@
+﻿Field:
+  Name:               TestVCSFIeld
+  Type:               Alphanumeric
+  Length:             10
+  Decimals:           0
+  Default Value:      "*BLANKS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Test Field"
+      Label:              "Test Field"
+      Heading1:           "Test"
+      Heading2:           "Field"
+
+  - FRA:
+      Description:        "Test Field"
+      Label:              "Test Field"
+      Heading1:           "Test"
+      Heading2:           "Field"
