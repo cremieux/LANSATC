@@ -37,7 +37,7 @@
     Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutAppDrawerItem1) Column(#LayoutAppDrawerColumn1) Manage(#Menu) Parent(#LayoutAppDrawer) Row(#LayoutAppDrawerRow1)
     
     * Controls - App Bar
-    Define_Com Class(#PRIM_MD.AppBar) Name(#AppBar) Displayposition(1) Parent(#COM_OWNER) Tabposition(1) Width(1200) Themedrawstyle('Heading1') Caption('APP 11') Captionmarginbottom(0) Captionmarginright(0) Captionmargintop(0) Icon('menu') Layoutmanager(#LayoutAppBar)
+    Define_Com Class(#PRIM_MD.AppBar) Name(#AppBar) Displayposition(1) Parent(#COM_OWNER) Tabposition(1) Width(1200) Themedrawstyle('Heading1') Caption('New Caption') Captionmarginbottom(0) Captionmarginright(0) Captionmargintop(0) Icon('menu') Layoutmanager(#LayoutAppBar)
     Define_Com Class(#PRIM_MD.Icon) Name(#SearchIcon) Displayposition(1) Icon('search') Left(1152) Parent(#AppBar) Tabposition(1) Top(4)
     
     * Controls - App Drawer
