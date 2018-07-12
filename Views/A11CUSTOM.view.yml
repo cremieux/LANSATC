@@ -1,0 +1,35 @@
+﻿Web View:
+  Name:               A11Customers
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Customers"
+
+  - FRA:
+      Description:        "Customers"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_VIEW) Displayposition(1) Tabposition(1) Layoutmanager(#Layout1) Caption('Customers') Height(729) Width(652)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#ListCustomers) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(8) Marginleft(8) Marginright(8) Margintop(8)
+    
+    Define_Com Class(#PRIM_LIST) Name(#ListCustomers) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(1) Height(713) Left(8) Parent(#COM_OWNER) Rowheight(48) Tabposition(1) Top(8) Width(636)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnVFIRSTLAS1) Columnwidth(264) Displayposition(1) Parent(#ListCustomers) Source(#vFirstLast)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCSTREET1) Columnwidth(158) Displayposition(2) Parent(#ListCustomers) Source(#CStreet)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnCPHONE1) Columnwidth(97) Displayposition(3) Parent(#ListCustomers) Source(#CPhone)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnCUSTNO1) Columnwidth(81) Displayposition(4) Parent(#ListCustomers) Source(#CCustomerNumber) Columncaptiontype(Label) Columnvisible(False)
+    Define_Com Class(#DemoCustomerDialog) Name(#DemoCustomerDialog)
+    
+    
+    Evtroutine Handling(#COM_OWNER.Initialize)
+    Define_Com Class(#A11CustomerServerModule.FindAll) Name(#FindAllCustomers)
+    #FindAllCustomers.ExecuteAsync Cscstplist(#ListCustomers)
+    Endroutine
+    Evtroutine Handling(#ListCustomers.ItemClick)
+    #DemoCustomerDialog.ShowItem Key1(#CCustomerNumber)
+    Endroutine
+    End_Com
