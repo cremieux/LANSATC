@@ -10,7 +10,7 @@
       Description:        "APP 11"
 
   Source: |
-    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignTeal>) Layoutmanager(#LayoutMain)
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignBlue>) Layoutmanager(#LayoutMain)
     
     * Layout - Main
     Define_Com Class(#PRIM_TBLO) Name(#LayoutMain)
@@ -45,7 +45,7 @@
     Define_Com Class(#PRIM_MD.Menu) Name(#Menu) Displayposition(1) Height(744) Parent(#AppDrawer) Showselection(False) Tabposition(1) Verticalscroll(True) Width(220)
     Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemContacts) Caption('Contacts') Displayposition(1) Left(0) Parent(#Menu) Tabposition(1) Tabstop(False) Top(0) Width(220) Height(48) Icon('view_quilt') View(#Contacts)
     Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemProducts) Caption('Products') Displayposition(2) Left(0) Parent(#Menu) Tabposition(2) Tabstop(False) Top(48) Width(220) Height(48) Icon('view_quilt') View(#Products)
-    Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemCustomers) Caption('Customers') Displayposition(3) Left(0) Parent(#Menu) Tabposition(3) Tabstop(False) Top(96) Width(220) Height(48) Icon('view_quilt') View(#Customers)
+    Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemCustomers) Caption('Customers') Displayposition(3) Left(0) Parent(#Menu) Tabposition(3) Tabstop(False) Top(96) Width(220) Height(48) Icon('view_quilt') View(#Customers) Themedrawstyle('LightAccent')
     Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemSettings) Caption('Settings') Displayposition(5) Left(0) Parent(#Menu) Tabposition(4) Tabstop(False) Top(192) Width(220) Height(48) Icon('settings') Themedrawstyle('TopDivider') View(#Settings)
     Define_Com Class(#PRIM_MD.MenuItem) Name(#MenuItemSignOut) Caption('Sign Out') Displayposition(6) Left(0) Parent(#Menu) Tabposition(5) Tabstop(False) Top(240) Width(220) Height(48) Icon('exit_to_app')
     
