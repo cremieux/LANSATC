@@ -1,0 +1,145 @@
+﻿ServerModule:
+  Name:               TCDemoWebServicesP01
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Publish Web Services"
+
+  - FRA:
+      Description:        "Publish Web Services"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM)
+    
+    Srvroutine Name(GetContacts) Response(*HTTP #context)
+    
+    Define_Com Class(#PRIM_IOC.StringWriter) Name(#StringWriter)
+    Define_Com Class(#PRIM_JSON.Writer) Name(#Writer) Textwriter(#StringWriter)
+    
+    #Writer.TextWriter <= #StringWriter
+    
+    #Writer.BeginArray
+    
+    Select Fields(*ALL) From_File(xContacts)
+    
+    #xFullName := #xContactFirstName + " " + #xContactLastName
+    
+    #Writer.BeginObject
+    
+    #Writer.WriteInt32( #xContactIdentification, "ContactId" )
+    #Writer.WriteString( #xFullName, "Name" )
+    #Writer.WriteString( #xContactBirthdate.AsDisplayString( DDMMMCCYY ), "DateofBirth" )
+    
+    #Writer.EndObject
+    
+    Endselect
+    
+    #Writer.EndArray
+    
+    #Context.Response.HttpStatus := 200
+    #Context.Response.ContentType := "application/json"
+    #Context.Response.ContentString := #StringWriter.Text
+    
+    Endroutine
+    
+    Srvroutine Name(GetContactName) Response(*HTTP #context)
+    
+    Define_Com Class(#PRIM_IOC.StringWriter) Name(#StringWriter)
+    Define_Com Class(#PRIM_JSON.Writer) Name(#Writer) Textwriter(#StringWriter)
+    
+    #IO$STS := VE
+    
+    If (#Context.Request.PathParameters.TryParseAsInt32( "ContactId", #xContactIdentification ))
+    
+    Fetch Fields(*ALL) From_File(xContacts) With_Key(#xContactIdentification)
+    
+    Endif
+    
+    If (#IO$STS = OK)
+    #Writer.TextWriter <= #StringWriter
+    
+    #Writer.BeginObject
+    
+    #Writer.WriteString( #xContactLastName, "LastName" )
+    #Writer.WriteString( #xContactFirstName, "FirstName" )
+    
+    #Writer.EndObject
+    
+    #Context.Response.HttpStatus := 200
+    #Context.Response.ContentType := "application/json"
+    #Context.Response.ContentString := #StringWriter.Text
+    
+    Endif
+    
+    Endroutine
+    
+    Srvroutine Name(PutContactNames) Response(*HTTP #Context)
+    
+    Define_Com Class(#PRIM_JSON.Document) Name(#Document)
+    Define_Com Class(#PRIM_JSON.Object) Name(#RequestData) Reference(*DYNAMIC)
+    
+    Define Field(#ReturnCode) Reffld(#IO$STS)
+    Define Field(#Message) Type(*CHAR) Length(132)
+    
+    Group_By Name(#UpdateContact) Fields(#xContactFirstName #xContactLastName)
+    
+    #xContactIdentification := #Context.Request.QueryParameters<"ContactID">.Value.AsNumber
+    #xContactFirstName := #Context.Request.QueryParameters<"FirstName">.Value.AsNativeString
+    #xContactLastName := #Context.Request.QueryParameters<"LastName">.Value.AsNativeString
+    
+    Update Fields(#UpdateContact) In_File(xContacts) With_Key(#xContactIdentification)
+    
+    Endroutine
+    
+    Mthroutine Name(MakeBadRequestResponse)
+    
+    Define_Map For(*INPUT) Class(#PRIM_SRVM.HttpContext) Name(#Context) Pass(*BY_REFERENCE)
+    Define_Map For(*INPUT) Class(#STD_STRNG) Name(#ResourceName)
+    Define_Map For(*INPUT) Class(#STD_STRNG) Name(#Path)
+    
+    Define_Com Class(#PRIM_IOC.StringWriter) Name(#StringWriter)
+    Define_Com Class(#PRIM_JSON.Writer) Name(#Writer) Textwriter(#StringWriter)
+    
+    #Writer.TextWriter <= #StringWriter
+    
+    #Writer.BeginObject
+    #Writer.BeginObject( "error" )
+    #Writer.BeginArray( "messages" )
+    #Writer.WriteString( ("Invalid request accessing resource '&1' using '&2'.").Substitute( #ResourceName, #Path ) )
+    #Writer.EndArray
+    #Writer.EndObject
+    #Writer.EndObject
+    
+    #Context.Response.HttpStatus := 500
+    #Context.Response.ContentType := "application/json"
+    #Context.Response.ContentString := #StringWriter.Text
+    
+    Endroutine
+    
+    
+    Mthroutine Name(MakeNotFoundResponse)
+    Define_Map For(*INPUT) Class(#PRIM_SRVM.HttpContext) Name(#Context) Pass(*BY_REFERENCE)
+    Define_Map For(*INPUT) Class(#STD_STRNG) Name(#ResourceName)
+    Define_Map For(*INPUT) Class(#STD_STRNG) Name(#Path)
+    
+    Define_Com Class(#PRIM_IOC.StringWriter) Name(#StringWriter)
+    Define_Com Class(#PRIM_JSON.Writer) Name(#Writer) Textwriter(#StringWriter)
+    
+    #Writer.TextWriter <= #StringWriter
+    
+    #Writer.BeginObject
+    #Writer.BeginObject( "error" )
+    #Writer.BeginArray( "messages" )
+    #Writer.WriteString( ("Resource '&1' with parameter '&2' could not be found.").Substitute( #ResourceName, #Path ) )
+    #Writer.EndArray
+    #Writer.EndObject
+    #Writer.EndObject
+    
+    #Context.Response.HttpStatus := 404
+    #Context.Response.ContentType := "application/json"
+    #Context.Response.ContentString := #StringWriter.Text
+    
+    Endroutine
+    
+    End_Com
