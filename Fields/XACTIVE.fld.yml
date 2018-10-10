@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               xActive
+  Type:               Signed
+  Length:             1
+  Decimals:           0
+  Default Value:      "*ZERO"
+  Edit Mask:          3
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "xActive"
+      Label:              "xActive"
+      Heading1:           "xActive"
+
+  - FRA:
+      Description:        "xActive"
+      Label:              "xActive"
+      Heading1:           "xActive"

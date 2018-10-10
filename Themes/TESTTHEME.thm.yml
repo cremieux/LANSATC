@@ -1,0 +1,21 @@
+﻿Theme:
+  Name:               TestTheme
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Test THeme"
+
+  - FRA:
+      Description:        "Test THeme"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_THM) Basetheme(MaterialDesignBlue)
+    
+    Define_Com Class(#PRIM_THM.DrawStyle) Name(#MediumTitle) Style(#Style1) Mouseoverstyle(#Style2)
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Backgroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(ThemeAccentLight)
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Backgroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme200)
+    
+    End_Com

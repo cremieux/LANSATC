@@ -1,0 +1,333 @@
+﻿Reusable Part:
+  Name:               START_LTCCUSTO_1_CRUD_Handler_3
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ---------------------------------------------------------------------------------------------------
+    * This is a SCRUD command handler in framework "VLF Demo".
+    * It belongs to business object "Customers".
+    * Created 26th July 2018 by USERID with Material Design style controls.
+    * ---------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #vf_ac010O) Height(270) Width(500)
+    
+    Group_By Name(#XG_AccessKeys) Fields(#LTCCUSTID)
+    
+    Group_By Name(#XG_EditableDataItems) Fields(#LTCCUSTID #LTCCUSTNM #LTCCUSTPW #LTCCUSTEM #LTCCUSTB1 #LTCCUSTB2 #LTCCUSTBC #LTCCUSTBS #LTCCUSTBZ #ltccustbct #LTCCUSTS1 #LTCCUSTS2 #LTCCUSTSC #LTCCUSTSS #LTCCUSTSZ #ltccustsct #LTCCUSTFL #LTCCUSTST #LTCCUSTEC #LTCCUSTPC #LTCCUSTPP #LTCCUSTPR #LTCCUSTPA #LTCCUSTCL #LTCCUSTCB #LTCDISCCD #LTCCUSTG #LTCCUSTWS #ltcmaplat #ltcmaplong #ltcrepcode #ltctrmcde #ltcmaplas #ltcmaplos #ltccustsfid #STD_DATEX)
+    
+    Group_By Name(#XG_ReadOnlyDataItems) Fields(#LTCDISCAM)
+    
+    Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+    
+    * ---------------------------------------------------------------------------------
+    Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#ReadOnlyDataItems) Fields(#XG_ReadOnlyDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*WORKING) Entrys(1)
+    Define_Com Class(#Prim_Boln) Name(#ServerModuleResult)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(238) Left(0) Top(0) Width(500) Horizontalscroll(True) Verticalscroll(True) Tabstop(False)
+    Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(238) Width(500) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Save_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentDelete) Parent(#ButtonPanelAttachmenthManager) Manage(#Delete_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentAnother) Parent(#ButtonPanelAttachmenthManager) Manage(#Another_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Save_Button) Parent(#ButtonPanel) Caption(*MTXTUF_SAVE) Displayposition(1) Tabposition(1) Height(24) Left(416) Top(4) Buttondefault(True) Themedrawstyle('MediumTitle')
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Delete_Button) Parent(#ButtonPanel) Caption(*MTXTUF_DELETE) Displayposition(2) Tabposition(2) Height(24) Left(332) Top(4) Themedrawstyle('ForegroundMediumPrimary')
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Another_Button) Parent(#ButtonPanel) Caption(*MTXTUF_CREATEMORE) Displayposition(3) Tabposition(3) Height(24) Left(332) Top(4) Buttondefault(True) Width(100) Themedrawstyle('ForegroundMediumPrimary')
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#LTCCUSTID.EditField) Parent(#DataItemPanel) Displayposition(1) Captiontype(LABEL) Tabposition(1) Top(4) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTNM.EditField) Parent(#DataItemPanel) Displayposition(2) Captiontype(LABEL) Tabposition(2) Top(62) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTPW.EditField) Parent(#DataItemPanel) Displayposition(3) Captiontype(LABEL) Tabposition(3) Top(120) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTEM.EditField) Parent(#DataItemPanel) Displayposition(4) Captiontype(LABEL) Tabposition(4) Top(178) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTB1.EditField) Parent(#DataItemPanel) Displayposition(5) Captiontype(LABEL) Tabposition(5) Top(236) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTB2.EditField) Parent(#DataItemPanel) Displayposition(6) Captiontype(LABEL) Tabposition(6) Top(294) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTBC.EditField) Parent(#DataItemPanel) Displayposition(7) Captiontype(LABEL) Tabposition(7) Top(352) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTBS.EditField) Parent(#DataItemPanel) Displayposition(8) Captiontype(LABEL) Tabposition(8) Top(410) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTBZ.EditField) Parent(#DataItemPanel) Displayposition(9) Captiontype(LABEL) Tabposition(9) Top(468) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltccustbct.EditField) Parent(#DataItemPanel) Displayposition(10) Captiontype(LABEL) Tabposition(10) Top(526) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTS1.EditField) Parent(#DataItemPanel) Displayposition(11) Captiontype(LABEL) Tabposition(11) Top(584) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTS2.EditField) Parent(#DataItemPanel) Displayposition(12) Captiontype(LABEL) Tabposition(12) Top(642) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTSC.EditField) Parent(#DataItemPanel) Displayposition(13) Captiontype(LABEL) Tabposition(13) Top(700) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTSS.EditField) Parent(#DataItemPanel) Displayposition(14) Captiontype(LABEL) Tabposition(14) Top(758) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTSZ.EditField) Parent(#DataItemPanel) Displayposition(15) Captiontype(LABEL) Tabposition(15) Top(816) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltccustsct.EditField) Parent(#DataItemPanel) Displayposition(16) Captiontype(LABEL) Tabposition(16) Top(874) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTFL.EditField) Parent(#DataItemPanel) Displayposition(17) Captiontype(LABEL) Tabposition(17) Top(932) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTST.EditField) Parent(#DataItemPanel) Displayposition(18) Captiontype(LABEL) Tabposition(18) Top(990) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTEC.EditField) Parent(#DataItemPanel) Displayposition(19) Captiontype(LABEL) Tabposition(19) Top(1048) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTPC.EditField) Parent(#DataItemPanel) Displayposition(20) Captiontype(LABEL) Tabposition(20) Top(1106) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTPP.EditField) Parent(#DataItemPanel) Displayposition(21) Captiontype(LABEL) Tabposition(21) Top(1164) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTPR.EditField) Parent(#DataItemPanel) Displayposition(22) Captiontype(LABEL) Tabposition(22) Top(1222) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTPA.EditField) Parent(#DataItemPanel) Displayposition(23) Captiontype(LABEL) Tabposition(23) Top(1280) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTCL.EditField) Parent(#DataItemPanel) Displayposition(24) Captiontype(LABEL) Tabposition(24) Top(1338) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTCB.EditField) Parent(#DataItemPanel) Displayposition(25) Captiontype(LABEL) Tabposition(25) Top(1396) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCDISCCD.EditField) Parent(#DataItemPanel) Displayposition(26) Captiontype(LABEL) Tabposition(26) Top(1454) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTG.EditField) Parent(#DataItemPanel) Displayposition(27) Captiontype(LABEL) Tabposition(27) Top(1512) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCCUSTWS.EditField) Parent(#DataItemPanel) Displayposition(28) Captiontype(LABEL) Tabposition(28) Top(1570) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltcmaplat.EditField) Parent(#DataItemPanel) Displayposition(29) Captiontype(LABEL) Tabposition(29) Top(1628) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltcmaplong.EditField) Parent(#DataItemPanel) Displayposition(30) Captiontype(LABEL) Tabposition(30) Top(1686) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltcrepcode.EditField) Parent(#DataItemPanel) Displayposition(31) Captiontype(LABEL) Tabposition(31) Top(1744) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltctrmcde.EditField) Parent(#DataItemPanel) Displayposition(32) Captiontype(LABEL) Tabposition(32) Top(1802) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltcmaplas.EditField) Parent(#DataItemPanel) Displayposition(33) Captiontype(LABEL) Tabposition(33) Top(1860) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltcmaplos.EditField) Parent(#DataItemPanel) Displayposition(34) Captiontype(LABEL) Tabposition(34) Top(1918) Left(4) Height(56) Width(400)
+    Define_Com Class(#ltccustsfid.EditField) Parent(#DataItemPanel) Displayposition(35) Captiontype(LABEL) Tabposition(35) Top(1976) Left(4) Height(56) Width(400)
+    Define_Com Class(#STD_DATEX.DateTimeField) Parent(#DataItemPanel) Displayposition(36) Captiontype(LABEL) Tabposition(36) Top(2034) Left(4) Height(56) Width(400)
+    Define_Com Class(#LTCDISCAM.EditField) Parent(#DataItemPanel) Displayposition(37) Captiontype(LABEL) Tabposition(37) Top(2092) Left(4) Height(56) Width(400) Readonly(True) Appearance(None)
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uInitialize
+    * Track changes to visual controls
+    #COM_SELF.avTrackControlChanges Incontainer(#COM_Self) Insertclearcontenticon(True)
+    * Auto arrange items on the main data panel
+    #COM_SELF.avStartAutoArrangingControls Onpanel(#DataItemPanel)
+    * Initialize some visibility
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Stop tracking changes to visual controls
+    #COM_SELF.avStopTrackingControlChanges
+    * Stop auto arranging the data panel
+    #Com_Self.avStopAutoArrangingControls
+    * Do the ancestor thing
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    * Asynchronously start a LoadNew (new data) or Load (existing data) request
+    If (#COM_OWNER.CheckForUnsavedChanges( False ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Load + #COM_OWNER.avAlphaArg1)
+    #GotoFreeState := False /* Don't go back to a free state until async operations complete */
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+    * Clear any visible errors
+    #Com_Owner.avClearMDControlErrors
+    * Handle the requested async operation
+    Case (#OperationID)
+    When (= LoadNew) /* Create new Customer            */
+    #COM_OWNER.LoadNew Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Load) /* Display/edit existing Customer */
+    #COM_OWNER.Load Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= SaveNew) /* Save new Customer              */
+    #COM_OWNER.SaveNew Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Save) /* Save existing Customer         */
+    #COM_OWNER.Save Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Delete) /* Delete Customer                */
+    #COM_OWNER.Delete Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    Endcase
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(LoadNew) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#START_LTCCUSTO_1_CRUD_ServerModule_3.InitializeNewData) Name(#InitializeNewData)
+    * Ask the server to initialize all fields to create a new data item
+    #InitializeNewData.Execute Alldataitems(#AllDataItems)
+    * Get those intial values into this program
+    Get_Entry Number(1) From_List(#AllDataItems)
+    * Set the buttons to their initial state
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    * Set the keys fields to be input capable
+    Set Com(#LTCCUSTID) Readonly(False)
+    Set Com(#LTCDISCAM) Visible(False)
+    #Save_Button.ComponentTag := SaveNew
+    #DataItemPanel.Enabled := True
+    * Handle a failure
+    Evtroutine Handling(#InitializeNewData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Load) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#START_LTCCUSTO_1_CRUD_ServerModule_3.GetData) Name(#GetData)
+    * Get the access keys from the associated instance and set them up to map to the server
+    #LTCCUSTID := #Com_Self.avAssociatedInstance.avAKey1
+    Inz_List Named(#AccessKeys)
+    * Ask the server to get details of that data item
+    #GetData.Execute Accesskeys(#AccessKeys) Alldataitems(#AllDataItems) Servermoduleresult(#ServerModuleResult)
+    * If found we are good to go
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    Get_Entry Number(1) From_List(#AllDataItems)
+    Set Com(#Save_Button #Another_Button) Visible(False)
+    #Delete_Button.Visible := True
+    #DataItemPanel.Enabled := True
+    Set Com(#LTCDISCAM) Visible(True)
+    #Save_Button.ComponentTag := Save
+    Else
+    Change Field(#AllDataItems) To(*NULL)
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    #DataItemPanel.Enabled := False
+    Set Com(#LTCDISCAM) Visible(False)
+    Endif
+    * Set the keys fields to be non changeable
+    Set Com(#LTCCUSTID) Readonly(True)
+    * Handle a failure
+    Evtroutine Handling(#GetData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avHandleTrackedControlChange) Options(*REDEFINE)
+    #Save_Button.Visible := #DataItemPanel.Enabled
+    If (#ControlMD *IsNot *null)
+    #ControlMD.ClearError
+    Endif
+    If (#ControlMDDT *IsNot *null)
+    #ControlMDDT.ClearError
+    Endif
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avValidateTrackedMDControl) Options(*REDEFINE)
+    #IsValid := True
+    If (#ControlMD_Edit *IsNot *null)
+    #IsValid := #ControlMD_Edit.Validate( #ForOperation #xEmployee )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_Edit) Scrollposition(Visible)
+    Endif
+    Endif
+    If (#ControlMD_DateTime *IsNot *null)
+    #IsValid := #ControlMD_DateTime.Validate( #ForOperation #xEmployee )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_DateTime) Scrollposition(Visible)
+    Endif
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(CheckClientSideValidation) Access(*PRIVATE)
+    Define_Map For(*INPUT) Class(#PRIM_ALPH) Name(#ForOperation)
+    Define_Map For(*RESULT) Class(#Prim_Boln) Name(#AllValid)
+    #COM_OWNER.avValidateAllTrackedMDControls Foroperation(#ForOperation) Allvalid(#AllValid)
+    * Add any additional client side validation logic here
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Save) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#START_LTCCUSTO_1_CRUD_ServerModule_3.PutData) Name(#PutData)
+    * Ask the server save the editable data items
+    Inz_List Named(#EditableDataItems)
+    #PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.AddtoList Visualid1(#LTCCUSTNM) Visualid2(#LTCCUSTS1) Akey1(#LTCCUSTID) Acolumn1(#LTCCUSTSC) Acolumn2(#LTCCUSTSS) Acolumn3(#LTCCUSTSZ) Acolumn4(#LTCCUSTPC)
+    Set Com(#Save_Button) Visible(False)
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#PutData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(SaveNew) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#START_LTCCUSTO_1_CRUD_ServerModule_3.PutData) Name(#PutData)
+    * Ask the server save the editable data items
+    Inz_List Named(#EditableDataItems)
+    #PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.AddtoList Visualid1(#LTCCUSTNM) Visualid2(#LTCCUSTS1) Akey1(#LTCCUSTID) Acolumn1(#LTCCUSTSC) Acolumn2(#LTCCUSTSS) Acolumn3(#LTCCUSTSZ) Acolumn4(#LTCCUSTPC)
+    #Save_Button.Visible := False
+    #Another_Button.Visible := True
+    #DataItemPanel.Enabled := False
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#PutData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Delete) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#START_LTCCUSTO_1_CRUD_ServerModule_3.DeleteData) Name(#DeleteData)
+    * Get the access keys from the associated instance and set them up to map to the server
+    #LTCCUSTID := #Com_Self.avAssociatedInstance.avAKey1
+    Inz_List Named(#AccessKeys)
+    * Ask the server to delete the associated row
+    #DeleteData.Execute Accesskeys(#AccessKeys) Servermoduleresult(#ServerModuleResult)
+    * Handle a good result
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.RemovefromList Dataitem(#Com_Self.avAssociatedInstance)
+    Set Com(#Save_Button #Delete_Button) Visible(False)
+    #DataItemPanel.Enabled := False
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#DeleteData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Save_Button.Click)
+    Define_Com Class(#Prim_Boln) Name(#ClientSideValid)
+    If (#Save_Button.ComponentTag = Save)
+    #ClientSideValid := #COM_OWNER.CheckClientSideValidation( Update )
+    Else
+    #ClientSideValid := #COM_OWNER.CheckClientSideValidation( Insert )
+    Endif
+    If (#ClientSideValid)
+    #COM_OWNER.avQueueAsyncOperation Operationid(#Save_Button.ComponentTag) Busystatetext(*MTXTUF_Saving)
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Delete_Button.Click)
+    If (#COM_OWNER.CheckClientSideValidation( Delete ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Delete) Busystatetext(*MTXTUF_Delete)
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Another_Button.Click)
+    #COM_OWNER.avQueueAsyncOperation Operationid(LoadNew) Busystatetext(*MTXTUF_Loading)
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    * Indicate back to framework whether a close operation is currently allowed
+    Mthroutine Name(uQueryCanClose) Options(*REDEFINE)
+    #COM_OWNER.CheckForUnsavedChanges Timeoutinprogress(#TimeOutinProgress) Allowtoproceed(#Allow)
+    Endroutine
+    
+    * --------------------------------------------------------------------------
+    * Returns True (Go ahead) or False (there are changes AND the user wants to save them)
+    Mthroutine Name(CheckForUnsavedChanges)
+    Define_Map For(*INPUT) Class(#prim_boln) Name(#TimeOutinProgress)
+    Define_Map For(*RESULT) Class(#prim_boln) Name(#AllowtoProceed)
+    * If a save operation is pending and not timed out
+    If (#Save_Button.Visible And #TimeOutinProgress.Not)
+    #AllowtoProceed := (#SYS_WEB.Confirm( (*MTXTUF_MSG_0009.Substitute( (#LTCCUSTID) )) ) = Cancel)
+    Else
+    #AllowtoProceed := True /* Default */
+    Endif
+    Endroutine
+    
+    End_Com

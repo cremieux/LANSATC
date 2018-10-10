@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               Zip_Code
+  Type:               NVarChar
+  Length:             255
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Zip Code"
+      Label:              "Zip Code"
+      Heading1:           "Zip Code"
+
+  - FRA:
+      Description:        "Zip Code"
+      Label:              "Zip Code"
+      Heading1:           "Zip Code"

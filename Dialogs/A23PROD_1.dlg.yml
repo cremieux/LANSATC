@@ -1,0 +1,200 @@
+﻿Web Dialog:
+  Name:               A23ProductsDetails
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Products Details"
+
+  - FRA:
+      Description:        "Products Details"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_DLG) Height(561) Width(808) Layoutmanager(#LayoutMain) Autoclose(True)
+    
+    * Layout - Main
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutMainColumn1) Displayposition(1) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow1) Displayposition(1) Parent(#LayoutMain) Height(56) Units(Content)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow2) Displayposition(2) Parent(#LayoutMain) Height(57) Units(Content)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow3) Displayposition(3) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem1) Column(#LayoutMainColumn1) Manage(#Appbar) Parent(#LayoutMain) Row(#LayoutMainRow1) Sizing(FitToWidth) Alignment(TopCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem2) Manage(#Details) Parent(#LayoutMain) Row(#LayoutMainRow3) Column(#LayoutMainColumn1)
+    
+    * Layout - App Bar
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutAppBarRow1) Displayposition(1) Parent(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutAppBarColumn1) Displayposition(1) Parent(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutAppBarItem1) Column(#LayoutAppBarColumn1) Flow(Left) Manage(#DeleteIcon) Parent(#LayoutAppBar) Row(#LayoutAppBarRow1) Sizing(None) Alignment(CenterRight)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutAppBarItem2) Column(#LayoutAppBarColumn1) Flow(Left) Manage(#SaveIcon) Parent(#LayoutAppBar) Row(#LayoutAppBarRow1) Sizing(None) Alignment(CenterRight)
+    
+    * Layout - Details
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutDetailsRow1) Displayposition(1) Parent(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutDetailsColumn1) Displayposition(1) Parent(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItemErrorText) Manage(#ErrorText) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(ContentHeightFitToWidth) Column(#LayoutDetailsColumn1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem1) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductID) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem2) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductCategoryID) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem3) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductLineID) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem4) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductDescription) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem5) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductModel) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem6) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductPrice) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem7) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductDetail) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem8) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductShippingCost) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem9) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductStockStatus) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem11) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#xProductTaxPercentage) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    
+    * Controls - App Bar
+    Define_Com Class(#PRIM_MD.AppBar) Name(#Appbar) Displayposition(1) Icon('arrow_back') Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Width(806) Layoutmanager(#LayoutAppBar) Caption('Details') Themedrawstyle('Heading1')
+    Define_Com Class(#PRIM_MD.Icon) Name(#SaveIcon) Displayposition(1) Left(758) Parent(#Appbar) Tabposition(1) Tabstop(False) Top(0) Height(57) Icon('check')
+    Define_Com Class(#PRIM_MD.Icon) Name(#DeleteIcon) Displayposition(2) Icon('delete_forever') Left(710) Parent(#Appbar) Tabposition(2) Tabstop(False) Top(0) Height(57)
+    
+    * Controls - Details
+    Define_Com Class(#PRIM_PANL) Name(#Details) Displayposition(2) Height(446) Imagealignment(Stretch) Parent(#COM_OWNER) Tabposition(1) Top(113) Width(806) Verticalscroll(True) Layoutmanager(#LayoutDetails) Left(0)
+    Define_Com Class(#PRIM_MD.Label) Name(#ErrorText) Caption('Errors') Displayposition(1) Left(0) Parent(#Details) Tabposition(3) Tabstop(False) Height(49) Width(788) Captionmarginleft(0) Captionmarginbottom(0) Captionalignment(TopLeft) Captionmarginright(0) Captionmargintop(0) Paddingbottom(16) Paddingtop(16) Paddingright(16) Paddingleft(16) Themedrawstyle('LightError') Iconheight(32) Top(0) Visible(False)
+    Define_Com Class(#xProductID.EditField) Name(#xProductID) Displayposition(2) Captiontype(Description) Parent(#Details) Readonly(True) Tabposition(2)
+    Define_Com Class(#xProductCategoryID.EditField) Name(#xProductCategoryID) Displayposition(3) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(3)
+    Define_Com Class(#xProductLineID.EditField) Name(#xProductLineID) Displayposition(4) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(4)
+    Define_Com Class(#xProductDescription.EditField) Name(#xProductDescription) Displayposition(5) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(5)
+    Define_Com Class(#xProductModel.EditField) Name(#xProductModel) Displayposition(6) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(6)
+    Define_Com Class(#xProductPrice.SpinEditField) Name(#xProductPrice) Displayposition(7) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(7)
+    Define_Com Class(#xProductDetail.EditField) Name(#xProductDetail) Displayposition(8) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(8)
+    Define_Com Class(#xProductShippingCost.SpinEditField) Name(#xProductShippingCost) Displayposition(9) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(9)
+    Define_Com Class(#xProductStockStatus.EditField) Name(#xProductStockStatus) Displayposition(10) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(10)
+    Define_Com Class(#xProductTaxPercentage.SpinEditField) Name(#xProductTaxPercentage) Displayposition(12) Captiontype(Description) Parent(#Details) Readonly(False) Tabposition(12)
+    
+    Group_By Name(#Fields) Fields(#xProductID #xProductCategoryID #xProductLineID #xProductDescription #xProductModel #xProductPrice #xProductDetail #xProductShippingCost #xProductStockStatus #xProductImage #xProductTaxPercentage)
+    
+    Define_Evt Name(ItemSaved)
+    Define_Evt Name(ItemDeleted)
+    
+    * ****************
+    * Event Routines *
+    * ****************
+    
+    Evtroutine Handling(#COM_OWNER.CreateInstance #SYS_WEB.DeviceChanged)
+    
+    If (#SYS_WEB.Device = Mobile)
+    
+    #COM_OWNER.Placement := FullScreen
+    
+    Else
+    
+    #COM_OWNER.Placement := Center
+    
+    Endif
+    
+    Endroutine
+    
+    Evtroutine Handling(#Appbar.IconClick)
+    
+    #Com_Owner.Close
+    
+    Endroutine
+    
+    Evtroutine Handling(#SaveIcon.Click)
+    
+    If (#COM_OWNER.Validate( Update #xProduct ))
+    
+    #COM_OWNER.Save
+    
+    Endif
+    
+    Endroutine
+    
+    Evtroutine Handling(#DeleteIcon.Click)
+    
+    #COM_OWNER.Delete
+    
+    Endroutine
+    
+    * *****************
+    * Method Routines *
+    * *****************
+    
+    Mthroutine Name(Create)
+    
+    Set Com(#xProductID) Readonly(False)
+    
+    Set Com(#DeleteIcon) Visible(False)
+    
+    #COM_OWNER.Show
+    
+    Endroutine
+    
+    Mthroutine Name(ShowItem)
+    Define_Map For(*INPUT) Class(#xProductID) Name(#Key1)
+    
+    Define_Com Class(#A23ProductsServer.Read) Name(#Read)
+    
+    Set Com(#Details #SaveIcon #DeleteIcon) Visible(False)
+    
+    #Read.ExecuteAsync( #Key1 #Fields )
+    
+    #COM_OWNER.Show
+    
+    Evtroutine Handling(#Read.Completed)
+    
+    Set Com(#Details #SaveIcon #DeleteIcon) Visible(True)
+    
+    Endroutine
+    
+    Endroutine
+    
+    Mthroutine Name(Save) Access(*PRIVATE)
+    
+    Define_Com Class(#A23ProductsServer.Save) Name(#Save)
+    
+    #SYS_MSGQ.ClearAll
+    
+    #ErrorText.Visible := False
+    
+    #Save.ExecuteAsync( #Fields #STD_CODE )
+    
+    Evtroutine Handling(#Save.Completed)
+    
+    If (#STD_CODE = "OK")
+    
+    #COM_OWNER.Close
+    
+    Signal Event(ItemSaved)
+    
+    Else
+    
+    #ErrorText.Caption := ""
+    
+    For Each(#Message) In(#SYS_MSGQ.Messages)
+    
+    #ErrorText.Caption += #Message.Text + (10).AsUnicodeString
+    
+    Endfor
+    
+    #ErrorText.Visible := True
+    
+    #Details.VerticalScrollPos := 0
+    
+    Endif
+    
+    Endroutine
+    
+    Endroutine
+    
+    Mthroutine Name(Delete) Access(*PRIVATE)
+    
+    Define_Com Class(#A23ProductsServer.Delete) Name(#Delete)
+    
+    #ErrorText.Visible := False
+    
+    #Delete.ExecuteAsync( #xProductID )
+    
+    Evtroutine Handling(#Delete.Completed)
+    
+    #COM_OWNER.Close
+    
+    Signal Event(ItemDeleted)
+    
+    Endroutine
+    
+    Endroutine
+    
+    End_Com

@@ -1,0 +1,46 @@
+﻿Web View:
+  Name:               A18Customers
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Customers"
+
+  - FRA:
+      Description:        "Customers"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_VIEW) Displayposition(1) Tabposition(1) Layoutmanager(#Layout1) Caption('Customers') Height(657) Width(652)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#ListCustomers) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutListRow1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem1) Alignment(CenterLeft) Column(#LayoutListColumn1) Manage(#ListIcon) Marginleft(20) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(None)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem2) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListPrimaryText) Marginleft(100) Marginright(32) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem3) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListSecondaryText) Marginleft(100) Marginright(32) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem4) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListTertiaryText) Marginleft(100) Marginright(32) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem5) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListTertiaryText1) Marginleft(100) Marginright(32) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    
+    Define_Com Class(#PRIM_MD.List) Name(#ListCustomers) Displayposition(1) Layoutmanager(#LayoutList) Left(5) Parent(#COM_OWNER) Rowheight(100) Tabposition(1) Themedrawstyle('Card') Top(5) Height(647) Width(642)
+    Define_Com Class(#PRIM_MD.ListIcon) Name(#ListIcon) Displayposition(2) Height(60) Icon('person') Iconimagesizing(Cropped) Left(20) Parent(#ListCustomers) Tabposition(3) Themedrawstyle('MediumTitle+Rounded') Top(20) Width(60)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListPrimaryText) Caption('Name') Displayposition(3) Height(21) Left(100) Parent(#ListCustomers) Tabposition(4) Width(508) Source(#vFirstLast) Themedrawstyle('ForegroundMediumPrimary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSecondaryText) Caption('Secondary Text') Displayposition(4) Height(21) Left(100) Parent(#ListCustomers) Tabposition(5) Top(31) Width(508) Source(#CStreet)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListTertiaryText) Caption('Tertiary Text') Displayposition(5) Height(19) Left(100) Parent(#ListCustomers) Tabposition(6) Themedrawstyle('Subheading+ForegroundSecondary') Top(52) Width(508) Source(#CPhone)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListTertiaryText1) Caption('Tertiary Text') Displayposition(6) Height(19) Left(100) Parent(#ListCustomers) Tabposition(1) Themedrawstyle('Subheading+ForegroundSecondary') Top(71) Width(508) Source(#CCustomerNumber)
+    Define_Com Class(#DemoCustomerDialog) Name(#DemoCustomerDialog)
+    
+    
+    
+    Evtroutine Handling(#COM_OWNER.Initialize)
+    Define_Com Class(#TCCustomerServerModule.FindAll) Name(#FindAllCustomers)
+    #FindAllCustomers.ExecuteAsync Cscstplist(#ListCustomers)
+    Endroutine
+    Evtroutine Handling(#ListCustomers.ItemClick)
+    #DemoCustomerDialog.ShowItem Key1(#CCustomerNumber)
+    Endroutine
+    End_Com

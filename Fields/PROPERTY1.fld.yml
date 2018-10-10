@@ -1,0 +1,27 @@
+﻿Field:
+  Name:               Property1000SF
+  Type:               Decimal
+  Length:             5
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Property 1000 SF"
+      Label:              "Property 1000 S"
+      Heading1:           "Property"
+      Heading2:           "1000"
+      Heading3:           "SF"
+
+  - FRA:
+      Description:        "Property 1000 SF"
+      Label:              "Property 1000 S"
+      Heading1:           "Property"
+      Heading2:           "1000"
+      Heading3:           "SF"

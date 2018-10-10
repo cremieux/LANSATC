@@ -1,0 +1,149 @@
+﻿Reusable Part:
+  Name:               START_LTCCUSTO_1_SQL_Filter_4
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Filter"
+
+  - FRA:
+      Description:        "Filter"
+
+  Source: |
+    * ---------------------------------------------------------------------------------------------------
+    * This is a view filter in framework VLF Demo.
+    * It belongs to business object Customers.
+    * Created 26th July 2018 by USERID with Material Design style controls.
+    * In this usage diagram it is highlighted in GREEN:
+    * Annotate Img=%partdir%VF_UM501_SearchSQL_Slide1.PNG width=1000 height=339
+    * Note: If you can’t see the diagram, go to the Home tab, then move across into the Design area.
+    *       Click on the bottom right image that has the hint “Toggle Annotation Enabled/Disabled state”.
+    * ---------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(215)
+    * ================================================================================
+    * Simple Field, Group and Condition Definitions
+    * ================================================================================
+    Group_By Name(#XG_SearchFields) Fields(#LTCCUSTID #LTCCUSTNM #LTCCUSTS1 #LTCCUSTPC)
+    
+    Def_List Name(#SearchFields) Fields(#XG_SearchFields) Type(*WORKING) Entrys(1)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(150) Left(0) Top(0) Width(215) Horizontalscroll(True) Verticalscroll(True) Tabstop(False) Layoutmanager(#FlowLayout1)
+    Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(150) Width(215) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center) Marginright(4) Marginleft(4)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom) Marginright(4) Marginleft(4)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Search_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#CLEAR_LIST) Parent(#ButtonPanelAttachmenthManager) Attachment(Left)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_FWLM) Name(#FlowLayout1) Direction(TopToBottom) Sizingrulehor(Maximize)
+    
+    * Define the flow layout manager entries for the fields and components that are on the data panel
+    
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item1) Manage(#LTCCUSTID) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item2) Manage(#LTCCUSTNM) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item3) Manage(#LTCCUSTS1) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item4) Manage(#LTCCUSTPC) Parent(#FlowLayout1)
+    
+    * ---------------------------------------------------------------------------------
+    
+    * Define the button and the check box
+    
+    Define_Com Class(#PRIM_md.RaisedButton) Name(#Search_Button) Parent(#ButtonPanel) Caption(*MTXTUF_SEARCHUSERS) Displayposition(1) Tabposition(1) Left(449) Top(4) Buttondefault(True)
+    
+    Define_Com Class(#PRIM_MD.CheckBox) Name(#CLEAR_LIST) Caption(*MTXTUF_CLEAR_LIST) Parent(#ButtonPanel) Displayposition(2) Tabposition(2) Checkstate(Checked) Left(0) Top(0) Height(44)
+    
+    * ---------------------------------------------------------------------------------
+    
+    * Define the fields that are on the filter form
+    
+    Define_Com Class(#LTCCUSTID.EditField) Name(#LTCCUSTID) Parent(#DataItemPanel) Displayposition(1) Tabposition(1) Left(0) Captiontype(Caption) Height(48) Helperposition(None) Caption('Customer ID')
+    Define_Com Class(#LTCCUSTNM.EditField) Name(#LTCCUSTNM) Parent(#DataItemPanel) Displayposition(2) Tabposition(2) Left(0) Captiontype(Caption) Height(48) Helperposition(None) Caption('Customer Name')
+    Define_Com Class(#LTCCUSTS1.EditField) Name(#LTCCUSTS1) Parent(#DataItemPanel) Displayposition(3) Tabposition(3) Left(0) Captiontype(Caption) Height(48) Helperposition(None) Caption('Ship Address')
+    Define_Com Class(#LTCCUSTPC.EditField) Name(#LTCCUSTPC) Parent(#DataItemPanel) Displayposition(4) Tabposition(4) Left(0) Captiontype(Caption) Height(48) Helperposition(None) Caption('Phone')
+    
+    * ---------------------------------------------------------------------------------
+    
+    * The list used to receive data from the file access Server Module
+    
+    Def_List Name(#InstanceList_Columns) Fields(#LTCCUSTNM #LTCCUSTS1 #LTCCUSTID #LTCCUSTSC #LTCCUSTSS #LTCCUSTSZ #LTCCUSTPC) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    * ================================================================================
+    * Routines
+    * ================================================================================
+    
+    
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    
+    * Do any initialization defined in the ancestor
+    
+    #Com_Ancestor.uInitialize
+    
+    #COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+    #COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+    
+    * <your initialize logic goes here>
+    
+    Endroutine
+    
+    
+    Evtroutine Handling(#Search_Button.Click)
+    #Com_Owner.uSelectData
+    Endroutine
+    
+    
+    Mthroutine Name(uSelectData)
+    
+    * Define the data service
+    Define_Com Class(#START_LTCCUSTO_1_SQL_Filter_svrm_4.Search) Name(#Search)
+    
+    #avFrameworkManager.avClearMessages Requester(#com_self)
+    
+    * Save the current key values
+    Inz_List Named(#SearchFields)
+    
+    * Go to busy state
+    #COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+    
+    * Ask Server Module to get the data from the server
+    #Search.ExecuteAsync Searchfields(#SearchFields) Instancelist_Columns(#InstanceList_Columns)
+    
+    
+    Evtroutine Handling(#Search.Completed)
+    
+    If Cond(#CLEAR_LIST.CheckState *EQ Checked)
+    #AVLISTMANAGER.ClearList
+    Endif
+    
+    Selectlist Named(#InstanceList_Columns)
+    
+    * Add instance details to the instance list
+    
+    #AVLISTMANAGER.AddtoList Visualid1(#LTCCUSTNM) Visualid2(#LTCCUSTS1) Akey1(#LTCCUSTID) Acolumn1(#LTCCUSTSC) Acolumn2(#LTCCUSTSS) Acolumn3(#LTCCUSTSZ) Acolumn4(#LTCCUSTPC)
+    
+    Endselect
+    
+    Clr_List Named(#InstanceList_Columns)
+    
+    * Restore the saved key values
+    Get_Entry Number(1) From_List(#SearchFields)
+    
+    * Get any warning messages issued by the search
+    #avFrameworkManager.avReceiveSystemMessageQueue Requester(#Com_Self)
+    
+    * Go back to display free state
+    #com_Owner.avGotoFreeState
+    
+    Endroutine
+    
+    * Handle a failure
+    Evtroutine Handling(#Search.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER )
+    Endroutine
+    
+    Endroutine
+    
+    End_Com

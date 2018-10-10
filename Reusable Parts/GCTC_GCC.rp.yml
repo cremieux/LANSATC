@@ -1,0 +1,165 @@
+﻿Reusable Part:
+  Name:               GCTC_GCCOMP_SQL_Filter
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Filter"
+
+  - FRA:
+      Description:        "Filter"
+
+  Source: |
+    * ---------------------------------------------------------------------------------------------------
+    * This is a view filter in framework GRIFFIN Framework.
+    * It belongs to business object Comps.
+    * Created 26th September 2018 by USERID with Material Design style controls.
+    *
+    * Note 1
+    * The server module associated with this filter may need to be modified if this filter uses a file defined to lansa as an OTHER file, and the actual field name in the file is different from the name given to the field by LANSA. See the server module for details.
+    *
+    * Note 2.
+    * This filter will need to be tested for its performance impact before being deployed.
+    * You may find that certain combinations of search values result in a big performance load on the server.
+    *
+    * In this usage diagram it is highlighted in GREEN:
+    * Annotate Img=%partdir%VF_UM501_SearchSQL_Slide1.PNG width=1000 height=339
+    * Note: If you can’t see the diagram, go to the Home tab, then move across into the Design area.
+    *       Click on the bottom right image that has the hint “Toggle Annotation Enabled/Disabled state”.
+    * ---------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #VF_AC007O) Height(617) Width(257)
+    * ================================================================================
+    * Simple Field, Group and Condition Definitions
+    * ================================================================================
+    Group_By Name(#XG_SearchFields) Fields(#CompID #CompType #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager)
+    
+    Def_List Name(#SearchFields) Fields(#XG_SearchFields) Type(*WORKING) Entrys(1)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(617) Left(4) Top(0) Width(249) Horizontalscroll(True) Verticalscroll(True) Tabstop(False) Layoutmanager(#FlowLayout1)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center) Marginright(4) Marginleft(4)
+    * ---------------------------------------------------------------------------------
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_FWLM) Name(#FlowLayout1) Direction(TopToBottom) Sizingrulehor(Maximize) Margintop(2)
+    
+    * Define the flow layout manager entries for the fields and components that are on the data panel
+    
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item4) Manage(#PropertyAddress) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item5) Manage(#PropertyCity) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item6) Manage(#PropertyState) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item7) Manage(#PropertyZip) Parent(#FlowLayout1)
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item8) Manage(#PropertyManager) Parent(#FlowLayout1)
+    
+    * ---------------------------------------------------------------------------------
+    
+    * Define the button and the check box
+    Define_Com Class(#PRIM_FWLI) Name(#FlowLayout1Item2) Manage(#Search_Button) Parent(#FlowLayout1)
+    
+    Define_Com Class(#PRIM_md.RaisedButton) Name(#Search_Button) Parent(#DataItemPanel) Caption(*MTXTUF_SEARCHUSERS) Displayposition(6) Tabposition(1) Left(0) Top(292) Buttondefault(True) Height(40) Width(249) Themedrawstyle('MediumTitle')
+    
+    
+    * ---------------------------------------------------------------------------------
+    
+    * Define the fields that are on the filter form
+    
+    Define_Com Class(#PropertyAddress.EditField) Name(#PropertyAddress) Parent(#DataItemPanel) Displayposition(1) Tabposition(2) Left(0) Captiontype(Label) Height(48) Helperposition(None) Caption('PropertyAddress') Top(2) Width(249) Appearance(TextFieldAreaBox)
+    Define_Com Class(#PropertyCity.EditField) Name(#PropertyCity) Parent(#DataItemPanel) Displayposition(2) Tabposition(3) Left(0) Captiontype(Label) Height(48) Helperposition(None) Caption('PropertyCity') Top(60) Width(249) Appearance(TextFieldAreaBox)
+    Define_Com Class(#PropertyState.EditField) Name(#PropertyState) Parent(#DataItemPanel) Displayposition(3) Tabposition(4) Left(0) Captiontype(Label) Height(48) Helperposition(None) Caption('PropertyState') Top(118) Width(249) Appearance(TextFieldAreaBox)
+    Define_Com Class(#PropertyZip.EditField) Name(#PropertyZip) Parent(#DataItemPanel) Displayposition(4) Tabposition(5) Left(0) Captiontype(Label) Height(48) Helperposition(None) Caption('PropertyZip') Top(176) Width(249) Appearance(TextFieldAreaBox)
+    Define_Com Class(#PropertyManager.EditField) Name(#PropertyManager) Parent(#DataItemPanel) Displayposition(5) Tabposition(6) Left(0) Captiontype(Label) Height(48) Helperposition(None) Caption('PropertyManager') Top(234) Width(249) Appearance(TextFieldAreaBox)
+    
+    * ---------------------------------------------------------------------------------
+    
+    * The list used to receive data from the file access Server Module
+    
+    Def_List Name(#InstanceList_Columns) Fields(#PropertyName #PropertyAddress #CompID #vLocation #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyState #CompDate #CompPrice #PropertyTotalSF) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    * ================================================================================
+    * Routines
+    * ================================================================================
+    
+    
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    
+    * Do any initialization defined in the ancestor
+    
+    #Com_Ancestor.uInitialize
+    
+    #COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+    #COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+    
+    * <your initialize logic goes here>
+    
+    Endroutine
+    
+    
+    Evtroutine Handling(#Search_Button.Click)
+    #Com_Owner.uSelectData
+    Endroutine
+    
+    
+    Mthroutine Name(uSelectData)
+    
+    * Define the data service
+    Define_Com Class(#GCTC_GCCOMP_SQL_Filter_svrm.Search) Name(#Search)
+    
+    #avFrameworkManager.avClearMessages Requester(#com_self)
+    
+    * Save the current key values
+    Inz_List Named(#SearchFields)
+    
+    * Go to busy state
+    #COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+    
+    * Ask Server Module to get the data from the server
+    #Search.ExecuteAsync Searchfields(#SearchFields) Instancelist_Columns(#InstanceList_Columns)
+    
+    
+    Evtroutine Handling(#Search.Completed)
+    
+    #AVLISTMANAGER.ClearList
+    
+    * To show images in an instance list you need to create them first
+    
+    * Define a #PRIM_BMP object
+    * Define_Com Class(#prim_BMP) Name(#uImageCross) Reference(*DYNAMIC)
+    
+    * Now create the bitmap using either an image file or a blob
+    * #uImageCross <= #SYS_APPLN.CreateBitmap( VLFONE/Images/black/medium/cross.png )
+    * or
+    * #uImageCross <= #SYS_APPLN.CreateBitmap( #xEmployeeImageThumbnail )
+    
+    * Now you can pass #uImageCross as IColumn1 2 or 3
+    * #AVLISTMANAGER.AddtoList ..... Icolumn1(#uImageCross)
+    
+    Selectlist Named(#InstanceList_Columns)
+    
+    * Add instance details to the instance list
+    
+    #AVLISTMANAGER.AddtoList Visualid1(#PropertyName) Visualid2(#PropertyAddress) Akey1(#CompID) Acolumn1(#vLocation) Acolumn2(#PropertyManager) Acolumn3(#PropertyYearBuilt) Acolumn4(#PropertyTenant) Dcolumn1(#PropertyExpiration.AsString) Acolumn5(#PropertyType) Ncolumn1(#PropertyOccupancy) Acolumn6(#PropertyState) Dcolumn2(#CompDate.AsString) Ncolumn3(#CompPrice) Ncolumn2(#PropertyTotalSF)
+    
+    Endselect
+    
+    Clr_List Named(#InstanceList_Columns)
+    
+    * Restore the saved key values
+    Get_Entry Number(1) From_List(#SearchFields)
+    
+    * Get any warning messages issued by the search
+    #avFrameworkManager.avReceiveSystemMessageQueue Requester(#Com_Self)
+    
+    * Go back to display free state
+    #com_Owner.avGotoFreeState
+    
+    Endroutine
+    
+    * Handle a failure
+    Evtroutine Handling(#Search.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER )
+    Endroutine
+    
+    Endroutine
+    
+    End_Com

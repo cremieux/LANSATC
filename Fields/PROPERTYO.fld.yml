@@ -1,0 +1,30 @@
+﻿Field:
+  Name:               PropertyOccupancy
+  Type:               Decimal
+  Length:             3
+  Decimals:           0
+  Default Value:      "*ZERO"
+  Edit Mask:          "'   0%'"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Occupancy Percent"
+      Label:              "Occupancy %"
+      Heading1:           "Occupancyv%"
+
+  - FRA:
+      Description:        "PropertyOccupancy"
+      Label:              "PropertyOccupan"
+      Heading1:           "PropertyOccupancy"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(227)
+    
+    End_Com
+    
+    End_Com

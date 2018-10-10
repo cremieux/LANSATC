@@ -1,0 +1,11 @@
+﻿List:
+  Name:               APP 28
+  Stored As:          Repository
+
+  Objects:
+  - GCAssets:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A28Main:
+      Type:               Web Page

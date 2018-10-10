@@ -1,0 +1,24 @@
+﻿Field:
+  Name:               GCAssetType
+  Type:               String
+  Length:             30
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Asset Type"
+      Label:              "Asset Type"
+      Heading1:           "Asset"
+      Heading2:           "Type"
+
+  - FRA:
+      Description:        "Asset Type"
+      Label:              "Asset Type"
+      Heading1:           "Asset"
+      Heading2:           "Type"

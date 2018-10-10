@@ -1,0 +1,29 @@
+﻿Field:
+  Name:               CompID
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "CompID"
+      Label:              "CompID"
+      Heading1:           "CompID"
+
+  - FRA:
+      Description:        "CompID"
+      Label:              "CompID"
+      Heading1:           "CompID"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(335)
+    
+    End_Com
+    
+    End_Com

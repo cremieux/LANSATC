@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               X_000_Sqft
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "1,000 Sqft"
+      Label:              "1,000 Sqft"
+      Heading1:           "1,000 Sqft"
+
+  - FRA:
+      Description:        "1,000 Sqft"
+      Label:              "1,000 Sqft"
+      Heading1:           "1,000 Sqft"

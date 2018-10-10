@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               State_1
+  Type:               NVarChar
+  Length:             255
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "State"
+      Label:              "State"
+      Heading1:           "State"
+
+  - FRA:
+      Description:        "State"
+      Label:              "State"
+      Heading1:           "State"

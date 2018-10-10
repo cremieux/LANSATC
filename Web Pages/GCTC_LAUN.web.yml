@@ -1,0 +1,70 @@
+﻿Web Page:
+  Name:               GCTC_LaunchPage
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "GRIFFIN Framework"
+
+  - FRA:
+      Description:        "GRIFFIN Framework"
+
+  Source: |
+    * --------------------------------------------------------------------------------------------------------------
+    * This is the customized VLF-ONE entry point (or launch point) form for framework GRIFFIN Framework
+    * Created 26th September 2018 by USERID with Material Design style controls.
+    * --------------------------------------------------------------------------------------------------------------
+    *
+    *         #### ##     ## ########   #######  ########  ########    ###    ##    ## ########
+    *          ##  ###   ### ##     ## ##     ## ##     ##    ##      ## ##   ###   ##    ##
+    *          ##  #### #### ##     ## ##     ## ##     ##    ##     ##   ##  ####  ##    ##
+    *          ##  ## ### ## ########  ##     ## ########     ##    ##     ## ## ## ##    ##
+    *          ##  ##     ## ##        ##     ## ##   ##      ##    ######### ##  ####    ##
+    *          ##  ##     ## ##        ##     ## ##    ##     ##    ##     ## ##   ###    ##
+    *         #### ##     ## ##         #######  ##     ##    ##    ##     ## ##    ##    ##
+    *
+    * On the Resources tab (above) the resource script VLFONE_Engine.js must be specified before deployment.
+    * See https://%lansadocs%/lansa048/content/lansa/lansa048_6910.htm
+    *
+    * Aspects of the behaviour of this component are assumed by the rest of VLF-ONE.
+    * If you make any modifications to the events, methods, properties, structure or execution path or other
+    * characteristics of this component in any way that is not documented you are risking future application failure.
+    *
+    * ---------------------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Layoutmanager(#WebFormLayoutManager) Icon(#GCapFavicon)
+    
+    Define_Com Class(#PRIM_ATLM) Name(#WebFormLayoutManager)
+    Define_Com Class(#PRIM_ATLI) Name(#VLF_One_AttachItem) Parent(#WebFormLayoutManager) Attachment(Center) Manage(#VLF_ONE)
+    Define_Com Class(#VF_AC006O) Name(#VLF_ONE) Parent(#COM_OWNER) Height(800) Width(1200)
+    
+    * -------------------------------------------------------------------------------------
+    Evtroutine Handling(#COM_OWNER.CreateInstance)
+    
+    * For more details of the all options available here see - http://%lansadocs%/lansa048/index.htm#lansa/lansa048_8285.htm
+    * To see the link, press the Ctrl key, then mouse over the URL and click to open the information in a browser.
+    
+    
+    * Start VLF-ONE for your framework
+    #VLF_ONE.uInitialize Frameworkidentifer("GRIFFIN_FRAMEWORK") Logonexpiry(90) Logonheaderpanelid("GCTC_LOG") Logontrailerpanelid("GCTC_L_1") Logonhandlerid("VF_AC026O") Passwordchangerid("") Mtxtloaderid(UF_OMULTI) Themecustomizerid("")
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------------------
+    Evtroutine Handling(#SYS_WEB.CloseQuery)
+    
+    If (#VLF_ONE *IsNot *null)
+    #VLF_ONE.uTerminate Possibletocancel(False) Browserisclosing(True)
+    Endif
+    
+    Endroutine
+    
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Styles:
+  - http://fonts.googleapis.com/css?family=Roboto
+
+  Loading Screen:
+    Image:              None

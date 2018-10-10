@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Webinar Application
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A27Main:
+      Type:               Web Page

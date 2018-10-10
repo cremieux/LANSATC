@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               QNTSession
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('QNTSESSION')
+    
+    Define Field(#QNTUserName) Type(*STRING)
+    Define Field(#QNTPassword) Type(*STRING)
+    Define Field(#QNTReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#QNTUserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#QNTPassword) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#QNTReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #QNTReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

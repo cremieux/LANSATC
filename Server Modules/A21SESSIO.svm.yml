@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               A21Session
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('A21SESSION')
+    
+    Define Field(#A21UserName) Type(*STRING)
+    Define Field(#A21Password) Type(*STRING)
+    Define Field(#A21ReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#A21UserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#A21Password) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#A21ReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #A21ReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

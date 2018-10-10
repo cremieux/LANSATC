@@ -1,0 +1,145 @@
+﻿Reusable Part:
+  Name:               GC_ContactListBrowser
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Contact card style list browser"
+
+  - FRA:
+      Description:        "Contact card style list browser"
+
+  Source: |
+    * ---------------------------------------------------------------------------------
+    * This is a contact card instance list pane in framework GRIFFIN Framework.
+    * It belongs to business object Contacts.
+    * Created 5th October 2018 by USERID with Windows desktop style controls.
+    * ---------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #VF_AC035O) Height(193) Width(497) Style(#BorderBottom) Layoutmanager(#AttachLayoutMainPanel)
+    
+    Define_Com Class(#PRIM_ATLM) Name(#AttachLayoutMainPanel)
+    
+    
+    * -------------------------------------------------------------------------------------------------------------
+    * The main right panel
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Main_Right_Pane) Manage(#Main_Right_Pane) Parent(#AttachLayoutMainPanel) Attachment(Center) Margintop(4)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Alignment(TopLeft) Column(#Layout1Column1) Manage(#CONTACTTITLE) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(5) Marginright(5) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Alignment(TopLeft) Column(#Layout1Column1) Manage(#CONTACTADDRESS) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(5) Marginright(5) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Alignment(TopLeft) Column(#Layout1Column1) Manage(#vLocation) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(5) Marginright(5) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item4) Alignment(TopLeft) Column(#Layout1Column1) Manage(#CONTACTMOBILE) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(5) Marginright(5) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item5) Alignment(TopLeft) Column(#Layout1Column1) Manage(#CONTACTEMAIL) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(5) Marginright(5) Margintop(4)
+    
+    Define_Com Class(#Prim_panl) Name(#Main_Right_Pane) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(188) Left(0) Top(4) Width(497) Layoutmanager(#Right_Pane_LayoutManager) Tabstop(False)
+    
+    Define_Com Class(#PRIM_ATLM) Name(#Right_Pane_LayoutManager)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Title) Manage(#Title) Parent(#Right_Pane_LayoutManager) Attachment(Top)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Title_Panel) Manage(#Details_Title_Panel) Parent(#Right_Pane_LayoutManager) Attachment(Top)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Panel) Manage(#Details_Panel) Parent(#Right_Pane_LayoutManager) Attachment(Center)
+    
+    * -------------------------------------------------------------------------------------------------------------
+    * Style for divider line
+    Define_Com Class(#prim_vs.Style) Name(#BorderBottom) Borderbottom(1)
+    * No border style
+    Define_Com Class(#prim_vs.Style) Name(#TransparentBorder) Bordercolor(Transparent)
+    
+    * Heading1 style
+    Define_Com Class(#PRIM_VS.Style) Name(#Heading1Style) Foregroundbrush(#Heading1Foreground) Fontsize(19) Fontunits(Pixel) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5)
+    Define_Com Class(#PRIM_VS.Style) Name(#Heading1BoldStyle) Foregroundbrush(#Heading1Foreground) Fontsize(19) Fontunits(Pixel) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5) Bold(True)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading1Foreground) Color(Theme900)
+    Define_Com Class(#PRIM_VS.Style) Name(#Heading1MouseOver) Underline(True)
+    
+    * Heading2 style
+    Define_Com Class(#PRIM_VS.Style) Name(#Heading2Style) Foregroundbrush(#Heading2Foreground) Fontsize(13) Fontunits(Pixel) Backgroundbrush(#Heading2Background) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading2Foreground) Color(Theme900)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading2Background) Color(Theme50)
+    Define_Com Class(#PRIM_VS.Style) Name(#Heading2StyleBackground) Backgroundbrush(#Heading2Background)
+    
+    * Labels style
+    Define_Com Class(#PRIM_VS.Style) Name(#LabelStyle) Textcolor(18:69:114)
+    
+    * ------------------------------------------------------------------------------
+    Define_Com Class(#Prim_labl) Name(#Title) Parent(#Main_Right_Pane) Displayposition(1) Tabposition(1) Left(0) Top(0) Tabstop(False) Verticalalignment(Center) Style(#Heading1Style) Mouseoverstyle(#Heading1MouseOver) Caption('xxxxxxxxxxx - xxxxxxxxx') Marginleft(2) Ellipses(Path) Wordwrap(False) Width(497) Height(28)
+    Define_Com Class(#Prim_Panl) Name(#Details_Title_Panel) Displayposition(2) Tabstop(False) Parent(#Main_Right_Pane) Tabposition(3) Layoutmanager(#LayoutManager_Details_Title_Panel) Left(0) Top(28) Width(497) Height(28) Style(#Heading2StyleBackground)
+    
+    Define_Com Class(#PRIM_ATLM) Name(#LayoutManager_Details_Title_Panel)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Title) Manage(#Details_Title) Parent(#LayoutManager_Details_Title_Panel) Attachment(Center)
+    
+    Define_Com Class(#PRIM_LABL) Name(#Details_Title) Caption(*MTXTUF_DETAILS) Displayposition(1) Ellipses(Word) Left(0) Parent(#Details_Title_Panel) Tabposition(1) Tabstop(False) Top(0) Verticalalignment(Center) Width(497) Style(#Heading2Style) Marginleft(4) Height(28)
+    
+    Define_Com Class(#PRIM_PANL) Name(#Details_Panel) Displayposition(3) Left(0) Parent(#Main_Right_Pane) Tabposition(2) Tabstop(False) Top(56) Height(132) Width(497) Layoutmanager(#Layout1)
+    
+    Define_Com Class(#ContactTitle.Visual) Parent(#Details_Panel) Displayposition(1) Height(22) Tabstop(False) Width(487) Marginleft(100) Labeltype(Caption) Readonly(True) Editstyle(#TransparentBorder) Labelstyle(#LabelStyle) Caption('Title') Tabposition(1) Usepicklist(False) Left(5) Top(4)
+    Define_Com Class(#ContactAddress.Visual) Parent(#Details_Panel) Displayposition(2) Height(22) Tabstop(False) Width(487) Marginleft(100) Labeltype(Caption) Readonly(True) Editstyle(#TransparentBorder) Labelstyle(#LabelStyle) Caption('Address') Tabposition(2) Usepicklist(False) Top(30) Left(5)
+    Define_Com Class(#ContactMobile.Visual) Parent(#Details_Panel) Displayposition(4) Height(22) Tabstop(False) Width(487) Marginleft(100) Labeltype(Caption) Readonly(True) Editstyle(#TransparentBorder) Labelstyle(#LabelStyle) Caption('Mobile') Tabposition(3) Usepicklist(False) Top(82) Left(5)
+    Define_Com Class(#ContactEmail.Visual) Parent(#Details_Panel) Displayposition(5) Height(22) Tabstop(False) Width(487) Marginleft(100) Labeltype(Caption) Readonly(True) Editstyle(#TransparentBorder) Labelstyle(#LabelStyle) Caption('Email') Tabposition(4) Top(108) Left(5)
+    Define_Com Class(#vLocation.Visual) Name(#vLocation) Componentversion(1) Displayposition(3) Height(22) Parent(#Details_Panel) Tabposition(5) Usepicklist(False) Width(487) Labelstyle(#LabelStyle) Readonly(True) Top(56) Left(5) Marginleft(100) Editstyle(#TransparentBorder)
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    
+    * Standard upward handling
+    #COM_ANCESTOR.uInitialize
+    
+    * This snap in panel handles its own selections
+    #COM_OWNER.avHandlesOwnSelection := True
+    
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(UContains) Options(*REDEFINE)
+    
+    #Found := #DataItem.avContains( #UpperCaseWords )
+    
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(uCreateorUpdateDisplay) Options(*REDEFINE)
+    
+    * Standard upward handling
+    #COM_ANCESTOR.uCreateorUpdateDisplay
+    * Set up the title
+    #Title := #DATAITEM.avVisualID1 + " " + #DATAITEM.avVisualID2
+    
+    * Map the fields from the instance list data item onto the data panel
+    #ContactTitle := #DataItem.avAColumn1
+    #ContactAddress := #DataItem.avAColumn2
+    #ContactCity := #DataItem.avAColumn3
+    #ContactState := #DataItem.avAColumn4
+    #ContactPhone := #DataItem.avAColumn5
+    #ContactMobile := #DataItem.avAColumn6
+    #ContactEmail := #DataItem.avAColumn7
+    #vLocation := #ContactCity + ", " + #CState
+    
+    * Set the selected (or not) look
+    #COM_OWNER.uRefreshVisibleCurrentState
+    
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(uRefreshVisibleCurrentState) Options(*REDEFINE)
+    
+    If (#DATAITEM.avIsCurrent)
+    #Title.Style <= #Heading1BoldStyle
+    Else
+    #Title.Style <= #Heading1Style
+    Endif
+    
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Evtroutine Handling(#Com_owner.Click) Handled(#Handled)
+    
+    #Com_Owner.DataItem.avIsCurrent := True /* Make the current item in the instance list */
+    
+    #Com_Owner.DataItem.avExecuteDefaultCommand Showifopenalready(True)
+    
+    #Handled := True /* Stop propogation up to the parent */
+    
+    Endroutine
+    
+    End_Com

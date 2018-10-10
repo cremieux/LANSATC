@@ -1,0 +1,38 @@
+﻿Field:
+  Name:               TestCheckField
+  Type:               Boolean
+  Length:             1
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Check Field"
+      Label:              "Check Field"
+      Heading1:           "Check"
+      Heading2:           "Field"
+
+  - FRA:
+      Description:        "Check Field"
+      Label:              "Check Field"
+      Heading1:           "Check"
+      Heading2:           "Field"
+
+  Source: |
+    *
+    Begin_Com
+    
+    Begin_Com Role(*picklist) Name(#Picklist)
+    
+    Define_Com Class(#PRIM_PKIT) Name(#False) Caption('False') Default(True) Parent(#Picklist) Value('False')
+    Define_Com Class(#PRIM_PKIT) Name(#True) Caption('True') Parent(#Picklist) Value('True')
+    
+    End_Com
+    
+    Begin_Com Role(*Visual #PRIM_EVPL) Name(#VisualPicklist) Appearance(Checkbox) Componentversion(1) Defaultvisual(True) Height(19) Width(209)
+    
+    End_Com
+    
+    End_Com

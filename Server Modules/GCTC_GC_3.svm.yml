@@ -1,0 +1,134 @@
+﻿ServerModule:
+  Name:               GCTC_GCCONTACTS_DETAILS_ServerModule
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Server Module"
+
+  - FRA:
+      Description:        "Server Module"
+
+  Source: |
+    * ---------------------------------------------------------------------------------
+    * This is a server module in framework GRIFFIN Framework.
+    * It belongs to business object Contacts.
+    * Created 28th September 2018 by USERID with Material Design style controls.
+    * ---------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('VLFONE')
+    
+    * ---------------------------------------------------------------------------------
+    * Declare the shared server system manager. It must be declared exactly this
+    * way in any server modules or reusable parts that want to use it.
+    Define_Com Class(#GC_ServerSystemManager) Name(#ServerSystemManager) Scope(*APPLICATION)
+    * These strings coming from the logon validator. They allow the logon validator to pass information
+    * into your shared server system manager. For example, an IBM i library list to be used, or
+    * details about the currently logged on user or other system states.
+    Define Field(#Persistent_ApplicationString1) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString2) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString3) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString4) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString5) Type(*NVARCHAR)
+    Define Field(#Persistent_EventDetails) Reffld(#std_strng)
+    
+    Persist Fields(#Persistent_ApplicationString1 #Persistent_ApplicationString2 #Persistent_ApplicationString3 #Persistent_ApplicationString4 #Persistent_ApplicationString5 #Persistent_EventDetails)
+    
+    * ---------------------------------------------------------------------------------
+    
+    * Use expandable groups to accomodate easier maintenance
+    Group_By Name(#XG_AccessKeys) Fields(#ContactID)
+    Group_By Name(#XG_EditableDataItems) Fields(#ContactID #ContactFirstName #ContactLastName #ContactTitle #ContactAddress #ContactCity #ContactState #ContactPhone #ContactMobile #ContactEmail)
+    Group_By Name(#XG_ReadOnlyDataItems) Fields(#vLocation #vFullName)
+    Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+    
+    * ---------------------------------------------------------------------------------
+    Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*WORKING) Entrys(1)
+    Define Field(#ServerModuleResult) Type(*BOOLEAN)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_dc.UnicodeString) Name(#SingularName) Value('Contact')
+    Define_Com Class(#Prim_dc.UnicodeString) Name(#PluralName) Value('Contacts')
+    
+    * ---------------------------------------------------------------------------------
+    Srvroutine Name(GetData) Session(*REQUIRED)
+    List_Map For(*INPUT) List(#AccessKeys)
+    List_Map For(*OUTPUT) List(#AllDataItems)
+    Field_Map For(*OUTPUT) Field(#ServerModuleResult)
+    
+    Define_Com Class(#vf_elretc) Name(#Io_Status)
+    Define_Com Class(#Prim_dc.UnicodeString) Name(#ResultMessage)
+    
+    * Invoke the server manager to set up the execution context for this server routine
+    #ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5) Event_Component(#COM_OWNER) Persistent_Eventdetails(#Persistent_EventDetails)
+    
+    * Process the request
+    Get_Entry Number(1) From_List(#AccessKeys)
+    
+    Fetch Fields(#AllDataItems) From_File(GCContacts) With_Key(#XG_AccessKeys) Io_Status(#Io_Status) Io_Error(*NEXT)
+    
+    Case (#Io_Status)
+    When (= OK)
+    Add_Entry To_List(#AllDataItems)
+    #ServerModuleResult := True
+    When (= NR)
+    #ResultMessage := *MTXTUF_MSG_0003.Substitute( #SingularName #Com_Self.VisibleIdentification )
+    Message Msgtxt(#ResultMessage)
+    Otherwise
+    #ResultMessage := *MTXTUF_MSG_0004.Substitute( #SingularName #Com_Self.VisibleIdentification )
+    Message Msgtxt(#ResultMessage)
+    Endcase
+    
+    * Invoke the server manager to clean up and finalize the execution context for this server routine
+    #ServerSystemManager.TerminateServiceRoutine Event_Component(#COM_OWNER)
+    
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Srvroutine Name(PutData) Session(*REQUIRED)
+    List_Map For(*INPUT) List(#EditableDataItems)
+    Field_Map For(*OUTPUT) Field(#ServerModuleResult)
+    
+    Define_Com Class(#vf_elretc) Name(#Io_Status)
+    Define_Com Class(#Prim_dc.UnicodeString) Name(#ResultMessage)
+    
+    * Invoke the server manager to set up the execution context for this server routine
+    #ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5) Event_Component(#COM_OWNER) Persistent_Eventdetails(#Persistent_EventDetails)
+    
+    * Process the request
+    Get_Entry Number(1) From_List(#EditableDataItems)
+    
+    Check_For In_File(GCContacts) With_Key(#XG_AccessKeys) Io_Status(#Io_Status) Io_Error(*NEXT)
+    
+    Case (#Io_Status)
+    When (= EQ)
+    Update Fields(#EditableDataItems) In_File(GCContacts) With_Key(#XG_AccessKeys) Io_Status(#Io_Status) Io_Error(*NEXT)
+    When (= NE)
+    Insert Fields(#EditableDataItems) To_File(GCContacts) Io_Status(#Io_Status) Io_Error(*NEXT)
+    Endcase
+    
+    Case (#Io_Status)
+    When (= OK)
+    #ResultMessage := *MTXTUF_MSG_0005.Substitute( #SingularName #Com_Self.VisibleIdentification )
+    #ServerModuleResult := True
+    When (= VE)
+    #ResultMessage := *MTXTUF_MSG_0006.Substitute( #SingularName #Com_Self.VisibleIdentification )
+    Otherwise
+    #ResultMessage := *MTXTUF_MSG_0007.Substitute( #SingularName #Com_Self.VisibleIdentification #Io_Status )
+    Endcase
+    
+    Message Msgtxt(#ResultMessage)
+    
+    * Invoke the server manager to clean up and finalize the execution context for this server routine
+    #ServerSystemManager.TerminateServiceRoutine Event_Component(#COM_OWNER)
+    
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(VisibleIdentification) Access(*PRIVATE)
+    Define_Map For(*RESULT) Class(#Prim_dc.UnicodeString) Name(#Result)
+    #Result := #ContactID
+    Endroutine
+    
+    End_Com

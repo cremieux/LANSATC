@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               xPreferredVendorStatus
+  Type:               Signed
+  Length:             1
+  Decimals:           0
+  Default Value:      "*ZERO"
+  Edit Mask:          3
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "xPreferredVendorStatus"
+      Label:              "xPreferredVendo"
+      Heading1:           "xPreferredVendorStat"
+
+  - FRA:
+      Description:        "xPreferredVendorStatus"
+      Label:              "xPreferredVendo"
+      Heading1:           "xPreferredVendorStat"

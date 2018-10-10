@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               A14Session
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('A14SESSION')
+    
+    Define Field(#A14UserName) Type(*STRING)
+    Define Field(#A14Password) Type(*STRING)
+    Define Field(#A14ReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#A14UserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#A14Password) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#A14ReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #A14ReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

@@ -1,0 +1,228 @@
+﻿Web Dialog:
+  Name:               A28AssetsDetails
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Assets Details"
+
+  - FRA:
+      Description:        "Assets Details"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_DLG) Height(561) Width(808) Layoutmanager(#LayoutMain) Autoclose(True)
+    
+    * Layout - Main
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutMainColumn1) Displayposition(1) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow1) Displayposition(1) Parent(#LayoutMain) Height(56) Units(Content)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow2) Displayposition(2) Parent(#LayoutMain) Height(10) Units(Content)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow3) Displayposition(3) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem1) Column(#LayoutMainColumn1) Manage(#Appbar) Parent(#LayoutMain) Row(#LayoutMainRow1) Sizing(FitToWidth) Alignment(TopCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem2) Manage(#Details) Parent(#LayoutMain) Row(#LayoutMainRow3) Column(#LayoutMainColumn1)
+    
+    * Layout - App Bar
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutAppBarRow1) Displayposition(1) Parent(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutAppBarColumn1) Displayposition(1) Parent(#LayoutAppBar)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutAppBarItem1) Column(#LayoutAppBarColumn1) Flow(Left) Manage(#DeleteIcon) Parent(#LayoutAppBar) Row(#LayoutAppBarRow1) Sizing(None) Alignment(CenterRight)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutAppBarItem2) Column(#LayoutAppBarColumn1) Flow(Left) Manage(#SaveIcon) Parent(#LayoutAppBar) Row(#LayoutAppBarRow1) Sizing(None) Alignment(CenterRight)
+    
+    * Layout - Details
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutDetailsRow1) Displayposition(1) Parent(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutDetailsColumn1) Displayposition(1) Parent(#LayoutDetails)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItemErrorText) Manage(#ErrorText) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(ContentHeightFitToWidth) Column(#LayoutDetailsColumn1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem1) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyID) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem2) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyName) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem3) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyAddress) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem4) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyCity) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem5) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyState) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem6) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyZip) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem7) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyManager) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem8) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyYearBuilt) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem9) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyTenant) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem10) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyExpiration) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem11) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyType) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem12) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyOccupancy) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem13) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyTotalSF) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem14) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyOfficeSF) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem15) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyOfficePercent) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem16) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyIndustrialSF) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem17) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyIndustrialPercent) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem18) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyAcres) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem19) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyFAR) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem20) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyType2) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem21) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyType3) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem22) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyType4) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem23) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyFloors) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutDetailsItem24) Alignment(TopCenter) Column(#LayoutDetailsColumn1) Manage(#PropertyTypeMaterial) Parent(#LayoutDetails) Row(#LayoutDetailsRow1) Sizing(FitToWidth) Flow(Down) Marginright(16) Marginleft(16)
+    
+    * Controls - App Bar
+    Define_Com Class(#PRIM_MD.AppBar) Name(#Appbar) Displayposition(1) Icon('arrow_back') Parent(#COM_OWNER) Tabposition(2) Width(808) Layoutmanager(#LayoutAppBar) Caption('Details') Themedrawstyle('Heading1')
+    Define_Com Class(#PRIM_MD.Icon) Name(#SaveIcon) Displayposition(1) Left(760) Parent(#Appbar) Tabposition(1) Top(0) Height(57) Icon('check')
+    Define_Com Class(#PRIM_MD.Icon) Name(#DeleteIcon) Displayposition(2) Icon('delete_forever') Left(712) Parent(#Appbar) Tabposition(2) Top(0) Height(57)
+    
+    * Controls - Details
+    Define_Com Class(#PRIM_PANL) Name(#Details) Displayposition(2) Height(495) Imagealignment(Stretch) Parent(#COM_OWNER) Tabposition(1) Top(66) Width(808) Verticalscroll(True) Layoutmanager(#LayoutDetails) Left(0)
+    Define_Com Class(#PRIM_MD.Label) Name(#ErrorText) Caption('Errors') Displayposition(1) Left(0) Parent(#Details) Tabposition(3) Height(47) Width(790) Captionmarginleft(0) Captionmarginbottom(0) Captionalignment(TopLeft) Captionmarginright(0) Captionmargintop(0) Paddingbottom(16) Paddingtop(16) Paddingright(16) Paddingleft(16) Themedrawstyle('LightError') Iconheight(32) Top(0) Visible(False)
+    Define_Com Class(#PropertyID.EditField) Name(#PropertyID) Displayposition(2) Parent(#Details) Readonly(True) Tabposition(1) Left(16) Top(47) Width(758)
+    Define_Com Class(#PropertyName.EditField) Name(#PropertyName) Displayposition(3) Parent(#Details) Tabposition(2) Left(16) Top(122) Width(758)
+    Define_Com Class(#PropertyAddress.EditField) Name(#PropertyAddress) Displayposition(4) Parent(#Details) Tabposition(4) Left(16) Top(197) Width(758)
+    Define_Com Class(#PropertyCity.EditField) Name(#PropertyCity) Displayposition(5) Parent(#Details) Tabposition(5) Left(16) Top(272) Width(758)
+    Define_Com Class(#PropertyState.EditField) Name(#PropertyState) Displayposition(6) Parent(#Details) Tabposition(6) Left(16) Top(347) Width(758)
+    Define_Com Class(#PropertyZip.EditField) Name(#PropertyZip) Displayposition(7) Parent(#Details) Tabposition(7) Left(16) Top(422) Width(758)
+    Define_Com Class(#PropertyManager.EditField) Name(#PropertyManager) Displayposition(8) Parent(#Details) Tabposition(8) Left(16) Top(497) Width(758)
+    Define_Com Class(#PropertyYearBuilt.EditField) Name(#PropertyYearBuilt) Displayposition(9) Parent(#Details) Tabposition(9) Left(16) Top(572) Width(758)
+    Define_Com Class(#PropertyTenant.EditField) Name(#PropertyTenant) Displayposition(10) Parent(#Details) Tabposition(10) Left(16) Top(647) Width(758)
+    Define_Com Class(#PropertyExpiration.DateTimeField) Name(#PropertyExpiration) Displayposition(11) Parent(#Details) Tabposition(11) Left(16) Top(722) Width(758)
+    Define_Com Class(#PropertyType.EditField) Name(#PropertyType) Displayposition(12) Parent(#Details) Tabposition(12) Left(16) Top(797) Width(758)
+    Define_Com Class(#PropertyOccupancy.SpinEditField) Name(#PropertyOccupancy) Displayposition(13) Parent(#Details) Tabposition(13) Left(16) Top(872) Width(758)
+    Define_Com Class(#PropertyTotalSF.SpinEditField) Name(#PropertyTotalSF) Displayposition(14) Parent(#Details) Tabposition(14) Left(16) Top(947) Width(758)
+    Define_Com Class(#PropertyOfficeSF.SpinEditField) Name(#PropertyOfficeSF) Displayposition(15) Parent(#Details) Tabposition(15) Left(16) Top(1022) Width(758)
+    Define_Com Class(#PropertyOfficePercent.SpinEditField) Name(#PropertyOfficePercent) Displayposition(16) Parent(#Details) Tabposition(16) Left(16) Top(1097) Width(758)
+    Define_Com Class(#PropertyIndustrialSF.SpinEditField) Name(#PropertyIndustrialSF) Displayposition(17) Parent(#Details) Tabposition(17) Left(16) Top(1172) Width(758)
+    Define_Com Class(#PropertyIndustrialPercent.SpinEditField) Name(#PropertyIndustrialPercent) Displayposition(18) Parent(#Details) Tabposition(18) Left(16) Top(1247) Width(758)
+    Define_Com Class(#PropertyAcres.SpinEditField) Name(#PropertyAcres) Displayposition(19) Parent(#Details) Tabposition(19) Left(16) Top(1322) Width(758)
+    Define_Com Class(#PropertyFAR.SpinEditField) Name(#PropertyFAR) Displayposition(20) Parent(#Details) Tabposition(20) Left(16) Top(1397) Width(758)
+    Define_Com Class(#PropertyType2.EditField) Name(#PropertyType2) Displayposition(21) Parent(#Details) Tabposition(21) Left(16) Top(1472) Width(758)
+    Define_Com Class(#PropertyType3.EditField) Name(#PropertyType3) Displayposition(22) Parent(#Details) Tabposition(22) Left(16) Top(1547) Width(758)
+    Define_Com Class(#PropertyType4.EditField) Name(#PropertyType4) Displayposition(23) Parent(#Details) Tabposition(23) Left(16) Top(1622) Width(758)
+    Define_Com Class(#PropertyFloors.EditField) Name(#PropertyFloors) Displayposition(24) Parent(#Details) Tabposition(24) Left(16) Top(1697) Width(758)
+    Define_Com Class(#PropertyTypeMaterial.EditField) Name(#PropertyTypeMaterial) Displayposition(25) Parent(#Details) Tabposition(25) Left(16) Top(1772) Width(758)
+    
+    Group_By Name(#Fields) Fields(#PropertyID #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyType3 #PropertyType4 #PropertyFloors #PropertyTypeMaterial)
+    
+    Define_Evt Name(ItemSaved)
+    Define_Evt Name(ItemDeleted)
+    
+    * ****************
+    * Event Routines *
+    * ****************
+    
+    Evtroutine Handling(#COM_OWNER.CreateInstance #SYS_WEB.DeviceChanged)
+    
+    If (#SYS_WEB.Device = Mobile)
+    
+    #COM_OWNER.Placement := FullScreen
+    
+    Else
+    
+    #COM_OWNER.Placement := Center
+    
+    Endif
+    
+    Endroutine
+    
+    Evtroutine Handling(#Appbar.IconClick)
+    
+    #Com_Owner.Close
+    
+    Endroutine
+    
+    Evtroutine Handling(#SaveIcon.Click)
+    
+    If (#COM_OWNER.Validate( Update #GCAssets ))
+    
+    #COM_OWNER.Save
+    
+    Endif
+    
+    Endroutine
+    
+    Evtroutine Handling(#DeleteIcon.Click)
+    
+    #COM_OWNER.Delete
+    
+    Endroutine
+    
+    * *****************
+    * Method Routines *
+    * *****************
+    
+    Mthroutine Name(Create)
+    
+    Set Com(#PropertyID) Readonly(False)
+    
+    Set Com(#DeleteIcon) Visible(False)
+    
+    #COM_OWNER.Show
+    
+    Endroutine
+    
+    Mthroutine Name(ShowItem)
+    Define_Map For(*INPUT) Class(#PropertyID) Name(#Key1)
+    
+    Define_Com Class(#A28AssetsServer.Read) Name(#Read)
+    
+    Set Com(#Details #SaveIcon #DeleteIcon) Visible(False)
+    
+    #Read.ExecuteAsync( #Key1 #Fields )
+    
+    #COM_OWNER.Show
+    
+    Evtroutine Handling(#Read.Completed)
+    
+    Set Com(#Details #SaveIcon #DeleteIcon) Visible(True)
+    
+    Endroutine
+    
+    Endroutine
+    
+    Mthroutine Name(Save) Access(*PRIVATE)
+    
+    Define_Com Class(#A28AssetsServer.Save) Name(#Save)
+    
+    #SYS_MSGQ.ClearAll
+    
+    #ErrorText.Visible := False
+    
+    #Save.ExecuteAsync( #Fields #STD_CODE )
+    
+    Evtroutine Handling(#Save.Completed)
+    
+    If (#STD_CODE = "OK")
+    
+    #COM_OWNER.Close
+    
+    Signal Event(ItemSaved)
+    
+    Else
+    
+    #ErrorText.Caption := ""
+    
+    For Each(#Message) In(#SYS_MSGQ.Messages)
+    
+    #ErrorText.Caption += #Message.Text + (10).AsUnicodeString
+    
+    Endfor
+    
+    #ErrorText.Visible := True
+    
+    #Details.VerticalScrollPos := 0
+    
+    Endif
+    
+    Endroutine
+    
+    Endroutine
+    
+    Mthroutine Name(Delete) Access(*PRIVATE)
+    
+    Define_Com Class(#A28AssetsServer.Delete) Name(#Delete)
+    
+    #ErrorText.Visible := False
+    
+    #Delete.ExecuteAsync( #PropertyID )
+    
+    Evtroutine Handling(#Delete.Completed)
+    
+    #COM_OWNER.Close
+    
+    Signal Event(ItemDeleted)
+    
+    Endroutine
+    
+    Endroutine
+    
+    End_Com

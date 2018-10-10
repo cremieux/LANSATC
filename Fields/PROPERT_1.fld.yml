@@ -1,0 +1,35 @@
+﻿Field:
+  Name:               PropertyFAR
+  Type:               Decimal
+  Length:             5
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Edit Mask:          4
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Floor Area Ratio"
+      Label:              "FAR"
+      Heading1:           "FAR"
+
+  - FRA:
+      Description:        "Property FAR"
+      Label:              "Property FAR"
+      Heading1:           "Property"
+      Heading2:           "FAR"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(273)
+    
+    End_Com
+    
+    End_Com

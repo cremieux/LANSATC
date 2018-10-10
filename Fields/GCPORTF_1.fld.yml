@@ -1,0 +1,36 @@
+﻿Field:
+  Name:               GCPortfolioAvailability
+  Type:               Decimal
+  Length:             5
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Edit Mask:          4
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Portfolio Availability"
+      Label:              "Portfolio Avail"
+      Heading1:           "Portfolio"
+      Heading2:           "Availability"
+
+  - FRA:
+      Description:        "Portfolio Availability"
+      Label:              "Portfolio Avail"
+      Heading1:           "Portfolio"
+      Heading2:           "Availability"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(258)
+    
+    End_Com
+    
+    End_Com

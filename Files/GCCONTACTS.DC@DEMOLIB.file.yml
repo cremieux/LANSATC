@@ -1,0 +1,125 @@
+﻿File:
+  Name:                           GCContacts
+  File Type:                      LANSA File
+  Library:                        DC@DEMOLIB
+  Record Format Name:             GCCONTACTS
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            Yes
+  Create RRNO Column:             Yes
+  Auto RRNO Is Fixed:             Yes
+  Convert Special Characters:     No
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "GC Contacts"
+
+  - FRA:
+      Description:        "GC Contacts"
+
+  Real Fields:
+  - CONTACTID:
+      Type:               NVarChar
+      Length:             10
+      Decimals:           0
+
+  - CONTACTFI:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - CONTACTLA:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - CONTACTTI:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - CONTACTAD:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+
+  - CONTACTCI:
+      Type:               NVarChar
+      Length:             40
+      Decimals:           0
+
+  - CONTACTST:
+      Type:               NVarChar
+      Length:             2
+      Decimals:           0
+
+  - CONTACTPH:
+      Type:               NVarChar
+      Length:             15
+      Decimals:           0
+
+  - CONTACTMO:
+      Type:               NVarChar
+      Length:             15
+      Decimals:           0
+
+  - CONTACTEM:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+
+  Primary Keys:
+  - CONTACTID
+
+  Virtual Fields:
+  - VLOCATION:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+      Virtual Field Type: Code Fragment
+      Derive On Input:    Yes
+      Derive On Output:   No
+      Input Fragment: |
+        * RDML Code Fragment to derive value for field
+        
+        #vLocation := #ContactCity + ", " + #ContactState
+
+  - VFULLNAME:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+      Virtual Field Type: Code Fragment
+      Derive On Input:    Yes
+      Derive On Output:   No
+      Input Fragment: |
+        * RDML Code Fragment to derive value for field
+        
+        #vFullName := #ContactFirstName + " " + #ContactLastName
+        
+
+  File Level Validation Rules:
+  - CONTACTLA:
+    - Simple Logic Check:
+        Description:        "New simple logic check"
+        Condition:          "#ContactLastName <> \"Crisafulli\""
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Next
+        Negative Action:    Error
+        Message Text:       "Doug Not Allowed!"

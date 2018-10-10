@@ -1,0 +1,29 @@
+﻿Field:
+  Name:               PropertyState
+  Type:               NVarChar
+  Length:             2
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Property State"
+      Label:              "State"
+      Heading1:           "State"
+
+  - FRA:
+      Description:        "PropertyState"
+      Label:              "PropertyState"
+      Heading1:           "PropertyState"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(212)
+    
+    End_Com
+    
+    End_Com

@@ -1,0 +1,36 @@
+﻿Field:
+  Name:               GCWeightedAverage
+  Type:               Decimal
+  Length:             5
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Edit Mask:          4
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Weighted Average"
+      Label:              "Weighted Averag"
+      Heading1:           "Weighted"
+      Heading2:           "Average"
+
+  - FRA:
+      Description:        "Weighted Average"
+      Label:              "Weighted Averag"
+      Heading1:           "Weighted"
+      Heading2:           "Average"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(258)
+    
+    End_Com
+    
+    End_Com

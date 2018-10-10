@@ -1,0 +1,278 @@
+﻿File:
+  Name:                           GCAssets
+  File Type:                      LANSA File
+  Library:                        DC@DEMOLIB
+  Record Format Name:             GCASSETS
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            Yes
+  Create RRNO Column:             Yes
+  Auto RRNO Is Fixed:             Yes
+  Convert Special Characters:     No
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "GCAssets"
+
+  - FRA:
+      Description:        "GCAssets"
+
+  Real Fields:
+  - PROPERTYI:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - PROPERTYN:
+      Type:               NVarChar
+      Length:             75
+      Decimals:           0
+
+  - PROPERTYA:
+      Type:               NVarChar
+      Length:             75
+      Decimals:           0
+
+  - PROPERTYC:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - PROPERTYS:
+      Type:               NVarChar
+      Length:             2
+      Decimals:           0
+
+  - PROPERTYZ:
+      Type:               NVarChar
+      Length:             10
+      Decimals:           0
+
+  - PROPERTYM:
+      Type:               NVarChar
+      Length:             2
+      Decimals:           0
+
+  - PROPERTYY:
+      Type:               NVarChar
+      Length:             30
+      Decimals:           0
+
+  - PROPERTYT:
+      Type:               NVarChar
+      Length:             75
+      Decimals:           0
+
+  - PROPERTYE:
+      Type:               Date
+      Length:             10
+      Decimals:           0
+
+  - PROPTYPE:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - PROPERTYO:
+      Type:               Decimal
+      Length:             3
+      Decimals:           0
+
+  - PROPTOTSF:
+      Type:               Decimal
+      Length:             8
+      Decimals:           0
+
+  - PROPOFFSF:
+      Type:               Decimal
+      Length:             8
+      Decimals:           0
+
+  - PROPOFFPE:
+      Type:               Decimal
+      Length:             5
+      Decimals:           2
+
+  - PROPINDSF:
+      Type:               Decimal
+      Length:             8
+      Decimals:           0
+
+  - PROPINDPE:
+      Type:               Decimal
+      Length:             5
+      Decimals:           2
+
+  - PROPACRES:
+      Type:               Decimal
+      Length:             6
+      Decimals:           2
+
+  - PROPERT_1:
+      Type:               Decimal
+      Length:             5
+      Decimals:           2
+
+  - PROPTYPE2:
+      Type:               NVarChar
+      Length:             6
+      Decimals:           0
+
+  - PROPTYPE3:
+      Type:               NVarChar
+      Length:             30
+      Decimals:           0
+
+  - PROPTYPE4:
+      Type:               NVarChar
+      Length:             30
+      Decimals:           0
+
+  - PROPERTYF:
+      Type:               NVarChar
+      Length:             4
+      Decimals:           0
+
+  - PROPTYPEM:
+      Type:               NVarChar
+      Length:             75
+      Decimals:           0
+
+  Primary Keys:
+  - PROPERTYI
+
+  Virtual Fields:
+  - VLOCATION:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+      Virtual Field Type: Code Fragment
+      Derive On Input:    Yes
+      Derive On Output:   No
+      Input Fragment: |
+        * RDML Code Fragment to derive value for field VCITYSTAT
+        #vLocation := #PropertyCity + ", " + #PropertyState + " " + #PropertyZip
+
+  File Level Validation Rules:
+  - PROPERTYI:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyID.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property ID cannot be empty"
+
+  - PROPERTYN:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyName.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property Name cannot be empty"
+
+  - PROPERTYA:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyAddress.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property Address Must Be Specified"
+
+  - PROPERTYC:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyCity.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property City cannot be empty"
+
+  - PROPERTYS:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyState.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property State cannot be empty"
+    - Simple Logic Check:
+        Description:        "Uppercase A-Z only"
+        Condition:          "#PropertyState.IsMatch( \"^[A-Z]+$\" )"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Next
+        Negative Action:    Error
+        Message Text:       "State can only contain uppercase A to Z"
+
+  - PROPERTYM:
+    - Simple Logic Check:
+        Description:        "Cannot be empty"
+        Condition:          "#PropertyManager.Cursize = 0"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Property Manager cannot be empty"
+
+  - PROPERTYY:
+    - Simple Logic Check:
+        Description:        "Digits (0-9) only"
+        Condition:          "#PropertyYearBuilt.IsMatch( \"^[0-9]+$-\" )"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Next
+        Negative Action:    Error
+        Message Text:       "Year Built can only contain numeric digits"
+
+  - PROPACRES:
+    - Simple Logic Check:
+        Description:        "Cannot be zero"
+        Condition:          "#PropertyAcres = *Zero"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Error
+        Negative Action:    Next
+        Message Text:       "Acres cannot be zero"
+
+  - PROPERTYF:
+    - Simple Logic Check:
+        Description:        "Digits (0-9) only"
+        Condition:          "#PropertyFloors.IsMatch( \"^[0-9]+$\" )"
+        When Inserting:     Always
+        When Updating:      Always
+        When Deleting:      Never
+        Positive Action:    Next
+        Negative Action:    Error
+        Message Text:       "Floors can only contain numeric digits"

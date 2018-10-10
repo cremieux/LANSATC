@@ -1,0 +1,38 @@
+﻿Form:
+  Name:               InsertAssetComp
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Asset Comp"
+
+  - FRA:
+      Description:        "Asset Comp"
+
+  Source: |
+    * **************************************************
+    *
+    *  COMPONENT:  STD_FORM
+    *
+    * **************************************************
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #PRIM_FORM) Clientwidth(822) Clientheight(360) Componentversion(2) Left(567) Top(192)
+    
+    Define_Com Class(#CompID.Visual) Name(#CompID) Displayposition(1) Left(18) Parent(#COM_OWNER) Tabposition(1) Top(27)
+    Define_Com Class(#PropertyID.Visual) Name(#PropertyID) Displayposition(2) Left(18) Parent(#COM_OWNER) Tabposition(2) Top(48)
+    Define_Com Class(#PRIM_PHBN) Name(#Button1) Caption('Button1') Displayposition(3) Left(24) Parent(#COM_OWNER) Tabposition(3) Top(97)
+    
+    Evtroutine Handling(#com_owner.CreateInstance)
+    
+    Set Com(#com_owner) Caption(*component_desc)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Button1.Click)
+    Insert Fields(*ALL) To_File(GCAssetComp)
+    Endroutine
+    Evtroutine Handling(#CompID.Changed) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+    
+    * #PropertyID := "r" + #CompID.Substring( 2 )
+    Endroutine
+    End_Com

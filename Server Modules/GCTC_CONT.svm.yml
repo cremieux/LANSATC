@@ -1,0 +1,30 @@
+﻿ServerModule:
+  Name:               GCTC_ContactSM
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Contacts Server Module"
+
+  - FRA:
+      Description:        "Contacts Server Module"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM)
+    
+    Def_List Name(#ContactList) Fields(#ContactID #ContactFirstName #ContactLastName #ContactTitle #ContactAddress #ContactCity #ContactState #ContactPhone #ContactMobile #ContactEmail #vLocation #vFullName) Type(*WORKING) Entrys(*MAX)
+    
+    Srvroutine Name(GetContacts)
+    Field_Map For(*INPUT) Field(#PropertyID)
+    List_Map For(*OUTPUT) List(#ContactList)
+    
+    
+    Select Fields(#ContactID) From_File(GCContactByProperty) With_Key(#PropertyID)
+    Fetch Fields(*ALL) From_File(GCContacts) With_Key(#ContactID)
+    Add_Entry To_List(#ContactList)
+    Endselect
+    
+    Endroutine
+    
+    
+    End_Com

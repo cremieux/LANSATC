@@ -1,0 +1,21 @@
+﻿List:
+  Name:               Customer Objects
+  Stored As:          User
+
+  Objects:
+  - DemoCustomerDialog:
+      Type:               Dialog
+
+  - LTCCustomerMaster:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - CSCSTP:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - TCCustomerServerModule:
+      Type:               Server Module
+
+  - LogoLansa:
+      Type:               Bitmap

@@ -1,0 +1,25 @@
+﻿Field:
+  Name:               vFullName
+  Type:               NVarChar
+  Length:             100
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Full Name"
+      Label:              "Full Name"
+      Heading1:           "Full"
+      Heading2:           "Name"
+
+  - FRA:
+      Description:        "Full Name"
+      Label:              "Full Name"
+      Heading1:           "Full"
+      Heading2:           "Name"

@@ -1,0 +1,13 @@
+﻿List:
+  Name:               Web Services
+  Stored As:          User
+
+  Objects:
+  - xDemoWebServicesP01:
+      Type:               Server Module
+
+  - xFlightTrackerServerModule:
+      Type:               Server Module
+
+  - xFtMain:
+      Type:               Web Page

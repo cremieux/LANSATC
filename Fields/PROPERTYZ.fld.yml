@@ -1,0 +1,29 @@
+﻿Field:
+  Name:               PropertyZip
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Property Zip"
+      Label:              "Zip Code"
+      Heading1:           "Zip Code"
+
+  - FRA:
+      Description:        "PropertyZip"
+      Label:              "PropertyZip"
+      Heading1:           "PropertyZip"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(335)
+    
+    End_Com
+    
+    End_Com

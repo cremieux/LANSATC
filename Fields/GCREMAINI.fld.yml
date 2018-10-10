@@ -1,0 +1,36 @@
+﻿Field:
+  Name:               GCRemainingAmount
+  Type:               Decimal
+  Length:             12
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Edit Mask:          "'$   ,   , 0 .  '"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Remaining Amount"
+      Label:              "Total Spent"
+      Heading1:           "Total"
+      Heading2:           "Spent"
+
+  - FRA:
+      Description:        "Total Spent"
+      Label:              "Total Spent"
+      Heading1:           "Total"
+      Heading2:           "Spent"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(381)
+    
+    End_Com
+    
+    End_Com

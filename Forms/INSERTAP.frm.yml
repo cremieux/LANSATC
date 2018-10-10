@@ -1,0 +1,39 @@
+﻿Form:
+  Name:               InsertApprovedCapital
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Insert Approved Capital"
+
+  - FRA:
+      Description:        "Insert Approved Capital"
+
+  Source: |
+    * **************************************************
+    *
+    *  COMPONENT:  STD_FORM
+    *
+    * **************************************************
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #PRIM_FORM) Clientwidth(484) Clientheight(301) Componentversion(2) Left(571) Top(167)
+    
+    Define_Com Class(#ApprovedCapitalID.Visual) Name(#ApprovedCapitalID) Componentversion(1) Displayposition(1) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(1) Top(16) Usepicklist(False) Width(335)
+    Define_Com Class(#PropertyID.Visual) Name(#PropertyID) Displayposition(2) Left(24) Parent(#COM_OWNER) Tabposition(2) Top(38)
+    Define_Com Class(#CapitalItem.Visual) Name(#CapitalItem) Componentversion(1) Displayposition(3) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(3) Top(60) Usepicklist(False) Width(951)
+    Define_Com Class(#CapitalItemDescription.Visual) Name(#CapitalItemDescription) Componentversion(1) Displayposition(4) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(4) Top(82) Usepicklist(False) Width(951)
+    Define_Com Class(#CapitalBudgetAmount.Visual) Name(#CapitalBudgetAmount) Componentversion(1) Displayposition(5) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(5) Top(104) Usepicklist(False) Width(381)
+    Define_Com Class(#CapitalApprovedAmount.Visual) Name(#CapitalApprovedAmount) Componentversion(1) Displayposition(6) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(6) Top(126) Usepicklist(False) Width(381)
+    Define_Com Class(#CapitalApprovalNumber.Visual) Name(#CapitalApprovalNumber) Componentversion(1) Displayposition(7) Height(21) Left(24) Parent(#COM_OWNER) Tabposition(7) Top(148) Usepicklist(False) Width(951)
+    Define_Com Class(#PRIM_PHBN) Name(#Button1) Caption('Button1') Displayposition(8) Left(30) Parent(#COM_OWNER) Tabposition(8) Top(181)
+    
+    Evtroutine Handling(#com_owner.CreateInstance)
+    
+    Set Com(#com_owner) Caption(*component_desc)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Button1.Click)
+    Insert Fields(*ALL) To_File(GCApprovedCapital)
+    Endroutine
+    End_Com

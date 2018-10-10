@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Customer Portal
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A20Main:
+      Type:               Web Page

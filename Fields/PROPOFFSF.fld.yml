@@ -1,0 +1,30 @@
+﻿Field:
+  Name:               PropertyOfficeSF
+  Type:               Decimal
+  Length:             8
+  Decimals:           0
+  Default Value:      "*ZERO"
+  Edit Mask:          2
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Office Square Foot"
+      Label:              "Office SF"
+      Heading1:           "Office SF"
+
+  - FRA:
+      Description:        "PropertyOfficeSF"
+      Label:              "PropertyOfficeS"
+      Heading1:           "PropertyOfficeSF"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(304)
+    
+    End_Com
+    
+    End_Com

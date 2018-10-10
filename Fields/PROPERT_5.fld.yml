@@ -1,0 +1,25 @@
+﻿Field:
+  Name:               PropertySpacesAvailable
+  Type:               Decimal
+  Length:             5
+  Decimals:           0
+  Default Value:      "*ZEROS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Spaces Available"
+      Label:              "Spaces Availabl"
+      Heading1:           "Spaces"
+      Heading2:           "Available"
+
+  - FRA:
+      Description:        "Spaces Available"
+      Label:              "Spaces Availabl"
+      Heading1:           "Spaces"
+      Heading2:           "Available"

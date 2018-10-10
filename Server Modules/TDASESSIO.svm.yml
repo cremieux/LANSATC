@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               TDASession
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('TDASESSION')
+    
+    Define Field(#TDAUserName) Type(*STRING)
+    Define Field(#TDAPassword) Type(*STRING)
+    Define Field(#TDAReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#TDAUserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#TDAPassword) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#TDAReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #TDAReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

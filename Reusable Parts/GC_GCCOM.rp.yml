@@ -1,0 +1,77 @@
+﻿Reusable Part:
+  Name:               GC_GCCOMP_MAP_Handler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ---------------------------------------------------------------------------------
+    * This is a command handler in framework GRIFFIN Framework.
+    * It belongs to business object Comps.
+    * Created 4th October 2018 by USERID with Material Design style controls.
+    * ---------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #VF_AC010O) Height(327) Width(587)
+    
+    
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Parent(#MainPanelAttachmentManager) Attachment(Center) Manage(#Map)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItem2) Manage(#Panel_Top) Parent(#MainPanelAttachmentManager) Attachment(Top)
+    
+    * The Map displayer
+    Define_Com Class(#PRIM_WEB.Page) Name(#Map) Description('Google Map') Displayposition(2) Height(262) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Width(587) Top(65)
+    
+    * Top Panel
+    Define_Com Class(#PRIM_PANL) Name(#Panel_Top) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(587) Height(65)
+    
+    * The location drop down
+    Define_Com Class(#PRIM_MD.Dropdown) Name(#DropDownofLocations) Displayposition(1) Left(8) Parent(#Panel_Top) Tabposition(1) Top(8) Width(300) Caption('Select a Location')
+    
+    
+    * Lists for accessing server data
+    Def_List Name(#ServerDataItems) Fields(#STD_TextL #Std_Strng) Type(*WORKING) Entrys(*MAX)
+    
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    Define_Com Class(#GC_GCCOMP_MAP_ServerModule.GetData) Name(#GetData)
+    
+    * Go to busy state
+    #COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+    
+    * Ask Server Module to get the data from the server
+    #GetData.ExecuteAsync Serverdataitems(#ServerDataItems)
+    
+    * Go back to display free state
+    #com_Owner.avGotoFreeState
+    
+    * Handle completion
+    Evtroutine Handling(#GetData.Completed)
+    
+    
+    * Get the URLs for the locations
+    Selectlist Named(#ServerDataItems)
+    #DropDownofLocations.Items.Add Caption(#STD_TextL) Value(#STD_STRNG)
+    Endselect
+    
+    * Set focus to the first item
+    If (#DropDownofLocations.Items.ItemCount > 0)
+    #DropDownofLocations.Items<1>.Focus := True
+    Endif
+    
+    Endroutine
+    
+    * Handle a failure
+    Evtroutine Handling(#GetData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER )
+    Endroutine
+    
+    Endroutine
+    * Handle map location selected
+    Evtroutine Handling(#DropDownofLocations.Changed)
+    #Map.Source := #DropDownofLocations.FocusItem.Value
+    Endroutine
+    
+    End_Com

@@ -1,0 +1,40 @@
+﻿Form:
+  Name:               InsertSpentCapital
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Insert Spent Capital"
+
+  - FRA:
+      Description:        "Insert Spent Capital"
+
+  Source: |
+    * **************************************************
+    *
+    *  COMPONENT:  STD_FORM
+    *
+    * **************************************************
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #PRIM_FORM) Clientwidth(484) Clientheight(301) Componentversion(2) Left(679) Top(235)
+    
+    Define_Com Class(#PropertyID.Visual) Name(#PropertyID) Displayposition(1) Left(21) Parent(#COM_OWNER) Tabposition(1) Top(34)
+    Define_Com Class(#CapitalApprovalNumber.Visual) Name(#CapitalApprovalNumber) Componentversion(1) Displayposition(2) Height(21) Left(21) Parent(#COM_OWNER) Tabposition(2) Top(56) Usepicklist(False) Width(951)
+    Define_Com Class(#CapitalItem.Visual) Name(#CapitalItem) Componentversion(1) Displayposition(3) Height(21) Left(21) Parent(#COM_OWNER) Tabposition(3) Top(78) Usepicklist(False) Width(951)
+    Define_Com Class(#CapitalItemVendor.Visual) Name(#CapitalItemVendor) Componentversion(1) Displayposition(4) Height(21) Left(21) Parent(#COM_OWNER) Tabposition(4) Top(100) Usepicklist(False) Width(951)
+    Define_Com Class(#SpentCapitalDescription.Visual) Name(#SpentCapitalDescription) Componentversion(1) Displayposition(5) Height(21) Left(21) Parent(#COM_OWNER) Tabposition(5) Top(122) Usepicklist(False) Width(951)
+    Define_Com Class(#SpentCapitalAmount.Visual) Name(#SpentCapitalAmount) Componentversion(1) Displayposition(6) Height(21) Left(21) Parent(#COM_OWNER) Tabposition(6) Top(144) Usepicklist(False) Width(381)
+    Define_Com Class(#SpentCapitalDate.Visual) Name(#SpentCapitalDate) Componentversion(1) Displayposition(7) Height(21) Left(21) Parent(#COM_OWNER) Showtime(False) Tabposition(7) Top(166) Width(335)
+    Define_Com Class(#PRIM_PHBN) Name(#Button1) Caption('Button1') Displayposition(8) Left(33) Parent(#COM_OWNER) Tabposition(8) Top(202)
+    Define_Com Class(#SpentCapitalID.Visual) Name(#SpentCapitalID) Componentversion(1) Displayposition(9) Height(21) Left(26) Parent(#COM_OWNER) Tabposition(9) Top(11) Usepicklist(False) Width(335)
+    
+    Evtroutine Handling(#com_owner.CreateInstance)
+    
+    Set Com(#com_owner) Caption(*component_desc)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Button1.Click)
+    Insert Fields(*ALL) To_File(GCSpentCapital)
+    Endroutine
+    End_Com

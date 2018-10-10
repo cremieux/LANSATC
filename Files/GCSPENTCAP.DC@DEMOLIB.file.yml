@@ -1,0 +1,119 @@
+﻿File:
+  Name:                           GCSpentCapital
+  File Type:                      LANSA File
+  Library:                        DC@DEMOLIB
+  Record Format Name:             GCSPENTCAP
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            Yes
+  Create RRNO Column:             Yes
+  Auto RRNO Is Fixed:             Yes
+  Convert Special Characters:     No
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Spent Capital"
+
+  - FRA:
+      Description:        "Spent Capital"
+
+  Real Fields:
+  - SPENTCAPI:
+      Type:               NVarChar
+      Length:             10
+      Decimals:           0
+
+  - PROPERTYI:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - CAPITAL_3:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+
+  - CAPITALIT:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - CAPITAL_2:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  - SPENTCA_3:
+      Type:               NVarChar
+      Length:             100
+      Decimals:           0
+
+  - SPENTCA_1:
+      Type:               Decimal
+      Length:             12
+      Decimals:           2
+
+  - SPENTCA_2:
+      Type:               Date
+      Length:             10
+      Decimals:           0
+
+  Primary Keys:
+  - SPENTCAPI
+  - PROPERTYI
+
+  Logical Views:
+  - SpentCapitalByApproval:
+      Identifier:         SPENTCAP_1
+      Unique Key:         No
+      Access Path:        Immediate
+      Record Format:      SPENTCAP_1
+      Dynamic Select:     No
+      Parameters:         LVLCHK(*YES)
+
+      Multilingual Details:
+      - ENG:
+          Description:        "New Index"
+
+      - FRA:
+          Description:        "New Index"
+
+      Keys:
+      - CAPITAL_3:
+          Key Order:          Ascending
+          Numeric Ordering:   Unsigned
+
+  - SpentCapitalByProperty:
+      Identifier:         SPENTCAPIT
+      Unique Key:         No
+      Access Path:        Immediate
+      Record Format:      SPENTCAPIT
+      Dynamic Select:     No
+      Parameters:         LVLCHK(*YES)
+
+      Multilingual Details:
+      - ENG:
+          Description:        "New Index"
+
+      - FRA:
+          Description:        "New Index"
+
+      Keys:
+      - PROPERTYI:
+          Key Order:          Ascending
+          Numeric Ordering:   Unsigned

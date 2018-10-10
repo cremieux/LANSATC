@@ -1,0 +1,38 @@
+﻿ServerModule:
+  Name:               A25Session
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Application Session"
+
+  - FRA:
+      Description:        "Application Session"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('A25SESSION')
+    
+    Define Field(#A25UserName) Type(*STRING)
+    Define Field(#A25Password) Type(*STRING)
+    Define Field(#A25ReturnCode) Type(*CHAR) Length(2)
+    
+    Srvroutine Name(SignIn)
+    Field_Map For(*INPUT) Field(#A25UserName) Parameter_Name(UserName)
+    Field_Map For(*INPUT) Field(#A25Password) Parameter_Name(Password)
+    Field_Map For(*OUTPUT) Field(#A25ReturnCode) Parameter_Name(ReturnCode)
+    
+    * TODO: Check username and password
+    
+    #COM_OWNER.StartSession Timeout(3600)
+    
+    #A25ReturnCode := OK
+    
+    Endroutine
+    
+    Srvroutine Name(SignOut) Session(*REQUIRED)
+    
+    #COM_OWNER.EndSession
+    
+    Endroutine
+    
+    End_Com

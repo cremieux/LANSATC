@@ -10,13 +10,36 @@
       Description:        "TCNewView"
 
   Source: |
-    Begin_Com Role(*EXTENDS #PRIM_VIEW) Displayposition(1) Tabposition(1) Layoutmanager(#Layout1) Caption('TCNewView')
+    Begin_Com Role(*EXTENDS #PRIM_VIEW) Displayposition(1) Tabposition(1) Layoutmanager(#Layout1) Caption('TCNewView') Height(729) Width(668)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Foregroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(Theme900)
     
     Define_Com Class(#PRIM_TBLO) Name(#Layout1)
     Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
     Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
-    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#Label) Parent(#Layout1) Row(#Layout1Row1) Sizing(ContentWidthAndHeight)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#List) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
     
-    Define_Com Class(#PRIM_MD.Label) Name(#Label) Caption('TCNewView') Displayposition(1) Height(51) Iconheight(0) Left(108) Parent(#COM_OWNER) Tabposition(1) Top(200) Width(84) Captionalignment(Center) Themedrawstyle('Heading1') Paddingbottom(10) Paddingleft(10) Paddingright(10) Paddingtop(10)
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutListRow1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem1) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListPrimaryText) Marginleft(16) Marginright(16) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem2) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListSecondaryText) Marginleft(16) Marginright(16) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem3) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListSecondaryText1) Marginleft(16) Marginright(16) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem4) Alignment(CenterLeft) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListSecondaryText2) Marginleft(16) Marginright(16) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(ContentHeightFitToWidth)
     
+    Define_Com Class(#PRIM_MD.List) Name(#List) Displayposition(1) Layoutmanager(#LayoutList) Left(5) Parent(#COM_OWNER) Rowheight(100) Tabposition(1) Themedrawstyle('Card') Top(5) Height(719) Width(658)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListPrimaryText) Caption('Two line item') Displayposition(1) Height(24) Left(16) Parent(#List) Tabposition(4) Themedrawstyle('Heading3') Top(7) Width(624) Source(#vFirstLast) Style(#Style1)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSecondaryText) Caption('Secondary Text') Displayposition(3) Height(21) Left(16) Parent(#List) Tabposition(5) Themedrawstyle('ForegroundSecondary') Top(31) Width(624) Source(#CStreet)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSecondaryText1) Caption('Secondary Text') Displayposition(4) Height(21) Left(16) Parent(#List) Tabposition(2) Themedrawstyle('ForegroundSecondary') Top(52) Width(624) Source(#CPhone)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSecondaryText2) Caption('Secondary Text') Displayposition(5) Height(21) Left(16) Parent(#List) Tabposition(1) Themedrawstyle('ForegroundSecondary') Top(73) Width(624) Source(#CCustomerNumber)
+    Define_Com Class(#DemoCustomerDialog) Name(#DemoCustomerDialog)
+    
+    Evtroutine Handling(#COM_OWNER.Initialize)
+    Define_Com Class(#TCCustomerServerModule.FindAll) Name(#findCustomers)
+    #findCustomers.ExecuteAsync Cscstplist(#List)
+    Endroutine
+    Evtroutine Handling(#List.ItemClick)
+    #DemoCustomerDialog.ShowItem Key1(#CCustomerNumber)
+    Endroutine
     End_Com

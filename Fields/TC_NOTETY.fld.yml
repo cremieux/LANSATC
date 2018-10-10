@@ -1,0 +1,49 @@
+﻿Field:
+  Name:               TC_NoteType
+  Type:               String
+  Length:             1
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Note Type"
+      Label:              "Note Type"
+      Heading1:           "Note"
+      Heading2:           "Type"
+
+  - FRA:
+      Description:        "Note Type"
+      Label:              "Note Type"
+      Heading1:           "Note"
+      Heading2:           "Type"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Usepicklist(False) Componentversion(1) Height(21) Width(797)
+    
+    End_Com
+    
+    Begin_Com Role(*picklist) Name(#Picklist) Nomatchaction(ShowValue)
+    
+    Define_Com Class(#PRIM_PKIT) Name(#PKIT_1) Value('O') Caption('Operations') Parent(#Picklist)
+    Define_Com Class(#PRIM_PKIT) Name(#PKIT_2) Value('T') Caption('Tenant Contact') Parent(#Picklist)
+    
+    Define_Com Class(#PRIM_PKIT) Name(#PKIT1) Parent(#Picklist) Caption('Leasing') Value('L')
+    Define_Com Class(#PRIM_PKIT) Name(#PKIT2) Parent(#Picklist) Caption('Weekly Update') Value('W')
+    End_Com
+    Begin_Com Role(*Visual #PRIM_EVPL) Name(#VisualPicklist) Appearance(DropDownList) Height(19) Componentversion(1) Width(258)
+    
+    End_Com
+    
+    Begin_Com Role(*Visual #PRIM_MD.DropdownField) Name(#DropdownField) Defaultvisual(True)
+    
+    End_Com
+    End_Com

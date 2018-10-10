@@ -1,0 +1,184 @@
+﻿Reusable Part:
+  Name:               GCTC_GCASSETS_MAP_Handler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ================================================================================
+    * Type            : COMMAND HANDLER
+    * Platform        : Web browser (Visual LANSA)
+    * Ancestor        : VF_AC010O
+    * Written By      : S13TOMC
+    * Written On      : 2nd JUNE 2017  at 14:44:02
+    * Copyright       : (C) Copyright
+    * Framework       : ABC Supply
+    * Application     : POS
+    * Business Object : Order Gateway
+    * Command Handler : Details
+    * ================================================================================
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#Layout2) Width(753) Height(625)
+    
+    * Group Definitions
+    
+    * Layout Management
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(255:255:255)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style3) Bold(True) Foregroundbrush(#Brush3)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush3) Color(Theme900)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+    
+    * Components
+    
+    *   The save button
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Column2) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Column4) Displayposition(2) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row3) Displayposition(1) Parent(#Layout1) Height(25) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row4) Displayposition(2) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem1) Column(#Column2) Manage(#LabelShipTo) Parent(#Layout1) Row(#Row3) Columnspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem3) Alignment(TopLeft) Column(#Column4) Manage(#LabelLat) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem4) Alignment(TopLeft) Column(#Column4) Manage(#LabelLon) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Alignment(TopLeft) Column(#Column2) Manage(#PropertyAddress) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Alignment(TopLeft) Column(#Column2) Manage(#PropertyCity) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Alignment(TopLeft) Column(#Column2) Manage(#PropertyState) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item4) Alignment(TopLeft) Column(#Column2) Manage(#PropertyZip) Parent(#Layout1) Row(#Row4) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(2) Marginright(2) Margintop(2)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Column3) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row5) Displayposition(1) Parent(#Layout2) Units(Pixels) Height(135)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row6) Displayposition(2) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#PanelShipToItem1) Manage(#PanelShipTo) Parent(#Layout2) Row(#Row5) Column(#Column3)
+    
+    
+    
+    * Fields
+    
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem2) Column(#Column3) Manage(#cmzGeocodedMap) Parent(#Layout2) Row(#Row6) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    
+    Define_Com Class(#PRIM_PANL) Name(#PanelShipTo) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Height(135) Width(753) Layoutmanager(#Layout1)
+    Define_Com Class(#PRIM_LABL) Name(#LabelShipTo) Caption('Location') Displayposition(1) Ellipses(Word) Height(25) Left(5) Parent(#PanelShipTo) Tabposition(1) Tabstop(False) Top(5) Verticalalignment(Center) Width(743) Themedrawstyle('LightTitle') Style(#Style1)
+    Define_Com Class(#cmzGeocodedMap) Name(#cmzGeocodedMap) Displayposition(2) Height(480) Left(5) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(140) Width(743)
+    Define_Com Class(#PRIM_LABL) Name(#LabelLat) Caption('Latitude:') Displayposition(2) Ellipses(Word) Height(20) Left(379) Parent(#PanelShipTo) Tabposition(2) Tabstop(False) Top(32) Verticalalignment(Center) Width(367) Visible(False) Selectable(True)
+    Define_Com Class(#PRIM_LABL) Name(#LabelLon) Caption('Longitude:') Displayposition(3) Ellipses(Word) Height(20) Left(379) Parent(#PanelShipTo) Tabposition(3) Tabstop(False) Top(54) Verticalalignment(Center) Width(367) Visible(False) Selectable(True)
+    Define_Com Class(#PropertyAddress.Visual) Name(#PropertyAddress) Displayposition(4) Left(7) Parent(#PanelShipTo) Tabposition(4) Top(32) Width(368) Displayonly(True) Labeltype(Label) Marginleft(80) Height(20)
+    Define_Com Class(#PropertyCity.Visual) Name(#PropertyCity) Displayposition(5) Left(7) Parent(#PanelShipTo) Tabposition(5) Top(56) Width(368) Displayonly(True) Labeltype(Label) Marginleft(80) Height(20)
+    Define_Com Class(#PropertyState.Visual) Name(#PropertyState) Displayposition(6) Left(7) Parent(#PanelShipTo) Tabposition(6) Top(80) Width(368) Displayonly(True) Labeltype(Label) Marginleft(80) Height(20)
+    Define_Com Class(#PropertyZip.Visual) Name(#PropertyZip) Displayposition(7) Left(7) Parent(#PanelShipTo) Tabposition(7) Top(104) Width(368) Displayonly(True) Labeltype(Label) Marginleft(80) Height(20)
+    
+    * Collection of all fields on the panel
+    Define_Com Class(#Prim_ACol<#prim_evp>) Name(#PanelFields)
+    Define_Com Class(#PRIM_TIMR) Name(#TimerMain) Startup(Manual)
+    Define_Com Class(#PRIM_TIMR) Name(#TimerLatLong) Startup(Manual)
+    Define Field(#wk_Address) Type(*STRING)
+    
+    * ================================================================================
+    * Routines
+    * ================================================================================
+    
+    
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    Define_Com Class(#prim_evp) Name(#TempField) Reference(*DYNAMIC)
+    
+    *  Do any initialization defined in the ancestor
+    
+    #Com_Ancestor.uInitialize
+    
+    * Build collection of Editable fields
+    For Each(#Control) In(#PanelShipTo.ComponentControls)
+    If_Ref Com(#Control) Is(*INSTANCE_OF #prim_evp)
+    #TempField <= #Control *As #prim_evp
+    #PanelFields.Insert( #TempField )
+    Endif
+    Endfor
+    
+    Endroutine
+    
+    
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    #Com_Ancestor.uTerminate
+    Endroutine
+    
+    
+    * --------------------------------------------------------------------------------
+    * Handle Command Execution
+    * --------------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    Define_Com Class(#prim_boln) Name(#Ret_code)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.GetData) Name(#GetData)
+    
+    Define_Com Class(#vf_elretc) Name(#uStatus)
+    Define_Com Class(#Prim_Boln) Name(#ServerModuleResult)
+    
+    * Clear any previous messages
+    #AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+    
+    * Do any execution logic defined in the ancestor
+    Group_By Name(#XG_AccessKeys) Fields(#PropertyID)
+    Group_By Name(#XG_EditableDataItems) Fields(#PropertyID #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyType3 #PropertyType4 #PropertyFloors #PropertyTypeMaterial)
+    
+    Group_By Name(#XG_ReadOnlyDataItems) Fields(#vLocation)
+    
+    Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+    
+    * ---------------------------------------------------------------------------------
+    Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#ReadOnlyDataItems) Fields(#XG_ReadOnlyDataItems) Type(*WORKING) Entrys(*MAX)
+    
+    * Get details of the associated instance
+    Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*WORKING) Entrys(1)
+    
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Inz_List Named(#AccessKeys)
+    * Ask the server to get details of that data item
+    #GetData.Execute Accesskeys(#AccessKeys) Alldataitems(#AllDataItems) Servermoduleresult(#ServerModuleResult)
+    
+    If (#ServerModuleResult)
+    
+    Get_Entry Number(1) From_List(#AllDataItems)
+    Else
+    
+    Endif
+    #TimerMain.Start
+    
+    
+    Endroutine
+    
+    Evtroutine Handling(#TimerMain.Tick)
+    #wk_Address := #PropertyAddress + ", " + #PropertyCity + " " + #PropertyZip
+    #cmzGeocodedMap.address := #wk_Address
+    #cmzGeocodedMap.start
+    #TimerMain.Stop
+    #TimerLatLong.Start
+    Endroutine
+    
+    Evtroutine Handling(#TimerLatLong.Tick)
+    #LabelLat.Visible #LabelLon.Visible := True
+    #LabelLat := "Latitude: " + #cmzGeocodedMap.getLat
+    #LabelLon := "Longitude: " + #cmzGeocodedMap.getLong
+    #TimerLatLong.Stop
+    Endroutine
+    
+    End_Com
+    
+    
+    
+    
+    

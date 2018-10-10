@@ -1,0 +1,211 @@
+﻿Reusable Part:
+  Name:               GCAssetDashboard
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Dashboard"
+
+  - FRA:
+      Description:        "Dashboard"
+
+  Source: |
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#LayoutWide) Width(1177) Height(1000) Verticalscroll(True)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Fontsize(50) Fontunits(Pixel) Facename('Roboto') Italic(False)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Facename('Open Sans') Bold(True)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style3) Bold(True)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style4) Backgroundbrush(#Brush1) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme800)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(245:245:245)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style5) Backgroundbrush(#Brush3)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush3) Color(Theme800)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn1) Displayposition(1) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow1) Displayposition(1) Parent(#LayoutWide) Maxheight(235)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow2) Displayposition(2) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem1) Column(#LayoutColumn1) Manage(#Panel) Parent(#LayoutWide) Row(#LayoutRow1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem2) Column(#LayoutColumn1) Manage(#ListAssets) Parent(#LayoutWide) Row(#LayoutRow2)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutTopWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#LayoutTopWide) Minwidth(210)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column2) Displayposition(2) Parent(#LayoutTopWide) Minwidth(210)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column3) Displayposition(3) Parent(#LayoutTopWide) Minwidth(210)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column4) Displayposition(5) Parent(#LayoutTopWide) Units(Pixels) Width(300)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column5) Displayposition(4) Parent(#LayoutTopWide) Minwidth(210)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#LayoutTopWide)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column3) Manage(#Text) Parent(#LayoutTopWide) Row(#Layout1Row1) Marginbottom(25)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Column(#Layout1Column1) Manage(#Text1) Parent(#LayoutTopWide) Row(#Layout1Row1) Marginbottom(25)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Column(#Layout1Column2) Manage(#Text2) Parent(#LayoutTopWide) Row(#Layout1Row1) Marginbottom(25)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item5) Column(#Layout1Column5) Manage(#Text4) Parent(#LayoutTopWide) Row(#Layout1Row1) Marginbottom(25)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item4) Column(#Layout1Column4) Manage(#Pie_Chart) Parent(#LayoutTopWide) Row(#Layout1Row1) Rowspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item12) Column(#Layout1Column1) Manage(#Panel1) Parent(#LayoutTopWide) Row(#Layout1Row1) Rowspan(3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item13) Column(#Layout1Column2) Manage(#Panel2) Parent(#LayoutTopWide) Row(#Layout1Row1) Rowspan(3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item14) Column(#Layout1Column3) Manage(#Panel3) Parent(#LayoutTopWide) Row(#Layout1Row1) Rowspan(3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item15) Column(#Layout1Column5) Manage(#Panel4) Parent(#LayoutTopWide) Row(#Layout1Row1) Rowspan(3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutTopWideItem1) Manage(#Panel5) Parent(#LayoutTopWide) Row(#Layout1Row1) Column(#Layout1Column4)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout2Column1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout2Row1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout2Row2) Displayposition(2) Parent(#Layout2) Height(80) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item1) Alignment(TopCenter) Column(#Layout2Column1) Manage(#Label) Parent(#Layout2) Row(#Layout2Row2) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item2) Column(#Layout2Column1) Manage(#Text1) Parent(#Layout2) Row(#Layout2Row1) Alignment(BottomCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item3) Alignment(BottomLeft) Column(#Layout2Column1) Manage(#Label4) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout3Column1) Displayposition(1) Parent(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout3Row1) Displayposition(1) Parent(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout3Row2) Displayposition(2) Parent(#Layout3) Height(80) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item1) Manage(#Label1) Parent(#Layout3) Row(#Layout3Row2) Sizing(FitToWidth) Column(#Layout3Column1) Alignment(TopCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item2) Manage(#Text2) Parent(#Layout3) Row(#Layout3Row1) Column(#Layout3Column1) Alignment(BottomCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item3) Alignment(BottomLeft) Column(#Layout3Column1) Manage(#Label5) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout4Column1) Displayposition(1) Parent(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout4Row1) Displayposition(1) Parent(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout4Row2) Displayposition(2) Parent(#Layout4) Height(80) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item1) Column(#Layout4Column1) Manage(#Text) Parent(#Layout4) Row(#Layout4Row1) Alignment(BottomCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item2) Manage(#Label3) Parent(#Layout4) Row(#Layout4Row2) Sizing(FitToWidth) Column(#Layout4Column1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item3) Manage(#Text5) Parent(#Layout4) Row(#Layout4Row2) Sizing(FitToWidth) Column(#Layout4Column1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item4) Alignment(BottomLeft) Column(#Layout4Column1) Manage(#Label6) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout5Column1) Displayposition(1) Parent(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout5Row1) Displayposition(1) Parent(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout5Row2) Displayposition(2) Parent(#Layout5) Height(80) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item1) Column(#Layout5Column1) Manage(#Text4) Parent(#Layout5) Row(#Layout5Row1) Alignment(BottomCenter)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item2) Manage(#Label2) Parent(#Layout5) Row(#Layout5Row2) Sizing(FitToWidth) Column(#Layout5Column1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item3) Manage(#Text3) Parent(#Layout5) Row(#Layout5Row2) Sizing(FitToWidth) Column(#Layout5Column1) Alignment(TopCenter) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item4) Alignment(BottomLeft) Column(#Layout2Column1) Manage(#Label5) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item5) Alignment(BottomLeft) Column(#Layout2Column1) Manage(#Label6) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item6) Alignment(BottomLeft) Column(#Layout2Column1) Manage(#Label7) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item4) Alignment(BottomLeft) Column(#Layout5Column1) Manage(#Label7) Parent(#Layout5) Row(#Layout5Row1) Sizing(FitToWidth)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutTopNarrow)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn2) Displayposition(1) Parent(#LayoutTopNarrow)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn3) Displayposition(2) Parent(#LayoutTopNarrow)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow3) Displayposition(1) Parent(#LayoutTopNarrow) Units(Pixels) Height(170)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow4) Displayposition(2) Parent(#LayoutTopNarrow) Units(Pixels) Height(170)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow5) Displayposition(3) Parent(#LayoutTopNarrow) Height(225) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem3) Manage(#Panel1) Parent(#LayoutTopNarrow) Row(#LayoutRow3) Column(#LayoutColumn2) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem4) Manage(#Panel2) Parent(#LayoutTopNarrow) Row(#LayoutRow3) Column(#LayoutColumn3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem5) Manage(#Panel3) Parent(#LayoutTopNarrow) Row(#LayoutRow4) Column(#LayoutColumn2) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem6) Manage(#Panel4) Parent(#LayoutTopNarrow) Row(#LayoutRow4) Column(#LayoutColumn3) Marginbottom(10) Marginleft(10) Marginright(10) Margintop(10)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem7) Manage(#Pie_Chart) Parent(#LayoutTopNarrow) Row(#LayoutRow5) Column(#LayoutColumn2) Columnspan(2) Marginbottom(50) Marginleft(50) Marginright(50) Margintop(50)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutTopNarrowItem1) Column(#LayoutColumn2) Manage(#Panel5) Parent(#LayoutTopNarrow) Row(#LayoutRow5) Columnspan(2)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutNarrow)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn4) Displayposition(1) Parent(#LayoutNarrow)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow6) Displayposition(1) Parent(#LayoutNarrow) Height(570) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow7) Displayposition(2) Parent(#LayoutNarrow) Height(450) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutNarrowItem1) Column(#LayoutColumn4) Manage(#Panel) Parent(#LayoutNarrow) Row(#LayoutRow6)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutNarrowItem2) Manage(#ListAssets) Parent(#LayoutNarrow) Row(#LayoutRow7) Column(#LayoutColumn4)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row2) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column6) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item6) Column(#Layout1Column6) Manage(#Pie_Chart) Parent(#Layout1) Row(#Layout1Row2)
+    
+    Define_Com Class(#PRIM_PANL) Name(#Panel) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(1177) Layoutmanager(#LayoutTopWide) Height(235)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text) Caption('2.3M') Displayposition(1) Left(0) Parent(#Panel3) Tabposition(1) Themedrawstyle('ForegroundMediumPrimary') Top(0) Height(133) Width(197) Style(#Style1) Captionalignment(BottomCenter)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text1) Displayposition(1) Left(0) Parent(#Panel1) Tabposition(1) Themedrawstyle('ForegroundMediumPrimary') Top(0) Height(133) Width(198) Style(#Style1) Captionalignment(BottomCenter) Caption('10')
+    Define_Com Class(#PRIM_LIST) Name(#ListAssets) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(2) Height(765) Left(0) Parent(#COM_OWNER) Rowheight(44) Tabposition(2) Width(1177) Columnstyle(#Style4) Top(235)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYI1) Columnwidth(116) Displayposition(1) Parent(#ListAssets) Source(#PropertyID) Columncaption('Property ID') Columncaptiontype(Caption) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYN1) Columnwidth(144) Displayposition(2) Parent(#ListAssets) Source(#PropertyName) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnVLOCATION1) Displayposition(4) Parent(#ListAssets) Source(#vLocation) Columnwidth(250) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYM1) Columnwidth(115) Displayposition(5) Parent(#ListAssets) Source(#PropertyManager) Columncaption('Manager') Columncaptiontype(Caption) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYT1) Columnwidth(168) Displayposition(6) Parent(#ListAssets) Source(#PropertyTenant) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.DateTime) Name(#ColumnPROPERTYE1) Columnwidth(139) Displayposition(7) Parent(#ListAssets) Showtime(False) Source(#PropertyExpiration) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPTYPE1) Columnwidth(186) Displayposition(8) Parent(#ListAssets) Source(#PropertyType) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnPROPERTYO1) Columnwidth(141) Displayposition(9) Parent(#ListAssets) Source(#PropertyOccupancy) Columncaption('Occ %') Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnPROPTOTSF1) Columnwidth(130) Displayposition(10) Parent(#ListAssets) Source(#PropertyTotalSF) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYA1) Columnwidth(250) Displayposition(3) Parent(#ListAssets) Source(#PropertyAddress) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style4)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text2) Caption('2.45M') Displayposition(1) Left(0) Parent(#Panel2) Tabposition(1) Themedrawstyle('ForegroundMediumPrimary') Top(0) Height(133) Width(197) Style(#Style1) Captionalignment(BottomCenter)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label) Caption('PROPERTIES') Displayposition(2) Parent(#Panel1) Tabposition(2) Top(133) Style(#Style2) Width(198) Captionalignment(Center) Left(0)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label1) Caption('TOTAL AREA (SF)') Displayposition(2) Left(0) Parent(#Panel2) Tabposition(2) Top(133) Style(#Style2) Width(197) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label2) Caption('VACANCY (SF)') Displayposition(1) Left(0) Parent(#Panel4) Tabposition(2) Top(133) Style(#Style2) Width(197) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text3) Caption('6.3%') Displayposition(2) Left(0) Parent(#Panel4) Tabposition(4) Themedrawstyle('ForegroundSecondary') Top(169) Style(#Style3) Width(197) Captionalignment(Center) Height(22)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text4) Caption('154K') Displayposition(3) Left(0) Parent(#Panel4) Tabposition(1) Themedrawstyle('ForegroundMediumPrimary') Top(0) Height(133) Width(197) Style(#Style1) Captionalignment(BottomCenter)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label3) Caption('OCCUPIED AREA (SF)') Displayposition(2) Left(0) Parent(#Panel3) Tabposition(2) Top(133) Style(#Style2) Width(197) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text5) Caption('93.7%') Displayposition(3) Left(0) Parent(#Panel3) Tabposition(4) Themedrawstyle('ForegroundSecondary') Top(169) Style(#Style3) Width(197) Captionalignment(Center) Height(22)
+    Define_Com Class(#DF_T71O_PieChart_Access) Name(#Pie_Chart) Parent(#Panel5) Tabstop(False) Height(235) Width(300)
+    Define_Com Class(#PRIM_PANL) Name(#Panel1) Displayposition(1) Height(215) Parent(#Panel) Tabposition(4) Tabstop(False) Width(200) Themedrawstyle('Popup') Layoutmanager(#Layout2)
+    Define_Com Class(#PRIM_PANL) Name(#Panel2) Displayposition(2) Height(215) Parent(#Panel) Tabposition(3) Tabstop(False) Width(199) Themedrawstyle('Popup') Left(230) Layoutmanager(#Layout3)
+    Define_Com Class(#PRIM_PANL) Name(#Panel3) Displayposition(3) Height(215) Parent(#Panel) Tabposition(2) Tabstop(False) Width(199) Themedrawstyle('Popup') Layoutmanager(#Layout4) Left(449)
+    Define_Com Class(#PRIM_PANL) Name(#Panel4) Displayposition(4) Height(215) Parent(#Panel) Tabposition(1) Tabstop(False) Width(199) Themedrawstyle('Popup') Left(668) Layoutmanager(#Layout5)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label4) Displayposition(3) Left(0) Parent(#Panel1) Tabposition(3) Top(132) Width(198) Height(1) Style(#Style5)
+    
+    Define_Com Class(#GCTCAssetServerModule.FindAllNonCorporate) Name(#FindAssets)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label5) Displayposition(3) Left(0) Parent(#Panel2) Tabposition(3) Top(132) Width(197) Height(1) Style(#Style5)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label6) Displayposition(4) Left(0) Parent(#Panel3) Tabposition(3) Top(132) Width(197) Style(#Style5) Height(1)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label7) Displayposition(4) Left(0) Parent(#Panel4) Tabposition(3) Top(132) Width(197) Height(1) Style(#Style5)
+    Define_Com Class(#PRIM_PANL) Name(#Panel5) Displayposition(5) Height(235) Left(877) Parent(#Panel) Tabposition(5) Tabstop(False) Top(0) Width(300) Layoutmanager(#Layout1)
+    
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do ancestor first
+    #COM_ANCESTOR.uInitialize
+    * Custom code here ....
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Custom code here ....
+    * Do ancestor last
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do any ancestor logic first.
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    #FindAssets.Execute Gcassetslist(#ListAssets)
+    
+    * Custom code here ....
+    Endroutine
+    * --------------------------------------------------------------------------
+    Evtroutine Handling(#Pie_Chart.uChartInitialized)
+    #Pie_Chart.uAddPieSection Data(93.7) Label(Occupancy)
+    #Pie_Chart.uAddPieSection Data(6.3) Label(Vacancy) Backgroundcolor(Red)
+    
+    #Pie_Chart.uShowTitle Text("Portfolio Availability %")
+    #Pie_Chart.uVisualizeAs := 'D'
+    
+    #Pie_Chart.uRefresh
+    Endroutine
+    Evtroutine Handling(#ListAssets.ItemClick)
+    #AVFRAMEWORKMANAGER.avSaveValue Withid1("CURRENT_PROP") Fromavalue(#PropertyID)
+    #AVFRAMEWORKMANAGER.avSwitch Toobjectnamed("BUS_ASSETS_SWITCH") Execute("COMMAND_DETAILS") Startfilterandinstancelist(FALSE) Ignorecommandenablement(True) Caller(#COM_OWNER)
+    Endroutine
+    
+    Evtroutine Handling(#COM_OWNER.SizeChanged)
+    #COM_OWNER.SetLayout
+    Endroutine
+    
+    
+    Mthroutine Name(SetLayout)
+    * #SYS_WEB.Alert Caption(#DataItemPanel.Width.AsString)
+    * #SYS_WEB.Alert Caption(#Com_Owner.Width.AsString)
+    
+    If (#Com_Owner.Width < 660)
+    #Com_Owner.LayoutManager <= #LayoutNarrow
+    #Panel.LayoutManager <= #LayoutTopNarrow
+    Else
+    #Com_Owner.LayoutManager <= #LayoutWide
+    #Panel.LayoutManager <= #LayoutTopWide
+    
+    Endif
+    
+    Endroutine
+    
+    Evtroutine Handling(#COM_OWNER.CreateInstance)
+    #COM_OWNER.SetLayout
+    
+    Endroutine
+    End_Com

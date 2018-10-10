@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Demo Tom
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A17Main:
+      Type:               Web Page

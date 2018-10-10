@@ -1,0 +1,77 @@
+﻿List:
+  Name:               Import 2018/09/11 21:28:25
+  Stored As:          User
+
+  Objects:
+  - DF_EDOC_B:
+      Type:               Field
+
+  - DF_EDOC_C:
+      Type:               Field
+
+  - DF_EDOC_F:
+      Type:               Field
+
+  - DF_EDOC_G:
+      Type:               Field
+
+  - DF_EDOC_M:
+      Type:               Field
+
+  - DF_EDOC_U:
+      Type:               Field
+
+  - DF_EDOCBT:
+      Type:               Field
+
+  - DF_EDOCCB:
+      Type:               Field
+
+  - DF_EDOCFS:
+      Type:               Field
+
+  - DF_EDOCKY:
+      Type:               Field
+
+  - DF_EDOCUB:
+      Type:               Field
+
+  - STD_BLOB:
+      Type:               Field
+
+  - STD_INT:
+      Type:               Field
+
+  - STD_STRNG:
+      Type:               Field
+
+  - DFDOC2:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - "*MTXTUF_DELETE":
+      Type:               Multilingual Variable
+
+  - "*MTXTUF_DOC_SIZE":
+      Type:               Multilingual Variable
+
+  - "*MTXTUF_DOWNLOAD":
+      Type:               Multilingual Variable
+
+  - "*MTXTUF_REFRESH":
+      Type:               Multilingual Variable
+
+  - "*MTXTUF_DROP_HERE":
+      Type:               Multilingual Variable
+
+  - DF_DOCDKO:
+      Type:               Reusable Part
+
+  - DF_DOCDCO:
+      Type:               Reusable Part
+
+  - DF_DOCWO:
+      Type:               Widget
+
+  - DF_DOCDSO:
+      Type:               Server Module

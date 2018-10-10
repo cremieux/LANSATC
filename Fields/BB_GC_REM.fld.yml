@@ -1,0 +1,25 @@
+﻿Field:
+  Name:               BB_GC_Remainder
+  Type:               Decimal
+  Length:             15
+  Decimals:           0
+  Default Value:      "*ZEROS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Remainder Amount"
+      Label:              "Remainder Amoun"
+      Heading1:           "Remainder"
+      Heading2:           "Amount"
+
+  - FRA:
+      Description:        "Remainder Amount"
+      Label:              "Remainder Amoun"
+      Heading1:           "Remainder"
+      Heading2:           "Amount"

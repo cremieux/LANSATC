@@ -1,0 +1,545 @@
+﻿Reusable Part:
+  Name:               GCTC_GCASSETS_SCRUD_Handler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ---------------------------------------------------------------------------------------------------
+    * This is a SCRUD command handler in framework "GRIFFIN Framework".
+    * It belongs to business object "Assets".
+    * Created 26th September 2018 by USERID with Material Design style controls.
+    * This diagram indicates how and where it is used:
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide2.PNG width=1000 height=563
+    * Note: If you can’t see the diagram, go to the Home tab, then move across into the Design area.
+    *       Click on the bottom right image that has the hint “Toggle Annotation Enabled/Disabled state”.
+    * ---------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #vf_ac010O) Height(761) Width(921)
+    
+    Group_By Name(#XG_AccessKeys) Fields(#PropertyID)
+    
+    Group_By Name(#XG_EditableDataItems) Fields(#PropertyID #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyType3 #PropertyType4 #PropertyFloors #PropertyTypeMaterial)
+    
+    Group_By Name(#XG_ReadOnlyDataItems) Fields(#vLocation)
+    
+    Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+    
+    * ---------------------------------------------------------------------------------
+    Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#ReadOnlyDataItems) Fields(#XG_ReadOnlyDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*WORKING) Entrys(1)
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Foregroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(Theme800)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme800)
+    
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style4) Foregroundbrush(#Brush4)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush4) Color(Theme800)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style5) Foregroundbrush(#Brush5)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush5) Color(Theme800)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style6) Backgroundbrush(#Brush6)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush6) Color(Theme800)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style3) Foregroundbrush(#Brush3)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush3) Color(Theme900)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style7) Underline(True) Foregroundbrush(#Brush7) Cursor(Hand)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush7) Color(Theme800)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYNAME) Parent(#Layout1) Row(#Layout1Row1) Sizing(None) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYADDRESS) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYCITY) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item4) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYSTATE) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item5) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYZIP) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item6) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYMANAGER) Parent(#Layout1) Row(#Layout1Row1) Sizing(None) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item7) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYACRES) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item8) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PROPERTYFLOORS) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item9) Alignment(TopLeft) Column(#Layout1Column1) Manage(#Text1) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout2Row1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout2Column1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item1) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYEXPIRATION) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item2) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYMANAGER) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item3) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYNAME) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item4) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYTENANT) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item5) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYYEARBUILT) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item6) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PROPERTYFAR) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item7) Alignment(TopLeft) Column(#Layout2Column1) Manage(#Text) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item9) Alignment(TopLeft) Column(#Layout2Column1) Manage(#PropertyID) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout3Row1) Displayposition(1) Parent(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout3Column1) Displayposition(1) Parent(#Layout3)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item1) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYINDUSTRIALPERCENT) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item2) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYINDUSTRIALSF) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item3) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYOCCUPANCY) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item4) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYOFFICEPERCENT) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item5) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYOFFICESF) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item6) Alignment(TopLeft) Column(#Layout3Column1) Manage(#PROPERTYTOTALSF) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout3Item7) Alignment(TopLeft) Column(#Layout3Column1) Manage(#Text3) Parent(#Layout3) Row(#Layout3Row1) Sizing(FitToWidth) Flow(Down)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout4Row1) Displayposition(1) Parent(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout4Column1) Displayposition(1) Parent(#Layout4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item1) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYTYPE) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item2) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYTYPE2) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item3) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYTYPE3) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item4) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYTYPE4) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item5) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYTYPEMATERIAL) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2) Marginright(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item6) Alignment(TopLeft) Column(#Layout4Column1) Manage(#Text2) Parent(#Layout4) Row(#Layout4Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item8) Alignment(TopLeft) Column(#Layout4Column1) Manage(#PROPERTYYEARBUILT) Parent(#Layout4) Row(#Layout4Row1) Sizing(None) Flow(Down)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn1) Displayposition(1) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn2) Displayposition(2) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn3) Displayposition(3) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn4) Displayposition(4) Parent(#LayoutWide)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow1) Displayposition(1) Parent(#LayoutWide) Height(395) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow2) Displayposition(2) Parent(#LayoutWide) Minheight(300)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem1) Column(#LayoutColumn1) Manage(#PanelDetails) Parent(#LayoutWide) Row(#LayoutRow1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem2) Column(#LayoutColumn2) Manage(#PanelLocation) Parent(#LayoutWide) Row(#LayoutRow1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem3) Column(#LayoutColumn3) Manage(#PanelTypes) Parent(#LayoutWide) Row(#LayoutRow1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem4) Column(#LayoutColumn4) Manage(#PanelOccupancy) Parent(#LayoutWide) Row(#LayoutRow1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item8) Alignment(TopLeft) Column(#Layout2Column1) Manage(#Text1) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item10) Alignment(TopLeft) Column(#Layout1Column1) Manage(#Text2) Parent(#Layout1) Row(#Layout1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout4Item7) Alignment(TopLeft) Column(#Layout4Column1) Manage(#Text3) Parent(#Layout4) Row(#Layout4Row1) Sizing(None) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem5) Column(#LayoutColumn1) Manage(#Panel) Parent(#LayoutWide) Row(#LayoutRow2) Columnspan(4) Margintop(5)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout5Column2) Displayposition(1) Parent(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout5Row1) Displayposition(1) Parent(#Layout5) Height(36) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout5Row2) Displayposition(2) Parent(#Layout5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item1) Alignment(TopLeft) Column(#Layout5Column2) Manage(#Label) Parent(#Layout5) Row(#Layout5Row1) Marginleft(5) Marginright(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout5Item4) Column(#Layout5Column2) Manage(#ListContacts) Parent(#Layout5) Row(#Layout5Row2) Marginleft(5) Marginright(5)
+    
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column1) Displayposition(1) Parent(#LayoutList1) Units(Pixels) Width(55)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column2) Displayposition(2) Parent(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column3) Displayposition(3) Parent(#LayoutList1) Units(Pixels) Width(60)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column4) Displayposition(4) Parent(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutList1Row1) Displayposition(1) Parent(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item1) Alignment(TopLeft) Column(#LayoutList1Column4) Manage(#ListContactPhone1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item2) Alignment(TopLeft) Column(#LayoutList1Column4) Manage(#ListContactMobile1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item3) Alignment(TopLeft) Column(#LayoutList1Column3) Manage(#ListContactEmail1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down) Columnspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item4) Alignment(TopLeft) Column(#LayoutList1Column2) Manage(#ListvFullName1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item5) Alignment(TopLeft) Column(#LayoutList1Column1) Manage(#ListvLocation2) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down) Columnspan(2) Marginleft(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item6) Alignment(TopLeft) Column(#LayoutList1Column1) Manage(#ListContactAddress1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down) Columnspan(2) Marginleft(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item7) Alignment(TopLeft) Column(#LayoutList1Column1) Manage(#Label10) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down) Marginleft(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item10) Alignment(TopLeft) Column(#LayoutList1Column3) Manage(#Label13) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item11) Alignment(TopLeft) Column(#LayoutList1Column3) Manage(#Label14) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item13) Alignment(BottomLeft) Column(#LayoutList1Column1) Manage(#Text5) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Columnspan(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item8) Alignment(BottomRight) Column(#LayoutList1Column4) Manage(#ListContactID1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(None)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutMobile)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn5) Displayposition(1) Parent(#LayoutMobile)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn6) Displayposition(2) Parent(#LayoutMobile)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow3) Displayposition(1) Parent(#LayoutMobile) Minheight(390)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow4) Displayposition(2) Parent(#LayoutMobile) Minheight(390)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow5) Displayposition(3) Parent(#LayoutMobile) Minheight(390)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem6) Manage(#PanelDetails) Parent(#LayoutMobile) Row(#LayoutRow3) Column(#LayoutColumn5) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem7) Manage(#PanelLocation) Parent(#LayoutMobile) Row(#LayoutRow3) Column(#LayoutColumn6) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem8) Manage(#PanelTypes) Parent(#LayoutMobile) Row(#LayoutRow4) Column(#LayoutColumn5) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem9) Manage(#PanelOccupancy) Parent(#LayoutMobile) Row(#LayoutRow4) Column(#LayoutColumn6) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem10) Manage(#Panel) Parent(#LayoutMobile) Row(#LayoutRow5) Column(#LayoutColumn5) Columnspan(2)
+    
+    Define_Com Class(#Prim_Boln) Name(#ServerModuleResult)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(729) Left(0) Top(0) Width(921) Horizontalscroll(True) Verticalscroll(True) Tabstop(False) Layoutmanager(#LayoutWide)
+    Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(729) Width(921) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Save_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentDelete) Parent(#ButtonPanelAttachmenthManager) Manage(#Delete_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentAnother) Parent(#ButtonPanelAttachmenthManager) Manage(#Another_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Save_Button) Parent(#ButtonPanel) Caption(*MTXTUF_SAVE) Displayposition(1) Tabposition(1) Height(24) Left(609) Top(4) Buttondefault(True) Themedrawstyle('MediumTitle')
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Delete_Button) Parent(#ButtonPanel) Caption(*MTXTUF_DELETE) Displayposition(2) Tabposition(2) Height(24) Left(713) Top(4) Themedrawstyle('ForegroundMediumPrimary') Visible(False)
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Another_Button) Parent(#ButtonPanel) Caption(*MTXTUF_CREATEMORE) Displayposition(3) Tabposition(3) Height(24) Left(817) Top(4) Buttondefault(True) Themedrawstyle('ForegroundMediumPrimary')
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PropertyName.EditField) Parent(#PanelDetails) Displayposition(3) Captiontype(Label) Tabposition(1) Top(94) Left(2) Height(58) Width(215)
+    Define_Com Class(#PropertyAddress.EditField) Parent(#PanelLocation) Displayposition(2) Captiontype(Label) Tabposition(1) Top(36) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyCity.EditField) Parent(#PanelLocation) Displayposition(3) Captiontype(Label) Tabposition(2) Top(94) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyState.EditField) Parent(#PanelLocation) Displayposition(4) Captiontype(Label) Tabposition(3) Top(152) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyZip.EditField) Parent(#PanelLocation) Displayposition(5) Captiontype(Label) Tabposition(4) Top(210) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyManager.EditField) Parent(#PanelDetails) Displayposition(4) Captiontype(Label) Tabposition(2) Top(152) Left(2) Height(58) Width(215)
+    Define_Com Class(#PropertyYearBuilt.EditField) Parent(#PanelTypes) Displayposition(2) Captiontype(Label) Tabposition(5) Top(36) Left(0) Height(58) Width(215)
+    Define_Com Class(#PropertyTenant.EditField) Parent(#PanelDetails) Displayposition(5) Captiontype(Label) Tabposition(3) Top(210) Left(2) Height(58) Width(215)
+    Define_Com Class(#PropertyExpiration.DateTimeField) Parent(#PanelDetails) Displayposition(7) Captiontype(Label) Tabposition(5) Top(326) Left(2) Height(58) Width(215)
+    Define_Com Class(#PropertyType.EditField) Parent(#PanelTypes) Displayposition(3) Tabposition(1) Top(94) Left(2) Height(58) Width(214) Captiontype(Label)
+    Define_Com Class(#PropertyOccupancy.EditField) Parent(#PanelOccupancy) Displayposition(2) Captiontype(Label) Tabposition(1) Top(36) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyTotalSF.EditField) Parent(#PanelOccupancy) Displayposition(3) Captiontype(Label) Tabposition(2) Top(94) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyOfficeSF.EditField) Parent(#PanelOccupancy) Displayposition(4) Captiontype(Label) Tabposition(4) Top(152) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyOfficePercent.EditField) Parent(#PanelOccupancy) Displayposition(5) Captiontype(Label) Tabposition(3) Top(210) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyIndustrialSF.EditField) Parent(#PanelOccupancy) Displayposition(6) Captiontype(Label) Tabposition(7) Top(268) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyIndustrialPercent.EditField) Parent(#PanelOccupancy) Displayposition(7) Captiontype(Label) Tabposition(5) Top(326) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyAcres.EditField) Parent(#PanelLocation) Displayposition(6) Captiontype(Label) Tabposition(7) Top(268) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyFAR.EditField) Parent(#PanelDetails) Displayposition(6) Captiontype(Label) Tabposition(4) Top(268) Left(2) Height(58) Width(215)
+    Define_Com Class(#PropertyType2.EditField) Parent(#PanelTypes) Displayposition(4) Captiontype(Label) Tabposition(2) Top(152) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyType3.EditField) Parent(#PanelTypes) Displayposition(5) Captiontype(Label) Tabposition(3) Top(210) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyType4.EditField) Parent(#PanelTypes) Displayposition(6) Captiontype(Label) Tabposition(4) Top(268) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyFloors.EditField) Parent(#PanelLocation) Displayposition(7) Captiontype(Label) Tabposition(5) Top(326) Left(2) Height(58) Width(214)
+    Define_Com Class(#PropertyTypeMaterial.EditField) Parent(#PanelTypes) Displayposition(7) Captiontype(Label) Tabposition(7) Top(326) Left(2) Height(58) Width(214)
+    Define_Com Class(#PRIM_PANL) Name(#PanelLocation) Displayposition(1) Height(385) Left(236) Parent(#DataItemPanel) Tabposition(2) Tabstop(False) Top(5) Width(220) Themedrawstyle('Popup') Layoutmanager(#Layout1)
+    Define_Com Class(#PRIM_PANL) Name(#PanelDetails) Displayposition(3) Height(385) Left(5) Parent(#DataItemPanel) Tabposition(1) Tabstop(False) Top(5) Width(221) Themedrawstyle('Popup') Layoutmanager(#Layout2)
+    Define_Com Class(#PRIM_PANL) Name(#PanelTypes) Displayposition(4) Height(385) Left(466) Parent(#DataItemPanel) Tabposition(4) Tabstop(False) Top(5) Width(220) Themedrawstyle('Popup') Layoutmanager(#Layout4)
+    Define_Com Class(#PRIM_PANL) Name(#PanelOccupancy) Displayposition(2) Height(385) Left(696) Parent(#DataItemPanel) Tabposition(3) Tabstop(False) Top(5) Width(220) Themedrawstyle('Popup') Layoutmanager(#Layout3)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text) Caption('Details') Displayposition(1) Left(0) Parent(#PanelDetails) Tabposition(6) Themedrawstyle('LightTitle') Top(0) Width(219) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text1) Caption('Location') Displayposition(1) Left(0) Parent(#PanelLocation) Tabposition(6) Themedrawstyle('LightTitle') Top(0) Width(218) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text2) Caption('Type Information') Displayposition(1) Left(0) Parent(#PanelTypes) Tabposition(6) Themedrawstyle('LightTitle') Top(0) Width(218) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text3) Caption('Occupancy Information') Displayposition(1) Left(0) Parent(#PanelOccupancy) Tabposition(6) Themedrawstyle('LightTitle') Top(0) Width(218) Captionalignment(Center)
+    Define_Com Class(#PRIM_PANL) Name(#Panel) Displayposition(5) Height(329) Left(0) Parent(#DataItemPanel) Tabposition(5) Tabstop(False) Top(400) Width(921) Layoutmanager(#Layout5)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label) Displayposition(1) Left(5) Parent(#Panel) Tabposition(1) Top(0) Width(911) Caption('Asset Contacts') Captionalignment(Center) Themedrawstyle('LightTitle')
+    Define_Com Class(#PRIM_MD.List) Name(#ListContacts) Displayposition(2) Layoutmanager(#LayoutList1) Left(5) Parent(#Panel) Rowheight(90) Tabposition(2) Themedrawstyle('Card') Top(36) Height(293) Width(911)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListvFullName1) Caption('Full Name') Displayposition(7) Dragstyle(None) Left(55) Parent(#ListContacts) Source(#vFullName) Tabposition(1) Top(0) Width(397) Style(#Style4) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListvLocation2) Caption('Location') Displayposition(8) Dragstyle(None) Left(2) Parent(#ListContacts) Source(#vLocation) Tabposition(6) Top(28) Width(450) Style(#Style4) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListContactAddress1) Caption('Address') Displayposition(9) Dragstyle(None) Left(2) Parent(#ListContacts) Source(#ContactAddress) Tabposition(7) Top(56) Width(450) Style(#Style4) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListContactPhone1) Caption('Phone') Displayposition(10) Dragstyle(None) Left(512) Parent(#ListContacts) Source(#ContactPhone) Tabposition(8) Top(0) Width(397) Style(#Style5) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListContactMobile1) Caption('Mobile Phone') Displayposition(11) Dragstyle(None) Left(512) Parent(#ListContacts) Source(#ContactMobile) Tabposition(9) Top(28) Width(397) Style(#Style5) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListContactEmail1) Caption('Email') Displayposition(12) Dragstyle(None) Left(452) Parent(#ListContacts) Source(#ContactEmail) Tabposition(10) Top(56) Width(457) Height(28) Style(#Style7)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label10) Caption('Name') Displayposition(2) Dragstyle(None) Left(2) Parent(#ListContacts) Tabposition(11) Top(0) Width(53) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label13) Caption('Phone') Displayposition(5) Dragstyle(None) Left(452) Parent(#ListContacts) Tabposition(12) Top(0) Width(60) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label14) Caption('Mobile') Displayposition(6) Dragstyle(None) Left(452) Parent(#ListContacts) Tabposition(2) Top(28) Width(60) Height(28)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Text5) Displayposition(1) Dragstyle(None) Left(0) Parent(#ListContacts) Tabposition(4) Themedrawstyle('ForegroundMediumPrimary') Top(89) Width(909) Height(1) Style(#Style6)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListContactID1) Caption('Contact ID') Displayposition(4) Dragstyle(None) Left(809) Parent(#ListContacts) Source(#ContactID) Tabposition(5) Top(54) Visible(False)
+    Define_Com Class(#PropertyID.EditField) Name(#PropertyID) Displayposition(2) Left(2) Parent(#PanelDetails) Tabposition(7) Top(36) Height(58) Appearance(TextFieldAreaBox) Readonly(True) Captiontype(Caption) Caption('Property ID') Style(#Style3) Width(215)
+    
+    Def_List Name(#CompList) Fields(#CompID #CompType #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyFloors #PropertyTypeMaterial #PropertyLastRedone #PropertyType3 #PropertySpaces #PropertySpacesAvailable #Property1000SF #PropertyDocks #PropertySFLoading #PropertyLoadingDocks #PropertyCeiling #PropertyHeight #CompDate #CompPrice #vLocation) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#ContactList) Fields(#ContactID #ContactFirstName #ContactLastName #ContactTitle #ContactAddress #ContactCity #ContactState #ContactPhone #ContactMobile #ContactEmail #vLocation #vFullName) Type(*WORKING) Entrys(*MAX)
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uInitialize
+    * Track changes to visual controls
+    #COM_SELF.avTrackControlChanges Incontainer(#COM_Self)
+    * Auto arrange items on the main data panel
+    #COM_SELF.avStartAutoArrangingControls Onpanel(#DataItemPanel)
+    * Initialize some visibility
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    
+    * #COM_OWNER.SetLayout
+    
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Stop tracking changes to visual controls
+    #COM_SELF.avStopTrackingControlChanges
+    * Stop auto arranging the data panel
+    #Com_Self.avStopAutoArrangingControls
+    * Do the ancestor thing
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    
+    
+    * Asynchronously start a LoadNew (new data) or Load (existing data) request
+    If (#COM_OWNER.CheckForUnsavedChanges( False ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Load + #COM_OWNER.avAlphaArg1)
+    #GotoFreeState := False /* Don't go back to a free state until async operations complete */
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+    * Clear any visible errors
+    #Com_Owner.avClearMDControlErrors
+    * Handle the requested async operation
+    Case (#OperationID)
+    When (= LoadNew) /* Create new Asset            */
+    #COM_OWNER.LoadNew Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Load) /* Display/edit existing Asset */
+    #COM_OWNER.Load Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= SaveNew) /* Save new Asset              */
+    #COM_OWNER.SaveNew Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Save) /* Save existing Asset         */
+    #COM_OWNER.Save Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Delete) /* Delete Asset                */
+    #COM_OWNER.Delete Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    Endcase
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(LoadNew) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.InitializeNewData) Name(#InitializeNewData)
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide8.PNG width=1000 height=339
+    * Ask the server to initialize all fields to create a new data item
+    #InitializeNewData.Execute Alldataitems(#AllDataItems)
+    * Get those intial values into this program
+    Get_Entry Number(1) From_List(#AllDataItems)
+    * Set the buttons to their initial state
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    * Set the keys fields to be input capable
+    * Set Com(#PropertyID) Readonly(False)
+    #Save_Button.ComponentTag := SaveNew
+    #DataItemPanel.Enabled := True
+    * Scroll to the first control in the panel
+    If_Ref Com(#DataItemPanel.ComponentControls<1>) Is_Not(*NULL)
+    #DataItemPanel.VerticalScrollTo Control(#DataItemPanel.ComponentControls<1>) Scrollposition(Top)
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#InitializeNewData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Load) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.GetData) Name(#GetData)
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide5.PNG width=1000 height=339
+    * Get the access keys from the associated instance and set them up to map to the server
+    
+    If_Ref Com(#AVLISTMANAGER.CurrentInstance) Is_Not(*NULL)
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Else
+    #AVFRAMEWORKMANAGER.avRestoreValue Withid1("CURRENT_PROP") Toavalue(#PropertyID)
+    Endif
+    
+    Inz_List Named(#AccessKeys)
+    * Ask the server to get details of that data item
+    #GetData.Execute Accesskeys(#AccessKeys) Alldataitems(#AllDataItems) Servermoduleresult(#ServerModuleResult) Complist(#CompList) Contactlist(#ContactList)
+    * If found we are good to go
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    * Clr_List Named(#ListComps)
+    Clr_List Named(#ListContacts)
+    
+    * Selectlist Named(#CompList)
+    * #ListPropertyAddress1 := #PROPERTYADDRESS
+    * #ListPropertyYearBuilt1 := #PROPERTYYEARBUILT
+    * #ListPropertyOccupancy1 := #PROPERTYOCCUPANCY.AsString + "%"
+    * #ListPropertyTotalSF1 := #PROPERTYTOTALSF.AsString
+    * Add_Entry To_List(#ListComps)
+    * Endselect
+    
+    Selectlist Named(#ContactList)
+    Add_Entry To_List(#ListContacts)
+    Endselect
+    
+    Get_Entry Number(1) From_List(#AllDataItems)
+    Set Com(#Save_Button #Another_Button) Visible(False)
+    #Delete_Button.Visible := False
+    #DataItemPanel.Enabled := True
+    #Save_Button.ComponentTag := Save
+    Else
+    Change Field(#AllDataItems) To(*NULL)
+    Set Com(#Save_Button #Delete_Button #Another_Button) Visible(False)
+    #DataItemPanel.Enabled := False
+    Endif
+    * Set the keys fields to be non changeable
+    * Set Com(#PropertyID) Readonly(True)
+    * Handle a failure
+    Evtroutine Handling(#GetData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avHandleTrackedControlChange) Options(*REDEFINE)
+    #Save_Button.Visible := #DataItemPanel.Enabled
+    If (#ControlMD *IsNot *null)
+    #ControlMD.ClearError
+    Endif
+    If (#ControlMDDT *IsNot *null)
+    #ControlMDDT.ClearError
+    Endif
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avValidateTrackedMDControl) Options(*REDEFINE)
+    #IsValid := True
+    If (#ControlMD_Edit *IsNot *null)
+    #IsValid := #ControlMD_Edit.Validate( #ForOperation #GCAssets )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_Edit) Scrollposition(Visible)
+    Endif
+    Endif
+    If (#ControlMD_DateTime *IsNot *null)
+    #IsValid := #ControlMD_DateTime.Validate( #ForOperation #GCAssets )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_DateTime) Scrollposition(Visible)
+    Endif
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(CheckClientSideValidation) Access(*PRIVATE)
+    Define_Map For(*INPUT) Class(#PRIM_ALPH) Name(#ForOperation)
+    Define_Map For(*RESULT) Class(#Prim_Boln) Name(#AllValid)
+    #COM_OWNER.avValidateAllTrackedMDControls Foroperation(#ForOperation) Allvalid(#AllValid)
+    * Add any additional client side validation logic here
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Save) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.PutData) Name(#PutData)
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide6.PNG width=1000 height=339
+    * Ask the server save the editable data items
+    Inz_List Named(#EditableDataItems)
+    #PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.AddtoList Visualid1(#PropertyName) Visualid2(#PropertyAddress) Akey1(#PropertyID) Acolumn1(#vLocation) Acolumn2(#PropertyManager) Acolumn3(#PropertyYearBuilt) Acolumn4(#PropertyTenant) Dcolumn1(#PropertyExpiration.AsString) Acolumn5(#PropertyType) Ncolumn1(#PropertyOccupancy) Ncolumn2(#PropertyTotalSF) Acolumn6(#PropertyState)
+    Set Com(#Save_Button) Visible(False)
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#PutData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(SaveNew) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.PutData) Name(#PutData)
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide6.PNG width=1000 height=339
+    * Ask the server save the editable data items
+    Inz_List Named(#EditableDataItems)
+    #PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.AddtoList Visualid1(#PropertyName) Visualid2(#PropertyAddress) Akey1(#PropertyID) Acolumn1(#vLocation) Acolumn2(#PropertyManager) Acolumn3(#PropertyYearBuilt) Acolumn4(#PropertyTenant) Dcolumn1(#PropertyExpiration.AsString) Acolumn5(#PropertyType) Ncolumn1(#PropertyOccupancy) Ncolumn2(#PropertyTotalSF) Acolumn6(#PropertyState)
+    #Save_Button.Visible := False
+    #Another_Button.Visible := True
+    #DataItemPanel.Enabled := False
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#PutData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Delete) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.DeleteData) Name(#DeleteData)
+    * Annotate Img=%partdir%VF_UM501_AutoScrud_Slide7.PNG width=1000 height=339
+    * Get the access keys from the associated instance and set them up to map to the server
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Inz_List Named(#AccessKeys)
+    * Ask the server to delete the associated row
+    #DeleteData.Execute Accesskeys(#AccessKeys) Servermoduleresult(#ServerModuleResult)
+    * Handle a good result
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.RemovefromList Dataitem(#Com_Self.avAssociatedInstance)
+    Set Com(#Save_Button #Delete_Button) Visible(False)
+    #DataItemPanel.Enabled := False
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#DeleteData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Save_Button.Click)
+    Define_Com Class(#Prim_Boln) Name(#ClientSideValid)
+    If (#Save_Button.ComponentTag = Save)
+    #ClientSideValid := #COM_OWNER.CheckClientSideValidation( Update )
+    Else
+    #ClientSideValid := #COM_OWNER.CheckClientSideValidation( Insert )
+    Endif
+    If (#ClientSideValid)
+    #COM_OWNER.avQueueAsyncOperation Operationid(#Save_Button.ComponentTag) Busystatetext(*MTXTUF_Saving)
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Delete_Button.Click)
+    If (#COM_OWNER.CheckClientSideValidation( Delete ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Delete) Busystatetext(*MTXTUF_Delete)
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Another_Button.Click)
+    #COM_OWNER.avQueueAsyncOperation Operationid(LoadNew) Busystatetext(*MTXTUF_Loading)
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    * Indicate back to framework whether a close operation is currently allowed
+    Mthroutine Name(uQueryCanClose) Options(*REDEFINE)
+    #COM_OWNER.CheckForUnsavedChanges Timeoutinprogress(#TimeOutinProgress) Allowtoproceed(#Allow)
+    Endroutine
+    
+    * --------------------------------------------------------------------------
+    * Returns True (Go ahead) or False (there are changes AND the user wants to save them)
+    Mthroutine Name(CheckForUnsavedChanges)
+    Define_Map For(*INPUT) Class(#prim_boln) Name(#TimeOutinProgress)
+    Define_Map For(*RESULT) Class(#prim_boln) Name(#AllowtoProceed)
+    * If a save operation is pending and not timed out
+    If (#Save_Button.Visible And #TimeOutinProgress.Not)
+    #AllowtoProceed := (#SYS_WEB.Confirm( (*MTXTUF_MSG_0009.Substitute( (#PropertyID) )) ) = Cancel)
+    Else
+    #AllowtoProceed := True /* Default */
+    Endif
+    Endroutine
+    
+    * Evtroutine Handling(#ListComps.ItemClick)
+    * #AVFRAMEWORKMANAGER.avSaveValue Withid1("SELECTED_COMP") Fromavalue(#CompID)
+    * #AVFRAMEWORKMANAGER.avSwitch Toobjectnamed("BUS_COMPS") Execute("COMMAND_DETAILS") Startfilterandinstancelist(False) Ignorecommandenablement(True) Caller(#COM_OWNER)
+    * Endroutine
+    Evtroutine Handling(#ListContacts.ItemClick)
+    #AVFRAMEWORKMANAGER.avSaveValue Withid1("SELECTED_CONTACT") Fromavalue(#ContactID)
+    #AVFRAMEWORKMANAGER.avSwitch Toobjectnamed("BUS_CONTACTS") Execute("COMMAND_DETAILS") Startfilterandinstancelist(False) Ignorecommandenablement(True) Caller(#COM_OWNER)
+    Endroutine
+    Evtroutine Handling(#COM_OWNER.SizeChanged)
+    #COM_OWNER.SetLayout
+    Endroutine
+    
+    
+    Mthroutine Name(SetLayout)
+    * #SYS_WEB.Alert Caption(#DataItemPanel.Width.AsString)
+    * #SYS_WEB.Alert Caption(#Com_Owner.Width.AsString)
+    
+    If (#Com_Owner.Width < 660)
+    #DataItemPanel.LayoutManager <= #LayoutMobile
+    Else
+    #DataItemPanel.LayoutManager <= #LayoutWide
+    
+    Endif
+    
+    Endroutine
+    Evtroutine Handling(#ListContactEmail1.Click)
+    #SYS_WEB.Navigate Url("mailto:" + #CONTACTEM)
+    Endroutine
+    Evtroutine Handling(#ListContactPhone1.Click)
+    #SYS_WEB.Navigate Url("tel:" + #ContactPhone)
+    
+    Endroutine
+    Evtroutine Handling(#ListContactMobile1.Click)
+    #SYS_WEB.Navigate Url("tel:" + #ContactMobile)
+    
+    Endroutine
+    Evtroutine Handling(#COM_OWNER.CreateInstance)
+    #COM_OWNER.SetLayout
+    
+    Endroutine
+    End_Com

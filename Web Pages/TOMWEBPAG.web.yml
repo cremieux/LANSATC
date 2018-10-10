@@ -1,0 +1,31 @@
+﻿Web Page:
+  Name:               TomWebPage
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Tom Web Page"
+
+  - FRA:
+      Description:        "Tom Web Page"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignBlue>)
+    
+    Evtroutine Handling(#Com_owner.Initialize)
+    
+    Endroutine
+    
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Loading Screen:
+    Image:              Spinner
+
+    Multilingual Text:
+    - ENG:
+        Text:               "Loading..."
+    - FRA:
+        Text:               "Loading..."

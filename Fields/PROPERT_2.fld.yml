@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               PropertySpaces
+  Type:               Decimal
+  Length:             5
+  Decimals:           0
+  Default Value:      "*ZEROS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Spaces"
+      Label:              "Spaces"
+      Heading1:           "Spaces"
+
+  - FRA:
+      Description:        "Spaces"
+      Label:              "Spaces"
+      Heading1:           "Spaces"

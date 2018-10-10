@@ -1,0 +1,47 @@
+﻿Web View:
+  Name:               A24Customers
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Customers"
+
+  - FRA:
+      Description:        "Customers"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_VIEW) Displayposition(1) Tabposition(1) Layoutmanager(#Layout1) Caption('Customers') Height(713) Width(540)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#List) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutListRow1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem1) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListvFirstLast1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Alignment(CenterLeft) Marginleft(15)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem2) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListCStreet1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Alignment(CenterLeft) Marginleft(15)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem3) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListvCityStateZip1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Alignment(CenterLeft) Marginleft(15)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem4) Column(#LayoutListColumn1) Flow(CenterVertical) Manage(#ListCPhone1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Alignment(CenterLeft) Marginleft(15)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem5) Alignment(CenterRight) Column(#LayoutListColumn1) Manage(#ListCCustomerNumber1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(None)
+    
+    Define_Com Class(#PRIM_MD.List) Name(#List) Displayposition(1) Layoutmanager(#LayoutList) Left(5) Parent(#COM_OWNER) Rowheight(100) Tabposition(1) Themedrawstyle('Card') Top(5) Height(703) Width(530)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListvFirstLast1) Caption('Name') Displayposition(1) Dragstyle(None) Parent(#List) Source(#vFirstLast) Tabposition(1) Top(0) Height(25) Left(15) Themedrawstyle('ForegroundMediumPrimary') Width(513)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCStreet1) Caption('Address') Displayposition(3) Dragstyle(None) Left(15) Parent(#List) Source(#CStreet) Tabposition(3) Top(25) Height(25) Themedrawstyle('ForegroundSecondary') Width(513)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListvCityStateZip1) Caption('Address Field') Displayposition(4) Dragstyle(None) Left(15) Parent(#List) Source(#vCityStateZip) Tabposition(4) Top(50) Height(25) Themedrawstyle('ForegroundSecondary') Width(513)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCPhone1) Caption('Phone') Displayposition(5) Dragstyle(None) Left(15) Parent(#List) Source(#CPhone) Tabposition(5) Top(75) Height(25) Themedrawstyle('ForegroundSecondary') Width(513)
+    Define_Com Class(#DemoCustomerDialog) Name(#DemoCustomerDialog)
+    Define_Com Class(#CCustomerNumber.EditField) Name(#CCustomerNumber) Displayposition(2) Left(274) Tabposition(2) Top(24) Visible(False)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCCustomerNumber1) Caption('Customer') Displayposition(6) Dragstyle(None) Left(428) Parent(#List) Source(#CCustomerNumber) Tabposition(6) Top(32) Visible(False)
+    
+    
+    
+    Evtroutine Handling(#COM_OWNER.Initialize)
+    Define_Com Class(#zCustomerServerModuleTest.FindAll) Name(#FindCustomers)
+    #FindCustomers.ExecuteAsync Cscstplist(#List)
+    Endroutine
+    Evtroutine Handling(#List.ItemClick)
+    #DemoCustomerDialog.ShowItem Key1(#CCustomerNumber)
+    Endroutine
+    End_Com

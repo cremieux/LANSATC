@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               CapitalItemVendor
+  Type:               NVarChar
+  Length:             50
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Vendor"
+      Label:              "Vendor"
+      Heading1:           "Vendor"
+
+  - FRA:
+      Description:        "Vendor"
+      Label:              "Vendor"
+      Heading1:           "Vendor"

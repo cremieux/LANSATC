@@ -1,0 +1,36 @@
+﻿Field:
+  Name:               GCPortfolioAvailCal
+  Type:               Decimal
+  Length:             10
+  Decimals:           0
+  Default Value:      "*ZEROS"
+  Edit Mask:          O
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Availability Calc"
+      Label:              "Availability Ca"
+      Heading1:           "Availability"
+      Heading2:           "Calc"
+
+  - FRA:
+      Description:        "Availability Calc"
+      Label:              "Availability Ca"
+      Heading1:           "Availability"
+      Heading2:           "Calc"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(335)
+    
+    End_Com
+    
+    End_Com

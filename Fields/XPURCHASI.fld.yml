@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               xPurchasingWebServiceURL
+  Type:               NVarChar
+  Length:             1024
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "xPurchasingWebServiceURL"
+      Label:              "xPurchasingWebS"
+      Heading1:           "xPurchasingWebServic"
+
+  - FRA:
+      Description:        "xPurchasingWebServiceURL"
+      Label:              "xPurchasingWebS"
+      Heading1:           "xPurchasingWebServic"

@@ -1,0 +1,88 @@
+﻿Web Dialog:
+  Name:               GCPropertyDialog
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Property Dialog"
+
+  - FRA:
+      Description:        "Property Dialog"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_DLG) Height(361) Width(401) Layoutmanager(#Layout1) Autoclose(True)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Foregroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(Theme800)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#AppbarLayout)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#AppbarLayoutColumn1) Displayposition(1) Parent(#AppbarLayout)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#AppbarLayoutRow1) Displayposition(1) Parent(#AppbarLayout)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#AppbarLayoutItem1) Alignment(CenterRight) Column(#AppbarLayoutColumn1) Flow(Left) Manage(#ViewDetails) Parent(#AppbarLayout) Row(#AppbarLayoutRow1) Sizing(ContentWidth)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1) Height(45) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row2) Displayposition(2) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Alignment(BottomLeft) Column(#Layout1Column1) Manage(#Appbar) Parent(#Layout1) Row(#Layout1Row1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyName) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyAddress) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item7) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyManager) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item8) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyYearBuilt) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item9) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyTenant) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item10) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyOccupancy) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item11) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyTotalSF) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item12) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyFAR) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item4) Alignment(TopLeft) Column(#Layout1Column1) Manage(#vLocation) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item5) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PropertyFloors) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item6) Alignment(TopLeft) Column(#Layout1Column1) Manage(#PanelComp) Parent(#Layout1) Row(#Layout1Row2) Sizing(FitToWidth) Flow(Down)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout2Row1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout2Column1) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item1) Alignment(TopLeft) Column(#Layout2Column1) Manage(#CompDate) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout2Item2) Alignment(TopLeft) Column(#Layout2Column1) Manage(#CompPrice) Parent(#Layout2) Row(#Layout2Row1) Sizing(FitToWidth) Flow(Down) Marginbottom(2) Marginleft(5) Marginright(2) Margintop(2)
+    
+    Define_Com Class(#PRIM_MD.AppBar) Name(#Appbar) Displayposition(1) Icon('close') Layoutmanager(#AppbarLayout) Parent(#COM_OWNER) Tabposition(1) Themedrawstyle('Heading2') Width(399) Height(45)
+    Define_Com Class(#PRIM_MD.FlatButton) Name(#ViewDetails) Caption('View Full Details') Captionmarginleft(16) Captionmarginright(16) Displayposition(1) Left(228) Parent(#Appbar) Tabposition(1) Width(171) Top(4)
+    Define_Com Class(#PropertyName.Visual) Name(#PropertyName) Displayposition(2) Parent(#COM_OWNER) Tabposition(2) Width(392) Top(47) Displayonly(True) Style(#Style1) Editstyle(#Style2) Left(5) Labeltype(Caption) Caption('Name') Marginleft(120)
+    Define_Com Class(#PropertyAddress.Visual) Name(#PropertyAddress) Displayposition(3) Parent(#COM_OWNER) Tabposition(3) Top(72) Width(392) Displayonly(True) Style(#Style1) Editstyle(#Style2) Left(5) Labeltype(Label) Marginleft(120)
+    Define_Com Class(#PRIM_PANL) Name(#PanelComp) Displayposition(12) Height(55) Left(0) Parent(#COM_OWNER) Tabposition(4) Tabstop(False) Top(295) Width(399) Layoutmanager(#Layout2) Visible(False)
+    Define_Com Class(#PropertyManager.Visual) Name(#PropertyManager) Displayposition(5) Parent(#COM_OWNER) Tabposition(5) Top(122) Width(392) Displayonly(True) Style(#Style1) Editstyle(#Style2) Left(5) Labeltype(Caption) Caption('Manager') Marginleft(120)
+    Define_Com Class(#PropertyYearBuilt.Visual) Name(#PropertyYearBuilt) Displayposition(6) Parent(#COM_OWNER) Tabposition(6) Top(147) Width(392) Displayonly(True) Style(#Style1) Editstyle(#Style2) Left(5) Marginleft(120)
+    Define_Com Class(#PropertyTenant.Visual) Name(#PropertyTenant) Displayposition(7) Parent(#COM_OWNER) Tabposition(7) Top(172) Width(392) Displayonly(True) Style(#Style1) Editstyle(#Style2) Left(5) Marginleft(120)
+    Define_Com Class(#PropertyOccupancy.Visual) Name(#PropertyOccupancy) Displayposition(8) Parent(#COM_OWNER) Tabposition(8) Top(197) Width(392) Displayonly(True) Editstyle(#Style2) Labeltype(Label) Left(5) Marginleft(120)
+    Define_Com Class(#PropertyTotalSF.Visual) Name(#PropertyTotalSF) Displayposition(9) Parent(#COM_OWNER) Tabposition(9) Top(222) Width(392) Displayonly(True) Editstyle(#Style2) Labeltype(Label) Left(5) Marginleft(120)
+    Define_Com Class(#PropertyFAR.Visual) Name(#PropertyFAR) Displayposition(10) Parent(#COM_OWNER) Tabposition(10) Top(247) Width(392) Displayonly(True) Editstyle(#Style2) Left(5) Marginleft(120)
+    Define_Com Class(#vLocation.Visual) Name(#vLocation) Componentversion(1) Displayposition(4) Height(21) Parent(#COM_OWNER) Tabposition(11) Top(97) Usepicklist(False) Width(392) Displayonly(True) Editstyle(#Style2) Left(5) Marginleft(120)
+    Define_Com Class(#PropertyFloors.Visual) Name(#PropertyFloors) Displayposition(11) Parent(#COM_OWNER) Tabposition(12) Top(272) Displayonly(True) Editstyle(#Style2) Labeltype(Label) Width(392) Left(5) Marginleft(120)
+    Define_Com Class(#CompDate.Visual) Name(#CompDate) Displayposition(1) Parent(#PanelComp) Tabposition(1) Width(392) Displayonly(True) Editstyle(#Style2) Labeltype(Label) Left(5) Top(2) Marginleft(120)
+    Define_Com Class(#CompPrice.Visual) Name(#CompPrice) Displayposition(2) Parent(#PanelComp) Tabposition(2) Top(27) Width(392) Displayonly(True) Editstyle(#Style2) Labeltype(Label) Left(5) Marginleft(120)
+    
+    Evtroutine Handling(#Appbar.IconClick)
+    #COM_OWNER.Close
+    Endroutine
+    Evtroutine Handling(#ViewDetails.Click)
+    
+    Endroutine
+    
+    Mthroutine Name(ShowProperty)
+    Define_Map For(*INPUT) Class(#GAddrID)
+    Define_Com Class(#GCTC_GCASSETS_SCRUD_ServerModule.GetPropretyInfo) Name(#GetPropertyInfo)
+    Group_By Name(#PropertyInfo) Fields(#CompID #CompType #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyFloors #PropertyTypeMaterial #PropertyLastRedone #PropertyType3 #PropertySpaces #PropertySpacesAvailable #Property1000SF #PropertyDocks #PropertySFLoading #PropertyLoadingDocks #PropertyCeiling #PropertyHeight #CompDate #CompPrice #vLocation)
+    
+    If (#GAddrID.Substring( 1 1 ) = "C")
+    #PanelComp.Visible := True
+    Else
+    #PanelComp.Visible := False
+    Endif
+    
+    #GetPropertyInfo.Execute Gaddrid(#GADDRID) Propertyinfo(#PropertyInfo)
+    
+    #COM_OWNER.Show
+    Endroutine
+    
+    
+    End_Com

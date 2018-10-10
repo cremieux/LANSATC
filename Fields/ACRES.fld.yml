@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               Acres
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Acres"
+      Label:              "Acres"
+      Heading1:           "Acres"
+
+  - FRA:
+      Description:        "Acres"
+      Label:              "Acres"
+      Heading1:           "Acres"

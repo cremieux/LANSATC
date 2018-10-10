@@ -1,0 +1,252 @@
+﻿Reusable Part:
+  Name:               TCGoogleMapCommandHandler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "CH"
+
+  - FRA:
+      Description:        "CH"
+
+  Source: |
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#Layout1) Width(729) Height(553)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow1) Displayposition(3) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(2) Parent(#Layout1) Height(35) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(1) Parent(#Layout1) Units(Pixels) Height(135)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem2) Column(#LayoutColumn1) Manage(#MenuBar1) Parent(#Layout1) Row(#Row1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem1) Column(#LayoutColumn1) Manage(#Map) Parent(#Layout1) Row(#LayoutRow1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem3) Alignment(TopRight) Column(#LayoutColumn1) Manage(#Label1) Parent(#Layout1) Row(#Row1) Sizing(FitToHeight)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem4) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#UDF_TEXT1) Parent(#Layout1) Row(#Row2) Sizing(FitToWidth) Flow(Down) Margintop(3) Marginleft(5) Marginright(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem5) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#UDF_TEXT2) Parent(#Layout1) Row(#Row2) Sizing(FitToWidth) Flow(Down) Margintop(3) Marginleft(5) Marginright(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem6) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#UDF_TEXT3) Parent(#Layout1) Row(#Row2) Sizing(FitToWidth) Flow(Down) Margintop(3) Marginleft(5) Marginright(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem7) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#UDF_TEXT4) Parent(#Layout1) Row(#Row2) Sizing(FitToWidth) Flow(Down) Margintop(3) Marginleft(5) Marginright(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem8) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#Label2) Parent(#Layout1) Row(#Row2) Sizing(FitToWidth) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem9) Alignment(TopRight) Column(#LayoutColumn1) Manage(#ButtonSave) Parent(#Layout1) Row(#Row2) Sizing(None) Margintop(3) Marginright(5) Flow(Left)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow2) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn2) Displayposition(1) Parent(#Layout2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem10) Alignment(TopLeft) Column(#LayoutColumn2) Manage(#LocationName) Parent(#Layout2) Row(#LayoutRow2) Sizing(FitToWidth) Flow(Down) Marginleft(3) Marginright(3) Margintop(3)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem11) Alignment(TopLeft) Column(#LayoutColumn2) Manage(#DropDown1) Parent(#Layout2) Row(#LayoutRow2) Sizing(FitToWidth) Flow(Down) Marginleft(3) Marginright(3) Margintop(3)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem12) Alignment(BottomRight) Column(#LayoutColumn2) Manage(#OK) Parent(#Layout2) Row(#LayoutRow2) Sizing(None) Marginbottom(3) Marginright(3)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem13) Alignment(TopRight) Column(#LayoutColumn1) Manage(#ButtonReset) Parent(#Layout1) Row(#Row2) Sizing(None) Margintop(3) Marginright(5) Flow(Left)
+    
+    Define_Com Class(#PRIM_PPNL.MenuBar) Name(#MenuBar1) Displayposition(5) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Width(729) Height(35) Themedrawstyle('DarkTitle') Top(135)
+    Define_Com Class(#PRIM_PPNL.MenuItem) Name(#Satellite) Caption('Satellite') Displayposition(3) Height(35) Parent(#MenuBar1) Tabposition(1) Tabstop(False) Left(200)
+    Define_Com Class(#PRIM_PPNL.MenuItem) Name(#Terrain) Caption('Terrain') Displayposition(4) Height(35) Left(300) Parent(#MenuBar1) Tabposition(2) Tabstop(False)
+    Define_Com Class(#MStarGoogleMap) Name(#Map) Displayposition(6) Height(383) Left(0) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(170) Width(729)
+    Define_Com Class(#PRIM_PPNL) Name(#LocationPopup) Closebutton(True) Titlebar(True) Height(130) Autoclose(False) Layoutmanager(#Layout2)
+    Define_Com Class(#PRIM_EDIT) Name(#LocationName) Displayposition(2) Left(3) Parent(#LocationPopup) Showselection(False) Showselectionhilight(False) Tabposition(1) Top(33) Height(29) Width(272)
+    Define_Com Class(#PRIM_PPNL.MenuItem) Name(#Hybrid) Caption('Hybrid') Displayposition(1) Height(35) Parent(#MenuBar1) Tabposition(3) Tabstop(False) Marginleft(5)
+    Define_Com Class(#PRIM_PPNL.MenuItem) Name(#RoadMap) Displayposition(2) Height(35) Left(100) Parent(#MenuBar1) Tabposition(4) Tabstop(False) Caption('Road Map')
+    Define_Com Class(#PRIM_STPG) Name(#Escape) Parent(#LocationPopup) Shortcut(Escape)
+    
+    Define_Com Class(#xDemoDecimal) Name(#CurrentLongitude)
+    Define_Com Class(#xDemoDecimal) Name(#CurrentLatitude)
+    Define_Com Class(#PRIM_PHBN) Name(#OK) Caption('OK') Displayposition(3) Left(195) Parent(#LocationPopup) Tabposition(3) Top(100) Buttondefault(True)
+    Define_Com Class(#PRIM_LABL) Name(#Label1) Caption('Right click to add location markers') Displayposition(4) Ellipses(Word) Height(35) Left(465) Parent(#COM_OWNER) Tabposition(3) Tabstop(False) Top(135) Verticalalignment(Center) Width(264) Alignment(Right) Marginright(4) Themedrawstyle('DarkTitle')
+    Define_Com Class(#UDF_TEXT1.Visual) Name(#UDF_TEXT1) Displayposition(7) Parent(#COM_OWNER) Tabposition(4) Caption('Address') Labeltype(Caption) Top(36) Left(5) Width(719) Height(21) Usepicklist(False)
+    Define_Com Class(#UDF_TEXT2.Visual) Name(#UDF_TEXT2) Displayposition(8) Parent(#COM_OWNER) Tabposition(5) Width(719) Caption('City') Labeltype(Caption) Top(60) Left(5) Height(21) Usepicklist(False)
+    Define_Com Class(#UDF_TEXT3.Visual) Name(#UDF_TEXT3) Displayposition(9) Parent(#COM_OWNER) Tabposition(6) Width(719) Caption('State') Labeltype(Caption) Top(84) Left(5) Height(21) Usepicklist(False)
+    Define_Com Class(#UDF_TEXT4.Visual) Name(#UDF_TEXT4) Displayposition(10) Parent(#COM_OWNER) Tabposition(7) Width(719) Caption('Zip Code') Labeltype(Caption) Top(108) Left(5) Height(21) Usepicklist(False)
+    Define_Com Class(#PRIM_LABL) Name(#Label2) Caption('Reported Location') Displayposition(3) Ellipses(Word) Height(33) Left(0) Parent(#COM_OWNER) Tabposition(8) Tabstop(False) Top(0) Verticalalignment(Center) Width(729) Themedrawstyle('DarkTitle') Marginleft(5)
+    Define_Com Class(#PRIM_PHBN) Name(#ButtonSave) Caption('Save') Displayposition(1) Left(627) Parent(#COM_OWNER) Tabposition(10) Top(3) Width(97)
+    Define_Com Class(#PRIM_LIST.DropDown) Name(#DropDown1) Columnheaderheight(0) Columnlines(False) Displayposition(4) Left(3) Parent(#LocationPopup) Rowlines(False) Showselection(False) Tabposition(4) Top(65) Height(29) Width(272)
+    
+    Group_By Name(#WO_HDR) Fields(#WO_NO #MODULE_ID #ASSIGN_TO #TM_NO #INSP_NO #ISSUED #TARGET #CLOSED #STATUS1 #WO_TYPE #ACCT_NO #project_no #work_request_no #PRIORITY #wk_in_progress #REC_TYPE #customer_id #permit_link #contact_name #contact_phone1 #contact_phone2 #contact_email #contact_text #BLOCK_NUM #street_name #problem_desc #origin_code #CMPM_FLAG #PLANBY #APPVBY #LOC_CD #TRAN_NO #custom_fields #UDF_TEXT1 #UDF_TEXT2 #UDF_TEXT3 #UDF_TEXT4 #UDF_TEXT5 #UDF_TEXT6 #UDF_TEXT7 #UDF_TEXT8 #UDF_TEXT9 #udf_text10 #udf_text11 #udf_text12 #udf_text13 #udf_text14 #udf_text15 #udf_text16 #udf_text17 #udf_text18 #udf_text19 #udf_text20 #UDF_DATE1 #UDF_DATE2 #UDF_DATE3 #UDF_DATE4 #UDF_DATE5 #UDF_DATE6 #UDF_DATE7 #UDF_DATE8 #UDF_DATE9 #udf_date10 #UDF_NUM1 #UDF_NUM2 #UDF_NUM3 #UDF_NUM4 #UDF_NUM5 #UDF_NUM6 #UDF_NUM7 #UDF_NUM8 #UDF_NUM9 #UDF_NUM10 #ADD_BY #ADD_DT #UPD_BY #UPD_DT #supervisor #crew_leader #PROBLEM_DF #CUSTOM_FIF)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnSTD_DESCL1) Columnunits(Proportion) Columnwidth(1) Displayposition(1) Parent(#DropDown1) Source(#STD_DESCL)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnSTD_DESCS1) Columnunits(Proportion) Columnwidth(1) Displayposition(2) Parent(#DropDown1) Source(#STD_DESCS)
+    Define_Com Class(#WOServerModule.Find) Name(#FindWO)
+    Define_Com Class(#PRIM_TIMR) Name(#TimerMain) Startup(Manual)
+    Define_Com Class(#xDemoDecimal) Name(#WOLat)
+    Define_Com Class(#xDemoDecimal) Name(#WOLon)
+    Def_List Name(#MStarPinLocationList) Fields(#WO_NO #WO_PinSQ #MStarLatitude #MStarLongitude #MStarPinCaption #MStarPinImage) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    Define_Com Class(#MStarLocationPinsSM.FindAll) Name(#FIndPins)
+    Define_Com Class(#PRIM_PHBN) Name(#ButtonReset) Caption('Reset Markers') Displayposition(2) Left(525) Parent(#COM_OWNER) Tabposition(9) Top(3) Width(97)
+    
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do ancestor first
+    #COM_ANCESTOR.uInitialize
+    * Custom code here ....
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Custom code here ....
+    * Do ancestor last
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do any ancestor logic first.
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    
+    Clr_List Named(#DropDown1)
+    #STD_DESCL := "Power Line Down"
+    #STD_DESCS := "POWER"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := "Road Closure"
+    #STD_DESCS := "ROAD"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := "Tree Replacement"
+    #STD_DESCS := "TREES"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := "Outage"
+    #STD_DESCS := "OUTAGE"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := "Flooding"
+    #STD_DESCS := "FLOOD"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := "Construction"
+    #STD_DESCS := "CONST"
+    Add_Entry To_List(#DropDown1)
+    #STD_DESCL := ""
+    #STD_DESCS := ""
+    Add_Entry To_List(#DropDown1)
+    
+    * Get the access keys from the associated instance and set them up to map to the server
+    #WO_NO := #Com_Self.avAssociatedInstance.avAKey1
+    #FindWO.Execute Wo_No(#WO_NO) Wo_Hdr(#WO_HDR)
+    #WOLat := #UDF_TEXT5.AsNumber
+    #WOLon := #UDF_TEXT6.AsNumber
+    
+    #TimerMain.Start
+    
+    Endroutine
+    
+    Evtroutine Handling(#TimerMain.Tick)
+    #TimerMain.Stop
+    #Map.MapType := Hybrid
+    #Map.Zoom := 15
+    
+    #Com_owner.AddMarker( #WOLat #WOLon "Work Order Location" "A" "" )
+    #Map.Center Latitude(#WOLat) Longitude(#WOLon)
+    
+    #FIndPins.ExecuteAsync Wo_No(#WO_NO) Mstarpinlocationlist(#MStarPinLocationList)
+    
+    Endroutine
+    
+    Evtroutine Handling(#FIndPins.Completed)
+    Define Field(#wk_URL) Type(*STRING) Length(100)
+    * #wk_URL := "http://localhost/lansa1/dem/"
+    Selectlist Named(#MStarPinLocationList)
+    #Com_owner.AddMarker( #MStarLatitude #MStarLongitude #MStarPinCaption "" #MStarPinImage )
+    Endselect
+    Clr_List Named(#MStarPinLocationList)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Map.Initialize)
+    
+    
+    Endroutine
+    
+    Evtroutine Handling(#Hybrid.Click)
+    
+    #Map.MapType := Hybrid
+    
+    Endroutine
+    
+    Evtroutine Handling(#RoadMap.Click)
+    
+    #Map.MapType := RoadMap
+    
+    Endroutine
+    
+    Evtroutine Handling(#Satellite.Click)
+    
+    #Map.MapType := Satellite
+    
+    Endroutine
+    
+    Evtroutine Handling(#Terrain.Click)
+    
+    #Map.MapType := Terrain
+    
+    Endroutine
+    
+    Evtroutine Handling(#Map.RightClick) Latitude(#Latitude) Longitude(#Longitude)
+    
+    #CurrentLatitude := #Latitude
+    #CurrentLongitude := #Longitude
+    #STD_DESCL := ""
+    #STD_DESCS := ""
+    
+    #LocationPopup.ShowPopup Transition(FadeInAndScale)
+    
+    Endroutine
+    
+    Evtroutine Handling(#LocationPopup.Prepare) Left(#Left) Top(#Top)
+    
+    #LocationName := ""
+    
+    #Left -= #LocationPopup.Width / 2
+    #Top -= #LocationPopup.Height / 2
+    
+    Endroutine
+    
+    Evtroutine Handling(#Escape.Pressed)
+    
+    #LocationPopup.ClosePopup
+    
+    Endroutine
+    
+    Evtroutine Handling(#OK.Click)
+    * #wk_URL := "http://localhost/lansa1/dem/"
+    Case Of_Field(#STD_DESCS)
+    When Value_Is(= 'POWER')
+    #MStarPinImage := "linedown.png"
+    When Value_Is(= 'ROAD')
+    #MStarPinImage := "closedroad.png"
+    When Value_Is(= 'TREES')
+    #MStarPinImage := "tree.png"
+    When Value_Is(= 'OUTAGE')
+    #MStarPinImage := "poweroutage.png"
+    When Value_Is(= 'FLOOD')
+    #MStarPinImage := "flooding.png"
+    When Value_Is(= 'CONST')
+    #MStarPinImage := "construction.png"
+    Endcase
+    
+    #WO_PinSQ += 1
+    #MStarLatitude := #CurrentLatitude
+    #MStarLongitude := #CurrentLongitude
+    #MStarPinCaption := #LocationName
+    Add_Entry To_List(#MStarPinLocationList)
+    
+    #Com_owner.AddMarker( #CurrentLatitude #CurrentLongitude #LocationName "" #MStarPinImage )
+    #LocationPopup.ClosePopup
+    
+    Endroutine
+    
+    Mthroutine Name(AddMarker)
+    Define_Map For(*INPUT) Class(#xDemoDecimal) Name(#Latitude)
+    Define_Map For(*INPUT) Class(#xDemoDecimal) Name(#Longitude)
+    Define_Map For(*INPUT) Class(#Prim_alph) Name(#Location)
+    Define_Map For(*INPUT) Class(#Prim_alph) Name(#Caption)
+    Define_Map For(*INPUT) Class(#Prim_alph) Name(#Icon)
+    
+    #Map.AddMarker( #Latitude #Longitude ("&1 (Lat. &2, Long. &3)").Substitute( #Location #Latitude.AsString #Longitude.AsString ) #Caption #Icon )
+    
+    Endroutine
+    
+    * --------------------------------------------------------------------------
+    Evtroutine Handling(#ButtonSave.Click)
+    Group_By Name(#MStarPinLocation) Fields(#WO_NO #WO_PinSQ #MStarLatitude #MStarLongitude #MStarPinCaption #MStarPinImage)
+    Define_Com Class(#MStarLocationPinsSM.Save) Name(#SavePin)
+    Selectlist Named(#MStarPinLocationList)
+    #SavePin.Execute Mstarpinlocation(#MStarPinLocation)
+    Endselect
+    Clr_List Named(#MStarPinLocationList)
+    Endroutine
+    Evtroutine Handling(#ButtonReset.Click)
+    
+    Endroutine
+    End_Com
+    

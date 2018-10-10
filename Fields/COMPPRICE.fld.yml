@@ -1,0 +1,36 @@
+﻿Field:
+  Name:               CompPrice
+  Type:               Decimal
+  Length:             15
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Edit Mask:          "'$   ,   , 0 .  '"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Comp Price"
+      Label:              "Comp Price"
+      Heading1:           "Comp"
+      Heading2:           "Price"
+
+  - FRA:
+      Description:        "Comp Price"
+      Label:              "Comp Price"
+      Heading1:           "Comp"
+      Heading2:           "Price"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(427)
+    
+    End_Com
+    
+    End_Com

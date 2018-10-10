@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               Industrial__
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Industrial %"
+      Label:              "Industrial %"
+      Heading1:           "Industrial %"
+
+  - FRA:
+      Description:        "Industrial %"
+      Label:              "Industrial %"
+      Heading1:           "Industrial %"

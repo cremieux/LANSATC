@@ -1,0 +1,50 @@
+﻿Field:
+  Name:               PropertyID
+  Type:               NVarChar
+  Length:             50
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "PropertyID"
+      Label:              "PropertyID"
+      Heading1:           "PropertyID"
+
+  - FRA:
+      Description:        "PropertyID"
+      Label:              "PropertyID"
+      Heading1:           "PropertyID"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVEF) Name(#VisualEdit) Defaultvisual(True) Usepicklist(False) Componentversion(1) Height(21) Width(951)
+    
+    End_Com
+    
+    End_Com
+
+  Repository Help:
+  - ENG: |
+      $$USER
+      
+      
+      
+        This field is intended for general or descriptive text.
+      
+      
+        Validation Rules : Must be specified by the user.
+                           Entry of Lower Case characters is normally allowed.
+      
+        Maximum Length   : 75 characters
+      
+      
+      
+      $$NOAUTO

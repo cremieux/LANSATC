@@ -1,0 +1,15 @@
+﻿List:
+  Name:               TD Ameritrade
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - TDAMain:
+      Type:               Web Page

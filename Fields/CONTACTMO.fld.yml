@@ -1,0 +1,25 @@
+﻿Field:
+  Name:               ContactMobile
+  Type:               NVarChar
+  Length:             15
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Mobile Phone"
+      Label:              "Mobile Phone"
+      Heading1:           "Mobile"
+      Heading2:           "Phone"
+
+  - FRA:
+      Description:        "Mobile Phone"
+      Label:              "Mobile Phone"
+      Heading1:           "Mobile"
+      Heading2:           "Phone"

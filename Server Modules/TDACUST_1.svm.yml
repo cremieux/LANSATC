@@ -1,0 +1,117 @@
+﻿ServerModule:
+  Name:               TDACustomerSM
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Customer Server Module"
+
+  - FRA:
+      Description:        "Customer Server Module"
+
+  Source: |
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #PRIM_SRVM)
+    
+    Def_List Name(#CSCSTPList) Fields(#CCustomerNumber #CFirstName #CLastName #CStreet #CCity #CState #CZip #CPhone #CAlternatePhone #CEmail #COrderDate #CBalanceDue #CPassword #STD_DATEX #vZipCode #vCityStateZip #vLastFirst #vLastOrder #vFirstLast) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    Group_By Name(#CSCSTP) Fields(#CCustomerNumber #CFirstName #CLastName #CStreet #CCity #CState #CZip #CPhone #CAlternatePhone #CEmail #COrderDate #CBalanceDue #CPassword #STD_DATEX)
+    
+    Srvroutine Name(Find)
+    Field_Map For(*INPUT) Field(#CCustomerNumber)
+    Group_Map For(*OUTPUT) Group(#CSCSTP)
+    Field_Map For(*OUTPUT) Field(#io$sts) Parameter_Name(Status)
+    
+    * Return all data for the keys provided
+    Fetch Fields(#CSCSTP) From_File(CSCSTP) With_Key(#CCustomerNumber)
+    
+    Endroutine
+    
+    Srvroutine Name(FindPage)
+    Field_Map For(*INPUT) Field(#StartKey1)
+    Field_Map For(*INPUT) Field(#ListPage)
+    List_Map For(*OUTPUT) List(#CSCSTPList)
+    
+    Define Field(#StartKey1) Reffld(#CCustomerNumber)
+    
+    * Get all records from the file starting from the specified key values
+    Select Fields(#CSCSTPList) From_File(CSCSTP) With_Key(#StartKey1) Options(*STARTKEY)
+    
+    * Ignore the first record if it matches the startkey(s)
+    Continue If(((#StartKey1 = #CCustomerNumber)))
+    
+    Add_Entry To_List(#CSCSTPList)
+    
+    Endselect
+    
+    Endroutine
+    
+    Srvroutine Name(FindAll)
+    List_Map For(*OUTPUT) List(#CSCSTPList)
+    
+    Select Fields(#CSCSTPList) From_File(CSCSTP)
+    
+    Add_Entry To_List(#CSCSTPList)
+    
+    
+    Endselect
+    
+    Endroutine
+    
+    Srvroutine Name(FindCSCSTPL1)
+    Field_Map For(*INPUT) Field(#CEmail)
+    List_Map For(*OUTPUT) List(#CSCSTPList)
+    
+    * Get all records from the file using some or all of the key
+    Select Fields(#CSCSTPList) From_File(CSCSTPL1) With_Key(#CEmail) Nbr_Keys(*COMPUTE) Generic(*YES)
+    
+    Add_Entry To_List(#CSCSTPList)
+    
+    Endselect
+    
+    Endroutine
+    
+    Srvroutine Name(FindCSCSTPL2)
+    Field_Map For(*INPUT) Field(#CLastName)
+    List_Map For(*OUTPUT) List(#CSCSTPList)
+    
+    * Get all records from the file using some or all of the key
+    Select Fields(#CSCSTPList) From_File(CSCSTPL2) With_Key(#CLastName) Nbr_Keys(*COMPUTE) Generic(*YES)
+    
+    Add_Entry To_List(#CSCSTPList)
+    
+    Endselect
+    
+    Endroutine
+    
+    
+    Srvroutine Name(Save)
+    Group_Map For(*INPUT) Group(#CSCSTP)
+    Field_Map For(*OUTPUT) Field(#io$sts) Parameter_Name(Status)
+    
+    * Look for an existing record
+    Check_For In_File(CSCSTP) With_Key(#CCustomerNumber)
+    
+    * Update the record if found, otherwise create a new one
+    If_Status Is(*EQUALKEY)
+    
+    Update Fields(#CSCSTP) In_File(CSCSTP) With_Key(#CCustomerNumber)
+    
+    Else
+    
+    Insert Fields(#CSCSTP) To_File(CSCSTP)
+    
+    Endif
+    
+    Endroutine
+    
+    Srvroutine Name(Delete)
+    Field_Map For(*INPUT) Field(#CCustomerNumber)
+    Field_Map For(*OUTPUT) Field(#io$sts) Parameter_Name(Status)
+    
+    * Delete a record using the key value
+    Delete From_File(CSCSTP) With_Key(#CCustomerNumber)
+    
+    Endroutine
+    
+    End_Com

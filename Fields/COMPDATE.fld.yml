@@ -1,0 +1,34 @@
+﻿Field:
+  Name:               CompDate
+  Type:               Date
+  Length:             10
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+  - FE
+  - ISO
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Comp Date"
+      Label:              "Comp Date"
+      Heading1:           "Comp Date"
+
+  - FRA:
+      Description:        "CompDate"
+      Label:              "CompDate"
+      Heading1:           "CompDate"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    Begin_Com Role(*Visual #PRIM_EVDT) Name(#VisualDate) Defaultvisual(True) Showtime(False) Componentversion(1) Height(21) Width(335)
+    
+    End_Com
+    
+    End_Com

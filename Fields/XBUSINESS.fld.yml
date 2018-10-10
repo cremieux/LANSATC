@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               xBusinessEntityID
+  Type:               Integer
+  Length:             4
+  Decimals:           0
+  Default Value:      "*NULL"
+  Edit Mask:          3
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "xBusinessEntityID"
+      Label:              "xBusinessEntity"
+      Heading1:           "xBusinessEntityID"
+
+  - FRA:
+      Description:        "xBusinessEntityID"
+      Label:              "xBusinessEntity"
+      Heading1:           "xBusinessEntityID"

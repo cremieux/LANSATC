@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               Industrial_SF
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Industrial SF"
+      Label:              "Industrial SF"
+      Heading1:           "Industrial SF"
+
+  - FRA:
+      Description:        "Industrial SF"
+      Label:              "Industrial SF"
+      Heading1:           "Industrial SF"

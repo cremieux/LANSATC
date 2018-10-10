@@ -1,0 +1,48 @@
+﻿Web Page:
+  Name:               TestCheckbox
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Test CheckBox"
+
+  - FRA:
+      Description:        "Test CheckBox"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignBlue>)
+    
+    Define_Com Class(#PRIM_LIST) Name(#List) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(1) Height(491) Left(98) Parent(#COM_OWNER) Rowheight(48) Tabposition(1) Top(78) Width(727)
+    Define_Com Class(#PRIM_LIST.CheckBox) Name(#ListCheckBox) Columnwidth(75) Displayposition(1) Parent(#List)
+    Define_Com Class(#PRIM_LIST.String) Name(#ListString) Columncaption('Text') Columncaptionalign(Left) Columncaptiontype(Caption) Columnunits(Proportion) Columnwidth(2) Displayposition(2) Parent(#List)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ListNumber) Columncaption('No.') Columncaptionalign(Right) Columncaptiontype(Caption) Columnunits(Proportion) Columnwidth(1) Displayalignment(Right) Displayposition(3) Parent(#List)
+    Define_Com Class(#PRIM_LIST.DateTime) Name(#ListDate) Columncaption('Date') Columncaptiontype(Caption) Columnunits(Proportion) Columnwidth(1) Displayposition(4) Parent(#List) Showtime(False)
+    Define_Com Class(#TestCheckField.Visual) Name(#TestCheckField) Displayposition(2) Left(115) Parent(#COM_OWNER) Tabposition(2) Top(599)
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Button) Caption('BUTTON') Displayposition(3) Left(373) Parent(#COM_OWNER) Tabposition(3) Themedrawstyle('MediumTitle') Top(597)
+    
+    Evtroutine Handling(#Com_owner.Initialize)
+    Add_Entry To_List(#List)
+    Add_Entry To_List(#List)
+    Add_Entry To_List(#List)
+    Add_Entry To_List(#List)
+    Add_Entry To_List(#List)
+    Add_Entry To_List(#List)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Button.Click)
+    #SYS_WEB.Alert Caption(#TestCheckField.AsString)
+    Endroutine
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Loading Screen:
+    Image:              Spinner
+
+    Multilingual Text:
+    - ENG:
+        Text:               "Loading..."
+    - FRA:
+        Text:               "Loading..."

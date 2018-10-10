@@ -1,0 +1,221 @@
+﻿Reusable Part:
+  Name:               GCTC_GCCONTACTS_DETAILS_Handler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ---------------------------------------------------------------------------------
+    * This is a command handler in framework GRIFFIN Framework.
+    * It belongs to business object Contacts.
+    * Created 28th September 2018 by USERID with Material Design style controls.
+    * ---------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #vf_ac010O) Height(270) Width(500)
+    
+    Group_By Name(#XG_AccessKeys) Fields(#ContactID)
+    
+    Group_By Name(#XG_EditableDataItems) Fields(#ContactID #ContactFirstName #ContactLastName #ContactTitle #ContactAddress #ContactCity #ContactState #ContactPhone #ContactMobile #ContactEmail)
+    
+    Group_By Name(#XG_ReadOnlyDataItems) Fields(#vLocation #vFullName)
+    
+    Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+    
+    * ---------------------------------------------------------------------------------
+    Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#ReadOnlyDataItems) Fields(#XG_ReadOnlyDataItems) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*WORKING) Entrys(1)
+    Define_Com Class(#Prim_Boln) Name(#ServerModuleResult)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(238) Left(0) Top(0) Width(500) Horizontalscroll(True) Verticalscroll(True) Tabstop(False)
+    Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(238) Width(500) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+    Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Save_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Save_Button) Parent(#ButtonPanel) Caption(*MTXTUF_SAVE) Displayposition(1) Tabposition(1) Height(24) Left(396) Top(4) Buttondefault(True) Themedrawstyle('MediumTitle')
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#ContactID.EditField) Parent(#DataItemPanel) Displayposition(1) Captiontype(Label) Tabposition(1) Top(4) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactFirstName.EditField) Parent(#DataItemPanel) Displayposition(2) Captiontype(Label) Tabposition(2) Top(62) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactLastName.EditField) Parent(#DataItemPanel) Displayposition(3) Captiontype(Label) Tabposition(3) Top(120) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactTitle.EditField) Parent(#DataItemPanel) Displayposition(4) Captiontype(Label) Tabposition(4) Top(178) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactAddress.EditField) Parent(#DataItemPanel) Displayposition(5) Captiontype(Label) Tabposition(5) Top(236) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactCity.EditField) Parent(#DataItemPanel) Displayposition(6) Captiontype(Label) Tabposition(6) Top(294) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactState.EditField) Parent(#DataItemPanel) Displayposition(7) Captiontype(Label) Tabposition(7) Top(352) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactPhone.EditField) Parent(#DataItemPanel) Displayposition(8) Captiontype(Label) Tabposition(8) Top(410) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactMobile.EditField) Parent(#DataItemPanel) Displayposition(9) Captiontype(Label) Tabposition(9) Top(468) Left(4) Height(56) Width(400)
+    Define_Com Class(#ContactEmail.EditField) Parent(#DataItemPanel) Displayposition(10) Captiontype(Label) Tabposition(10) Top(526) Left(4) Height(56) Width(400)
+    Define_Com Class(#vLocation.EditField) Parent(#DataItemPanel) Displayposition(11) Captiontype(Label) Tabposition(11) Top(584) Left(4) Height(56) Width(400) Readonly(True) Appearance(None)
+    Define_Com Class(#vFullName.EditField) Parent(#DataItemPanel) Displayposition(12) Captiontype(Label) Tabposition(12) Top(642) Left(4) Height(56) Width(400) Readonly(True) Appearance(None)
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uInitialize
+    * Track changes to visual controls
+    #COM_SELF.avTrackControlChanges Incontainer(#COM_Self) Insertclearcontenticon(True)
+    * Auto arrange items on the main data panel
+    #COM_SELF.avStartAutoArrangingControls Onpanel(#DataItemPanel)
+    * Initialize some visibility
+    #Save_Button.Visible := False
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Stop tracking changes to visual controls
+    #COM_SELF.avStopTrackingControlChanges
+    * Stop auto arranging the data panel
+    #Com_Self.avStopAutoArrangingControls
+    * Do the ancestor thing
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    * Asynchronously start a Load request
+    If (#COM_OWNER.CheckForUnsavedChanges( False ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Load)
+    #GotoFreeState := False /* Don't go back to a free state until async operations complete */
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+    * Clear any visible errors
+    #Com_Owner.avClearMDControlErrors
+    * Handle the requested async operation
+    Case (#OperationID)
+    When (= Load) /* Display/edit existing Contact */
+    #COM_OWNER.Load Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    When (= Save) /* Save existing Contact         */
+    #COM_OWNER.Save Clearmessagesafterdelay(#ClearMessagesAfterDelay)
+    Endcase
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Load) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCCONTACTS_DETAILS_ServerModule.GetData) Name(#GetData)
+    * Get the access keys from the associated instance and set them up to map to the server
+    
+    If_Ref Com(#AVLISTMANAGER.CurrentInstance) Is_Not(*NULL)
+    #ContactID := #Com_Self.avAssociatedInstance.avAKey1
+    Else
+    #AVFRAMEWORKMANAGER.avRestoreValue Withid1("SELECTED_CONTACT") Toavalue(#ContactID)
+    Endif
+    Inz_List Named(#AccessKeys)
+    * Ask the server to get details of that data item
+    #GetData.Execute Accesskeys(#AccessKeys) Alldataitems(#AllDataItems) Servermoduleresult(#ServerModuleResult)
+    * If found we are good to go
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    Get_Entry Number(1) From_List(#AllDataItems)
+    #Save_Button.Visible := False
+    #DataItemPanel.Enabled := True
+    Set Com(#vLocation #vFullName) Visible(True)
+    Else
+    Change Field(#AllDataItems) To(*NULL)
+    #Save_Button.Visible := False
+    #DataItemPanel.Enabled := False
+    Set Com(#vLocation #vFullName) Visible(False)
+    Endif
+    * Set the keys fields to be non changeable
+    Set Com(#ContactID) Readonly(True)
+    * Handle a failure
+    Evtroutine Handling(#GetData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avHandleTrackedControlChange) Options(*REDEFINE)
+    #Save_Button.Visible := #DataItemPanel.Enabled
+    If (#ControlMD *IsNot *null)
+    #ControlMD.ClearError
+    Endif
+    If (#ControlMDDT *IsNot *null)
+    #ControlMDDT.ClearError
+    Endif
+    Endroutine
+    
+    * ------------------------------------------------------------------------------
+    Mthroutine Name(avValidateTrackedMDControl) Options(*REDEFINE)
+    #IsValid := True
+    If (#ControlMD_Edit *IsNot *null)
+    #IsValid := #ControlMD_Edit.Validate( #ForOperation #GCContacts )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_Edit) Scrollposition(Visible)
+    Endif
+    Endif
+    If (#ControlMD_DateTime *IsNot *null)
+    #IsValid := #ControlMD_DateTime.Validate( #ForOperation #GCContacts )
+    If ((#IsValid.Not) And (#ErrorCount = 0))
+    #DataItemPanel.VerticalScrollTo Control(#ControlMD_DateTime) Scrollposition(Visible)
+    Endif
+    Endif
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(CheckClientSideValidation) Access(*PRIVATE)
+    Define_Map For(*INPUT) Class(#PRIM_ALPH) Name(#ForOperation)
+    Define_Map For(*RESULT) Class(#Prim_Boln) Name(#AllValid)
+    #COM_OWNER.avValidateAllTrackedMDControls Foroperation(#ForOperation) Allvalid(#AllValid)
+    * Add any additional client side validation logic here
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(Save) Access(*PRIVATE)
+    Define_Map For(*OUTPUT) Class(#prim_Boln) Name(#ClearMessagesAfterDelay)
+    Define_Com Class(#GCTC_GCCONTACTS_DETAILS_ServerModule.PutData) Name(#PutData)
+    * Ask the server save the editable data items
+    Inz_List Named(#EditableDataItems)
+    #PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+    If (#ServerModuleResult)
+    #ClearMessagesAfterDelay := True
+    #AVLISTMANAGER.AddtoList Visualid1(#ContactFirstName) Visualid2(#ContactLastName) Akey1(#ContactID) Acolumn1(#ContactTitle) Acolumn2(#ContactAddress) Acolumn3(#ContactCity) Acolumn4(#ContactState) Acolumn5(#ContactPhone) Acolumn6(#ContactMobile) Acolumn7(#ContactEmail)
+    #Save_Button.Visible := False
+    Endif
+    * Handle a failure
+    Evtroutine Handling(#PutData.Failed) Handled(#Handled)
+    #Handled := #AVFRAMEWORKMANAGER.avHandleServerError( #COM_OWNER #ServerModuleResult )
+    Endroutine
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Evtroutine Handling(#Save_Button.Click)
+    If (#COM_OWNER.CheckClientSideValidation( Update ))
+    #COM_OWNER.avQueueAsyncOperation Operationid(Save) Busystatetext(*MTXTUF_Saving)
+    Endif
+    Endroutine
+    
+    
+    * ------------------------------------------------------------------------------
+    * Indicate back to framework whether a close operation is currently allowed
+    Mthroutine Name(uQueryCanClose) Options(*REDEFINE)
+    #COM_OWNER.CheckForUnsavedChanges Timeoutinprogress(#TimeOutinProgress) Allowtoproceed(#Allow)
+    Endroutine
+    
+    * --------------------------------------------------------------------------
+    * Returns True (Go ahead) or False (there are changes AND the user wants to save them)
+    Mthroutine Name(CheckForUnsavedChanges)
+    Define_Map For(*INPUT) Class(#prim_boln) Name(#TimeOutinProgress)
+    Define_Map For(*RESULT) Class(#prim_boln) Name(#AllowtoProceed)
+    * If a save operation is pending and not timed out
+    If (#Save_Button.Visible And #TimeOutinProgress.Not)
+    #AllowtoProceed := (#SYS_WEB.Confirm( (*MTXTUF_MSG_0009.Substitute( (#ContactID) )) ) = Cancel)
+    Else
+    #AllowtoProceed := True /* Default */
+    Endif
+    Endroutine
+    
+    End_Com

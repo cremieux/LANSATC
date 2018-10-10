@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Ben's Application
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - BENMain:
+      Type:               Web Page

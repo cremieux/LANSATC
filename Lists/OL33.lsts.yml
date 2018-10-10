@@ -1,0 +1,15 @@
+﻿List:
+  Name:               APP 10
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A10Main:
+      Type:               Web Page

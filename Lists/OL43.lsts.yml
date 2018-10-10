@@ -1,0 +1,15 @@
+﻿List:
+  Name:               Paul's Boutique
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A14Main:
+      Type:               Web Page

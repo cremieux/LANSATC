@@ -1,0 +1,53 @@
+﻿Web Page:
+  Name:               TestPieChart
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Pie Chart"
+
+  - FRA:
+      Description:        "Pie Chart"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignBlue>) Height(696) Width(1024)
+    
+    Define_Com Class(#TCWebGooglePieChart) Name(#TCWebGooglePieChart) Displayposition(1) Height(348) Left(79) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(61) Width(490)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label) Caption('Total Approved: 75000') Displayposition(3) Left(87) Parent(#COM_OWNER) Tabposition(3) Top(443) Width(530)
+    Define_Com Class(#PRIM_MD.Label) Name(#Label1) Caption('Total Remain:  $37,500.00 ') Displayposition(2) Left(88) Parent(#COM_OWNER) Tabposition(2) Top(480) Width(530)
+    
+    Evtroutine Handling(#Com_owner.Initialize)
+    
+    * $10,000.00
+    * $12,500.00
+    * $15,000.00
+    * $37,500.00
+    
+    Endroutine
+    
+    Evtroutine Handling(#TCWebGooglePieChart.Initialize)
+    
+    #TCWebGooglePieChart.Insert Value(10000) Caption("$10,000")
+    #TCWebGooglePieChart.Insert Value(12500) Caption("$12,500")
+    #TCWebGooglePieChart.Insert Value(15000) Caption("$15,000")
+    #TCWebGooglePieChart.Insert Value(37500) Caption("$37,500")
+    
+    Endroutine
+    * Evtroutine Handling(#DF_T71O_Pie_Chart.Initialize)
+    * #DF_T71O_Pie_Chart.uAddPieSection Data(10000) Datasetid(A) Backgroundcolor(red) Label("$10,000") Opacity(100)
+    * #DF_T71O_Pie_Chart.uAddPieSection Data(12500) Datasetid(b) Backgroundcolor(blue) Label("$12,500") Opacity(100)
+    *
+    * Endroutine
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Loading Screen:
+    Image:              Spinner
+
+    Multilingual Text:
+    - ENG:
+        Text:               "Loading..."
+    - FRA:
+        Text:               "Loading..."

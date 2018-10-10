@@ -1,0 +1,69 @@
+﻿File:
+  Name:                           GCAssetComp
+  File Type:                      LANSA File
+  Library:                        DC@DEMOLIB
+  Record Format Name:             GCASSETCOM
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            Yes
+  Create RRNO Column:             Yes
+  Auto RRNO Is Fixed:             Yes
+  Convert Special Characters:     No
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "GCAssetComp"
+
+  - FRA:
+      Description:        "GCAssetComp"
+
+  Real Fields:
+  - COMPID:
+      Type:               NVarChar
+      Length:             10
+      Decimals:           0
+
+  - PROPERTYI:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+  Primary Keys:
+  - COMPID
+  - PROPERTYI
+
+  Logical Views:
+  - GCCompByProperty:
+      Identifier:         GCCOMPBYPR
+      Unique Key:         No
+      Access Path:        Immediate
+      Record Format:      GCCOMPBYPR
+      Dynamic Select:     No
+      Parameters:         LVLCHK(*YES)
+
+      Multilingual Details:
+      - ENG:
+          Description:        "New Index"
+
+      - FRA:
+          Description:        "New Index"
+
+      Keys:
+      - PROPERTYI:
+          Key Order:          Ascending
+          Numeric Ordering:   Unsigned

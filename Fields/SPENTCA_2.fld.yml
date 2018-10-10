@@ -1,0 +1,26 @@
+﻿Field:
+  Name:               SpentCapitalDate
+  Type:               Date
+  Length:             10
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+  - FE
+  - ISO
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Spent Date"
+      Label:              "Spent Date"
+      Heading1:           "Spent"
+      Heading2:           "Date"
+
+  - FRA:
+      Description:        "Spent Date"
+      Label:              "Spent Date"
+      Heading1:           "Spent"
+      Heading2:           "Date"

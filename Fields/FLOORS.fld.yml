@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               Floors
+  Type:               NVarChar
+  Length:             255
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Floors"
+      Label:              "Floors"
+      Heading1:           "Floors"
+
+  - FRA:
+      Description:        "Floors"
+      Label:              "Floors"
+      Heading1:           "Floors"

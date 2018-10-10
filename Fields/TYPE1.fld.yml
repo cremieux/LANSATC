@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               Type1
+  Type:               NVarChar
+  Length:             255
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Type1"
+      Label:              "Type1"
+      Heading1:           "Type1"
+
+  - FRA:
+      Description:        "Type1"
+      Label:              "Type1"
+      Heading1:           "Type1"

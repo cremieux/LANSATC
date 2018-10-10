@@ -1,0 +1,29 @@
+﻿Field:
+  Name:               PropertyExpiration
+  Type:               Date
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Property Expiration"
+      Label:              "Expiration"
+      Heading1:           "Expiration"
+
+  - FRA:
+      Description:        "PropertyExpiration"
+      Label:              "PropertyExpirat"
+      Heading1:           "PropertyExpiration"
+
+  Source: |
+    *
+    Begin_Com Role(*EXTENDS #PRIM_OBJT)
+    
+    
+    Begin_Com Role(*Visual #PRIM_MD.DateTimeField) Name(#DateTimeField) Defaultvisual(True)
+    
+    End_Com
+    End_Com

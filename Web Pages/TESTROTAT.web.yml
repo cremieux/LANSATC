@@ -1,0 +1,47 @@
+﻿Web Page:
+  Name:               TestRotation
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Test Rotation"
+
+  - FRA:
+      Description:        "Test Rotation"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Layoutmanager(#LayoutMain) Theme(#SYS_THEME<MaterialDesignBlue>)
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Backgroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(74:178:255)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutMainColumn1) Displayposition(1) Parent(#LayoutMain) Units(Pixels) Width(60)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutMainColumn2) Displayposition(2) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow1) Displayposition(1) Parent(#LayoutMain) Units(Pixels) Height(100)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutMainRow2) Displayposition(2) Parent(#LayoutMain)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem1) Alignment(TopLeft) Column(#LayoutMainColumn1) Manage(#Panel1) Parent(#LayoutMain) Row(#LayoutMainRow2) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutMainItem2) Column(#LayoutMainColumn1) Manage(#Panel2) Parent(#LayoutMain) Row(#LayoutMainRow1) Columnspan(2)
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Parent(#Layout1) Row(#Layout1Row1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Column(#Layout1Column1) Parent(#Layout1) Row(#Layout1Row1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item3) Column(#Layout1Column1) Manage(#Label1) Parent(#Layout1) Row(#Layout1Row1)
+    Define_Com Class(#PRIM_PANL) Name(#Panel1) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(100) Height(141) Themedrawstyle('MediumTitle') Layoutmanager(#Layout1) Width(60) Style(#Style1)
+    Define_Com Class(#PRIM_LABL) Name(#Label1) Caption('Label1') Displayposition(1) Height(141) Left(0) Parent(#Panel1) Tabposition(1) Top(0) Rotation(270) Width(60) Tabstop(False) Alignment(Center) Verticalalignment(Center) Style(#Style2)
+    Define_Com Class(#PRIM_PANL) Name(#Panel2) Displayposition(2) Left(0) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Height(100) Width(1200) Style(#Style1)
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Loading Screen:
+    Image:              Spinner
+
+    Multilingual Text:
+    - ENG:
+        Text:               "Loading..."
+    - FRA:
+        Text:               "Loading..."

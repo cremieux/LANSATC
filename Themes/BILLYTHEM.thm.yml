@@ -1,0 +1,15 @@
+﻿Theme:
+  Name:               BillyTheme
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Billy Theme"
+
+  - FRA:
+      Description:        "Billy Theme"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_THM) Basetheme(2015DeepPurple) Theme700color(46:118:166) Theme500color(56:181:79) Theme300color(204:53:112)
+    
+    End_Com

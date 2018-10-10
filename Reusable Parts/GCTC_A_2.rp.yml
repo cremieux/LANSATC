@@ -1,0 +1,73 @@
+﻿Reusable Part:
+  Name:               GCTC_AssetContact
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Asset Contacts"
+
+  - FRA:
+      Description:        "Asset Contacts"
+
+  Source: |
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#Layout1) Width(913) Height(489)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Backgroundbrush(#Brush1) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme800)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(245:245:245)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(2) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row2) Displayposition(1) Parent(#Layout1) Height(40) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Column(#Layout1Column1) Manage(#Title) Parent(#Layout1) Row(#Layout1Row2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#ListContacts) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    
+    Define_Com Class(#PRIM_MD.Label) Name(#Title) Caption('Text') Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Top(0) Height(40) Width(913) Themedrawstyle('LightTitle') Captionalignment(Center)
+    Define_Com Class(#PRIM_LIST) Name(#ListContacts) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(2) Height(439) Left(5) Parent(#COM_OWNER) Rowheight(48) Tabposition(2) Top(45) Width(903) Columndrag(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnVFULLNAME1) Columnwidth(250) Displayposition(1) Parent(#ListContacts) Source(#vFullName) Columncaption('Name') Columncaptiontype(Caption) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnVLOCATION1) Columnwidth(249) Displayposition(3) Parent(#ListContacts) Source(#vLocation) Columnstyle(#Style1) Sortonclick(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCONTACTAD1) Columnwidth(250) Displayposition(2) Parent(#ListContacts) Source(#ContactAddress) Columnstyle(#Style1) Sortonclick(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCONTACTTI1) Columnwidth(250) Displayposition(4) Parent(#ListContacts) Source(#ContactTitle) Columnstyle(#Style1) Sortonclick(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCONTACTPH1) Columnwidth(140) Displayposition(5) Parent(#ListContacts) Source(#ContactPhone) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCONTACTMO1) Columnwidth(140) Displayposition(6) Parent(#ListContacts) Source(#ContactMobile) Columnstyle(#Style1) Columncaptiontype(Caption) Columncaption('Mobile') Sortonclick(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCONTACTEM1) Columnwidth(300) Displayposition(7) Parent(#ListContacts) Source(#ContactEmail) Columnstyle(#Style1) Sortonclick(True)
+    
+    Define_Com Class(#GCTC_ContactSM.GetContacts) Name(#GetContacts)
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do ancestor first
+    #COM_ANCESTOR.uInitialize
+    * Custom code here ....
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Custom code here ....
+    * Do ancestor last
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do any ancestor logic first.
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    * Custom code here ....
+    If_Ref Com(#AVLISTMANAGER.CurrentInstance) Is_Not(*NULL)
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Else
+    #AVFRAMEWORKMANAGER.avRestoreValue Withid1("CURRENT_PROP") Toavalue(#PropertyID)
+    Endif
+    
+    #Title.Caption := "Contacts For Property " + #PropertyID
+    #GetContacts.Execute Propertyid(#PropertyID) Contactlist(#ListContacts)
+    Endroutine
+    * --------------------------------------------------------------------------
+    
+    Evtroutine Handling(#ListContacts.ItemClick)
+    #AVFRAMEWORKMANAGER.avSaveValue Withid1("SELECTED_CONTACT") Fromavalue(#ContactID)
+    #AVFRAMEWORKMANAGER.avSwitch Toobjectnamed("BUS_CONTACTS") Execute("COMMAND_DETAILS") Startfilterandinstancelist(False) Ignorecommandenablement(True) Caller(#COM_OWNER)
+    
+    Endroutine
+    End_Com
+    

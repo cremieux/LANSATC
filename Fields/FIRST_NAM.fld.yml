@@ -1,0 +1,23 @@
+﻿Field:
+  Name:               First_Name
+  Type:               NVarChar
+  Length:             255
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - LC
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "First Name"
+      Label:              "First Name"
+      Heading1:           "First Name"
+
+  - FRA:
+      Description:        "First Name"
+      Label:              "First Name"
+      Heading1:           "First Name"

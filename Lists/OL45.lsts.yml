@@ -1,0 +1,15 @@
+﻿List:
+  Name:               APP 15
+  Stored As:          Repository
+
+  Objects:
+  - xProduct:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - xContacts:
+      Type:               File
+      Qualifier:          DC@DEMOLIB
+
+  - A15Main:
+      Type:               Web Page

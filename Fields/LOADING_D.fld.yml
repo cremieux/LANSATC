@@ -1,0 +1,22 @@
+﻿Field:
+  Name:               Loading_Docks
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Loading Docks"
+      Label:              "Loading Docks"
+      Heading1:           "Loading Docks"
+
+  - FRA:
+      Description:        "Loading Docks"
+      Label:              "Loading Docks"
+      Heading1:           "Loading Docks"

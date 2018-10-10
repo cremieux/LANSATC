@@ -1,0 +1,40 @@
+﻿Web Page:
+  Name:               TestDynamicColumns
+  Enabled For RDMLX:  Yes
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Dynamic Columns"
+
+  - FRA:
+      Description:        "Dynamic Columns"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_WEB) Theme(#SYS_THEME<MaterialDesignBlue>)
+    
+    Define_Com Class(#PRIM_LIST) Name(#List) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(1) Height(386) Left(80) Parent(#COM_OWNER) Rowheight(48) Tabposition(1) Top(32) Width(889)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnSTD_TEXT1) Columnwidth(409) Displayposition(1) Parent(#List) Source(#STD_TEXT) Columncaption('Column Caption')
+    Define_Com Class(#PRIM_MD.RaisedButton) Name(#Button) Caption('BUTTON') Displayposition(2) Left(100) Parent(#COM_OWNER) Tabposition(2) Themedrawstyle('MediumTitle') Top(440)
+    
+    Evtroutine Handling(#Com_owner.Initialize)
+    
+    Endroutine
+    
+    Evtroutine Handling(#Button.Click)
+    For Each(#column) In(#List.Columns)
+    #SYS_WEB.Alert Caption(#column.ColumnCaption)
+    Endfor
+    Endroutine
+    End_Com
+
+  Offline Support:    No
+  Allow Zoom:         Yes
+
+  Loading Screen:
+    Image:              Spinner
+
+    Multilingual Text:
+    - ENG:
+        Text:               "Loading..."
+    - FRA:
+        Text:               "Loading..."

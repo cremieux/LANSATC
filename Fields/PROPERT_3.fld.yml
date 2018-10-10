@@ -1,0 +1,27 @@
+﻿Field:
+  Name:               PropertySFLoading
+  Type:               Decimal
+  Length:             15
+  Decimals:           2
+  Default Value:      "*ZEROS"
+  Enabled For RDMLX:  No
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - RB
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Sq Ft / Loading"
+      Label:              "Sq Ft / Loading"
+      Heading1:           "Sq"
+      Heading2:           "Ft"
+      Heading3:           "/"
+
+  - FRA:
+      Description:        "Sq Ft / Loading"
+      Label:              "Sq Ft / Loading"
+      Heading1:           "Sq"
+      Heading2:           "Ft"
+      Heading3:           "/"

@@ -1,0 +1,25 @@
+﻿Field:
+  Name:               ContactID
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Contact ID"
+      Label:              "Contact ID"
+      Heading1:           "Contact"
+      Heading2:           "ID"
+
+  - FRA:
+      Description:        "Contact ID"
+      Label:              "Contact ID"
+      Heading1:           "Contact"
+      Heading2:           "ID"

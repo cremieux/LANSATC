@@ -1,0 +1,24 @@
+﻿Field:
+  Name:               XSqft___Loading_Docks_
+  Type:               Float
+  Length:             8
+  Decimals:           0
+  Default Value:      "*SQLNULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - ASQN
+
+  Multilingual Details:
+  - ENG:
+      Description:        "(Sqft / Loading Docks)"
+      Label:              "(Sqft / Loading"
+      Heading1:           "(Sqft / Loading"
+      Heading2:           "Docks)"
+
+  - FRA:
+      Description:        "(Sqft / Loading Docks)"
+      Label:              "(Sqft / Loading"
+      Heading1:           "(Sqft / Loading"
+      Heading2:           "Docks)"

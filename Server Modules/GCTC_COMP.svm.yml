@@ -1,0 +1,28 @@
+﻿ServerModule:
+  Name:               GCTC_CompsServerModule
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Comps Server Module"
+
+  - FRA:
+      Description:        "Comps Server Module"
+
+  Source: |
+    Begin_Com Role(*EXTENDS #PRIM_SRVM)
+    
+    Def_List Name(#CompList) Fields(#CompID #CompType #PropertyName #PropertyAddress #PropertyCity #PropertyState #PropertyZip #PropertyManager #PropertyYearBuilt #PropertyTenant #PropertyExpiration #PropertyType #PropertyOccupancy #PropertyTotalSF #PropertyOfficeSF #PropertyOfficePercent #PropertyIndustrialSF #PropertyIndustrialPercent #PropertyAcres #PropertyFAR #PropertyType2 #PropertyFloors #PropertyTypeMaterial #PropertyLastRedone #PropertyType3 #PropertySpaces #PropertySpacesAvailable #Property1000SF #PropertyDocks #PropertySFLoading #PropertyLoadingDocks #PropertyCeiling #PropertyHeight #CompDate #CompPrice #vLocation) Type(*WORKING) Entrys(*MAX)
+    
+    Srvroutine Name(GetComps)
+    Field_Map For(*INPUT) Field(#PropertyID)
+    List_Map For(*OUTPUT) List(#CompList)
+    
+    
+    Select Fields(#CompID) From_File(GCCompByProperty) With_Key(#PropertyID)
+    Fetch Fields(*ALL) From_File(GCComp) With_Key(#CompID)
+    Add_Entry To_List(#CompList)
+    Endselect
+    
+    Endroutine
+    End_Com

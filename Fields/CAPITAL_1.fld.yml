@@ -1,0 +1,27 @@
+﻿Field:
+  Name:               CapitalItemDescription
+  Type:               NVarChar
+  Length:             150
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Captial Item Description"
+      Label:              "Captial Item De"
+      Heading1:           "Captial"
+      Heading2:           "Item"
+      Heading3:           "Description"
+
+  - FRA:
+      Description:        "Captial Item Description"
+      Label:              "Captial Item De"
+      Heading1:           "Captial"
+      Heading2:           "Item"
+      Heading3:           "Description"

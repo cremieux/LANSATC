@@ -1,0 +1,27 @@
+﻿Field:
+  Name:               SpentCapitalID
+  Type:               NVarChar
+  Length:             10
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Input Attributes:
+  - FE
+  - LC
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Spent Capital ID"
+      Label:              "Spent Capital I"
+      Heading1:           "Spent"
+      Heading2:           "Capital"
+      Heading3:           "ID"
+
+  - FRA:
+      Description:        "Spent Capital ID"
+      Label:              "Spent Capital I"
+      Heading1:           "Spent"
+      Heading2:           "Capital"
+      Heading3:           "ID"

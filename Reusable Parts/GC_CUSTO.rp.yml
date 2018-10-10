@@ -1,0 +1,34 @@
+﻿Reusable Part:
+  Name:               GC_CustomManager
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "GRIFFIN Framework - Custom Manager"
+
+  - FRA:
+      Description:        "GRIFFIN Framework - Custom Manager"
+
+  Source: |
+    * ------------------------------------------------------------------------------
+    * This is the custom manager for framework GRIFFIN Framework
+    * Created 10th October 2018 by USERID with Windows desktop style controls.
+    * ------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #VF_AC036O)
+    * -----------------------------------------------------------------------------
+    * Standard initialization
+    * -----------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do the ancestor default behaviour
+    #COM_ANCESTOR.uInitialize
+    Endroutine
+    * -----------------------------------------------------------------------------
+    * Standard termination
+    * -----------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Do the ancestor default behaviour
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    * -----------------------------------------------------------------------------
+    End_Com

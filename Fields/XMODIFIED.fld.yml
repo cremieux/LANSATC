@@ -1,0 +1,19 @@
+﻿Field:
+  Name:               xModifiedDate
+  Type:               Date Time
+  Length:             27
+  Decimals:           0
+  Default Value:      "*NULL"
+  Enabled For RDMLX:  Yes
+  System Field:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "xModifiedDate"
+      Label:              "xModifiedDate"
+      Heading1:           "xModifiedDate"
+
+  - FRA:
+      Description:        "xModifiedDate"
+      Label:              "xModifiedDate"
+      Heading1:           "xModifiedDate"

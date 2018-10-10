@@ -1,0 +1,76 @@
+﻿Reusable Part:
+  Name:               GCTC_AssetComps
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Asset Comps"
+
+  - FRA:
+      Description:        "Asset Comps"
+
+  Source: |
+    Function Options(*DIRECT)
+    Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#Layout1) Width(913) Height(489)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Backgroundbrush(#Brush1) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme800)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(245:245:245)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(2) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row2) Displayposition(1) Parent(#Layout1) Height(40) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#ListComps) Parent(#Layout1) Row(#Layout1Row1) Marginbottom(5) Marginleft(5) Marginright(5) Margintop(5)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item2) Column(#Layout1Column1) Manage(#Title) Parent(#Layout1) Row(#Layout1Row2)
+    
+    Define_Com Class(#PRIM_LIST) Name(#ListComps) Columnheaderheight(48) Columnmarginleft(24) Columnmarginright(24) Displayposition(1) Height(439) Left(5) Parent(#COM_OWNER) Rowheight(48) Tabposition(1) Top(45) Width(903) Columnstyle(#Style1) Columndrag(True)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCOMPTYPE1) Columnwidth(137) Displayposition(1) Parent(#ListComps) Source(#CompType) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYN1) Columnwidth(149) Displayposition(2) Parent(#ListComps) Source(#PropertyName) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYA1) Columnwidth(252) Displayposition(3) Parent(#ListComps) Source(#PropertyAddress) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYY1) Columnwidth(158) Displayposition(5) Parent(#ListComps) Source(#PropertyYearBuilt) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPERTYT1) Columnwidth(170) Displayposition(6) Parent(#ListComps) Source(#PropertyTenant) Columncaptiontype(Label) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.DateTime) Name(#ColumnPROPERTYE1) Columnwidth(139) Displayposition(7) Parent(#ListComps) Showtime(False) Source(#PropertyExpiration) Columncaptiontype(Label) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnPROPTYPE1) Columnwidth(208) Displayposition(8) Parent(#ListComps) Source(#PropertyType) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnPROPERTYO1) Columnwidth(141) Displayposition(9) Parent(#ListComps) Source(#PropertyOccupancy) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnPROPTOTSF1) Columnwidth(130) Displayposition(10) Parent(#ListComps) Source(#PropertyTotalSF) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.DateTime) Name(#ColumnCOMPDATE1) Columnwidth(120) Displayposition(11) Parent(#ListComps) Showtime(False) Source(#CompDate) Columncaptiontype(Label) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.Number) Name(#ColumnCOMPPRICE1) Columnwidth(155) Displayposition(12) Parent(#ListComps) Source(#CompPrice) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnVLOCATION1) Columnwidth(244) Displayposition(4) Parent(#ListComps) Source(#vLocation) Sortonclick(True) Columnstyle(#Style1)
+    Define_Com Class(#PRIM_LIST.String) Name(#ColumnCOMPID1) Columnwidth(93) Displayposition(13) Parent(#ListComps) Source(#CompID) Columnvisible(False)
+    Define_Com Class(#PRIM_MD.Label) Name(#Title) Caption('Text') Displayposition(2) Left(0) Parent(#COM_OWNER) Tabposition(2) Top(0) Height(40) Width(913) Themedrawstyle('LightTitle') Captionalignment(Center)
+    
+    Define_Com Class(#GCTC_CompsServerModule.GetComps) Name(#GetComps)
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uInitialize) Options(*REDEFINE)
+    * Do ancestor first
+    #COM_ANCESTOR.uInitialize
+    * Custom code here ....
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uTerminate) Options(*REDEFINE)
+    * Custom code here ....
+    * Do ancestor last
+    #COM_ANCESTOR.uTerminate
+    Endroutine
+    * --------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do any ancestor logic first.
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    * Custom code here ....
+    If_Ref Com(#AVLISTMANAGER.CurrentInstance) Is_Not(*NULL)
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Else
+    #AVFRAMEWORKMANAGER.avRestoreValue Withid1("CURRENT_PROP") Toavalue(#PropertyID)
+    Endif
+    #Title.Caption := "Comps For Property " + #PropertyID
+    #GetComps.Execute Propertyid(#PropertyID) Complist(#ListComps)
+    Endroutine
+    * --------------------------------------------------------------------------
+    Evtroutine Handling(#ListComps.ItemClick)
+    
+    #AVFRAMEWORKMANAGER.avSaveValue Withid1("SELECTED_COMP") Fromavalue(#CompID)
+    #AVFRAMEWORKMANAGER.avSwitch Toobjectnamed("BUS_COMPS") Execute("COMMAND_DETAILS") Startfilterandinstancelist(False) Ignorecommandenablement(True) Caller(#COM_OWNER)
+    Endroutine
+    End_Com
