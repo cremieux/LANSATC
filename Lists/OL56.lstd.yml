@@ -1,0 +1,81 @@
+﻿List:
+  Name:               GC_Objects
+  Stored As:          User
+
+  Searches:
+  - Grouping:
+      Description:        Reusable Parts
+      Position:           1
+
+      Searches:
+      - Search:
+          Find Text:          GC*
+          In Name:            Yes
+          In Description:     No
+
+          Objects:
+          - Reusable Part
+
+          Filters:
+
+  - Grouping:
+      Description:        Web Pages
+      Position:           2
+
+      Searches:
+      - Search:
+          Find Text:          GC*
+          In Name:            Yes
+          In Description:     No
+
+          Objects:
+          - Web Page
+
+          Filters:
+
+  - Grouping:
+      Description:        Server Modules
+      Position:           3
+
+      Searches:
+      - Search:
+          Find Text:          GC*
+          In Name:            Yes
+          In Description:     No
+
+          Objects:
+          - Server Module
+
+          Filters:
+
+  - Search:
+      Find Text:          GC*
+      In Name:            Yes
+      In Description:     No
+
+      Objects:
+      - ActiveX
+      - Bitmap
+      - Cursor
+      - Dialog
+      - ExternalResource
+      - Field
+      - File
+      - Form
+      - Funciton
+      - Icon
+      - Multilingual Variable
+      - Primitive
+      - Process
+      - Reusable Part
+      - System Variable
+      - Server Module
+      - Template
+      - Theme
+      - View
+      - Visual Style
+      - Web Page
+      - Widget
+      - .Net Component
+
+      Filters:
