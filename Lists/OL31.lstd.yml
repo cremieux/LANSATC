@@ -1,0 +1,36 @@
+﻿List:
+  Name:               Modified Objects
+  Stored As:          User
+
+  Searches:
+  - Search:
+      In Name:            No
+      In Description:     No
+
+      Objects:
+      - ActiveX
+      - Bitmap
+      - Cursor
+      - Dialog
+      - ExternalResource
+      - Field
+      - File
+      - Form
+      - Funciton
+      - Icon
+      - Multilingual Variable
+      - Primitive
+      - Process
+      - Reusable Part
+      - System Variable
+      - Server Module
+      - Template
+      - Theme
+      - View
+      - Visual Style
+      - Web Page
+      - Widget
+      - .Net Component
+
+      Filters:
+        Modified After:     2018-09-10
