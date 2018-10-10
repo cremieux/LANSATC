@@ -1,0 +1,357 @@
+﻿Reusable Part:
+  Name:               DF_Note_NoteDetailPanel
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "\\OC=Display Web Details"
+
+  - FRA:
+      Description:        "\\OC=Display Web Details"
+
+  Source: |
+    * ----------------------------------------------------------------------------------------------------------
+    *
+    *   ########  ##       ########    ###     ######  ########       ##    ##  #######  ######## ########
+    *   ##     ## ##       ##         ## ##   ##    ## ##             ###   ## ##     ##    ##    ##
+    *   ##     ## ##       ##        ##   ##  ##       ##             ####  ## ##     ##    ##    ##
+    *   ########  ##       ######   ##     ##  ######  ######         ## ## ## ##     ##    ##    ######
+    *   ##        ##       ##       #########       ## ##             ##  #### ##     ##    ##    ##
+    *   ##        ##       ##       ##     ## ##    ## ##             ##   ### ##     ##    ##    ##
+    *   ##        ######## ######## ##     ##  ######  ########       ##    ##  #######     ##    ########
+    *
+    *  This components DF_ or UF_ name prefix means it is a shipped demonstration or user example component.
+    *  You must not use it in your production applications because it will change in future VLF versions.
+    *  Instead, copy this code into your own VL object, which is not prefixed VF_, DF_ or UF_, and use that.
+    *
+    * ----------------------------------------------------------------------------------------------------------
+    
+    Begin_Com Role(*EXTENDS #PRIM_PANL) Displayposition(1) Height(270) Left(0) Tabposition(1) Top(0) Width(500) Layoutmanager(#Attach_Main_Layout) Tabstop(False)
+    
+    * -------------------------------------------------------------------------
+    Define_Com Class(#VF_SY001O) Name(#uSystem) Desc('Caution: Read only - May change') Help('Read only. Features may change in future versions. You must code and test with that contingency in mind.') Scope(*APPLICATION)
+    
+    * -------------------------------------------------------------------------
+    
+    Define_Com Class(#PRIM_ATLM) Name(#Attach_Main_Layout)
+    Define_Com Class(#PRIM_ATLI) Name(#Attach_Header) Manage(#Header) Parent(#Attach_Main_Layout) Attachment(Top)
+    Define_Com Class(#PRIM_ATLI) Name(#Attach_Quill) Manage(#DF_NOTE_QUILLINTERFACE) Parent(#Attach_Main_Layout) Attachment(Center) Marginleft(4) Marginright(4)
+    Define_Com Class(#PRIM_ATLI) Name(#Attach_Footer) Manage(#Footer) Parent(#Attach_Main_Layout) Attachment(Bottom)
+    Define_Com Class(#PRIM_ATLI) Name(#Attach_NotFound) Manage(#NotFoundMessage) Parent(#Attach_Main_Layout) Attachment(Center)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachButttonPanel) Parent(#Attach_Main_Layout) Attachment(Bottom) Manage(#Buttonpanel) Marginbottom(2)
+    
+    Define_Com Class(#PRIM_ATLM) Name(#AttachLayout1) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachItemSubject) Manage(#DF_NOTE_Subject) Parent(#AttachLayout1) Attachment(Center) Marginbottom(5) Margintop(5)
+    Define_Com Class(#PRIM_ATLI) Name(#AttachLayout1Item1) Attachment(Right) Manage(#TC_NoteType) Parent(#AttachLayout1) Marginleft(10) Marginright(5)
+    
+    Define_Com Class(#Prim_panl) Name(#Header) Displayposition(3) Parent(#COM_OWNER) Tabposition(3) Left(0) Top(0) Width(500) Layoutmanager(#AttachLayout1) Tabstop(False) Height(55)
+    Define_Com Class(#Prim_panl) Name(#Footer) Displayposition(1) Parent(#COM_OWNER) Tabposition(2) Left(0) Top(200) Width(500) Height(38) Tabstop(False)
+    
+    Define_Com Class(#DF_Note_QuillInterface) Parent(#COM_OWNER) Displayposition(4) Tabposition(1) Height(145) Left(4) Top(55) Width(492) Tabstop(False)
+    
+    Define_Com Class(#DF_NOTE_Subject.Visual) Name(#DF_NOTE_Subject) Displayposition(1) Left(4) Parent(#Header) Tabposition(1) Top(9) Width(298) Marginleft(0) Height(37) Editstyle(#LargeFont) Tabstop(False)
+    
+    
+    Define_Com Class(#DF_NOTE_Created.Visual) Name(#DF_NOTE_Created) Displayposition(1) Left(8) Parent(#Footer) Tabposition(1) Top(8) Marginleft(50) Displayonly(True) Width(217) Style(#SmallFont) Height(16) Tabstop(False)
+    Define_Com Class(#DF_NOTE_CreatedBy.Visual) Name(#DF_NOTE_CreatedBy) Displayposition(2) Left(224) Parent(#Footer) Tabposition(2) Top(8) Displayonly(True) Marginleft(15) Width(271) Style(#SmallFont) Height(17) Tabstop(False)
+    Define_Com Class(#DF_NOTE_Updated.Visual) Name(#DF_NOTE_Updated) Displayposition(3) Left(8) Parent(#Footer) Tabposition(3) Top(20) Displayonly(True) Marginleft(50) Width(217) Style(#SmallFont) Height(16) Tabstop(False)
+    Define_Com Class(#DF_NOTE_UpdatedBy.Visual) Name(#DF_NOTE_UpdatedBy) Displayposition(4) Left(226) Parent(#Footer) Tabposition(4) Top(20) Displayonly(True) Marginleft(15) Width(271) Style(#SmallFont) Height(16) Tabstop(False)
+    
+    Define_Com Class(#VF_UI049O) Name(#Buttonpanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(5) Top(238) Width(500) Height(30) Tabstop(False)
+    
+    * -------------------------------------------------------------------------
+    
+    Define_Com Class(#Prim_labl) Name(#NotFoundMessage) Parent(#COM_OWNER) Displayposition(5) Tabposition(4) Tabstop(False) Height(145) Left(0) Top(55) Width(500) Caption('Requested note has been deleted.') Verticalalignment(Center) Alignment(Center)
+    
+    * -------------------------------------------------------------------------
+    Define_Com Class(#Prim_Vs.Style) Name(#SmallFont) Fontsize(8) Fontunits(Pixel)
+    Define_Com Class(#Prim_Vs.Style) Name(#LargeFont) Fontsize(15) Fontunits(Pixel) Bold(True)
+    
+    Define_Com Class(#TC_NoteType.DropdownField) Name(#TC_NoteType) Displayposition(2) Left(312) Parent(#Header) Tabposition(2) Top(4) Height(47) Width(179) Helperposition(None)
+    
+    Define Field(#DF_NOTE_WorkingList_Counter) Reffld(#Std_int)
+    
+    Def_List Name(#DF_NOTE_WorkingList) Fields(#DF_NOTE_BusinessObjectType #DF_NOTE_BusinessObjectKey #DF_NOTE_GUID #DF_NOTE_NoteJSON #DF_NOTE_NoteHTML #DF_NOTE_Subject #DF_NOTE_Created #DF_NOTE_CreatedBy #DF_NOTE_Updated #DF_NOTE_UpdatedBy) Counter(#DF_NOTE_WorkingList_Counter) Type(*WORKING) Entrys(*MAX)
+    
+    * -------------------------------------------------------------------------
+    
+    Define_Evt Name(UpdatedNoteDetails)
+    Define_Map For(*INPUT) Class(#DF_NOTE_GUID) Name(#GUID)
+    Define_Map For(*INPUT) Class(#DF_NOTE_Subject) Name(#Subject)
+    Define_Map For(*INPUT) Class(#DF_NOTE_Updated) Name(#Updated)
+    
+    Define_Evt Name(DeletedNoteDetails)
+    Define_Map For(*INPUT) Class(#DF_NOTE_GUID) Name(#GUID)
+    
+    Define_Evt Name(CloseNoteDetails)
+    
+    * -------------------------------------------------------------------------
+    Define_Com Class(#vf_ac010O) Name(#ParentHandler) Reference(*DYNAMIC)
+    * -------------------------------------------------------------------------
+    Define_Com Class(#vf_lm003O) Name(#CurrentBOItem) Reference(*DYNAMIC)
+    
+    * -------------------------------------------------------------------------
+    Define_Com Class(#Prim_boln) Name(#ReadyforWork)
+    Define_Evt Name(ReadyForWork)
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(uInitialize)
+    Define_Map For(*INPUT) Class(#vf_ac010O) Name(#UseParentHandler) Pass(*BY_REFERENCE)
+    
+    #ParentHandler <= #UseParentHandler
+    
+    #Buttonpanel.uInitialize Flowfrom(Right) Vertical(False)
+    #Buttonpanel.uAddButton Caption(*MTXTUF_Save) Id(Save)
+    #Buttonpanel.uAddButton Caption(*MTXTUF_Delete) Id(Delete) Isprimarybutton(False)
+    #Buttonpanel.uAddButton Caption(*MTXTUF_Close) Id(Close) Isprimarybutton(False)
+    
+    #COM_OWNER.ShowNothing
+    
+    If (#uSystem.uFrameworkManager.avSmallScreen Or #uSystem.uFrameworkManager.avMediumScreen)
+    #Buttonpanel.Height := 44
+    Endif
+    
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(uTerminate)
+    
+    * Terminate the button panel
+    #Buttonpanel.uTerminate
+    
+    * Only try to terminate of it has been initailized already
+    If (#ReadyforWork)
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Terminating quill interface")
+    #DF_Note_QuillInterface.uTerminate
+    Endif
+    
+    Set_Ref Com(#CurrentBOItem #ParentHandler) To(*null)
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Evtroutine Handling(#DF_Note_QuillInterface.Initialize)
+    
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Quill interface has signalled initialize")
+    
+    #ReadyforWork := True
+    
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Quill interface being initialized")
+    
+    #DF_Note_QuillInterface.uInitialize
+    
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Quill interface initialized")
+    
+    Signal Event(ReadyForWork)
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(SaveCurrentNoteIfDirty)
+    Define_Map For(*INPUT) Class(#Prim_Boln) Name(#AskFirst)
+    
+    Define_Com Class(#prim_boln) Name(#save)
+    
+    If ((#Buttonpanel.Visible) AndIf (#Buttonpanel.GetVisiblity( Save )))
+    
+    If (#AskFirst)
+    #save := (#Sys_web.Confirm( ("Note with subject '" + #DF_NOTE_Subject + "' has been changed but not saved. Click Ok to save it now. Click Cancel to drop the changes.") ) = ok)
+    Else
+    #save := True
+    Endif
+    
+    If (#save)
+    #COM_OWNER.SaveCurrentNote Refreshdisplay(False)
+    Endif
+    
+    Endif
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(ShowExistingNote)
+    Define_Map For(*INPUT) Class(#vf_lm003O) Name(#ForBOItem) Pass(*BY_REFERENCE)
+    Define_Map For(*INPUT) Class(#DF_NOTE_GUID) Name(#ForGUID)
+    
+    Define_Com Class(#DF_NOTE_ServerModule.Find) Name(#Find)
+    
+    If (#ReadyforWork)
+    
+    #COM_OWNER.SaveCurrentNoteIfDirty Askfirst(True)
+    
+    #CurrentBOItem <= #ForBOItem
+    
+    Clr_List Named(#DF_NOTE_WorkingList)
+    
+    #Find.Execute Forguid(#ForGUID) Intofullworkinglist(#DF_NOTE_WorkingList)
+    
+    Endif
+    
+    Evtroutine Handling(#Find.Completed)
+    #COM_OWNER.ShowNoteDetails
+    Endroutine
+    
+    Evtroutine Handling(#Find.Failed) Handled(#Handled)
+    #Handled := #uSystem.uFrameworkManager.avHandleServerError( #ParentHandler )
+    Endroutine
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(MakeNewNote)
+    Define_Map For(*INPUT) Class(#vf_lm003O) Name(#ForBOItem) Pass(*BY_REFERENCE)
+     
+    Define_Com Class(#DF_NOTE_ServerModule.New) Name(#new)
+    
+    If (#ReadyforWork)
+    
+    #COM_OWNER.SaveCurrentNoteIfDirty Askfirst(True)
+    
+    #CurrentBOItem <= #ForBOItem
+    
+    Clr_List Named(#DF_NOTE_WorkingList)
+    
+    #new.Execute Createdby(#uSystem.uFrameworkManager.avLoggedOnUser) Forbusinessobjectnametype(#CurrentBOItem.avBusinessObjectReference.uUserObjectType) Forinstancekey(#CurrentBOItem.CombinedKey) Intofullworkinglist(#DF_NOTE_WorkingList)
+    
+    Endif
+    
+    Evtroutine Handling(#New.Completed)
+    #COM_OWNER.ShowNoteDetails
+    Endroutine
+    
+    Evtroutine Handling(#New.Failed) Handled(#Handled)
+    #Handled := #uSystem.uFrameworkManager.avHandleServerError( #ParentHandler )
+    Endroutine
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(ShowNothing)
+    
+    Set Com(#NotFoundMessage #DF_Note_QuillInterface #Header #Footer #Buttonpanel) Visible(False)
+    
+    #Buttonpanel.SetVisibility( Save False )
+    
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(ShowNoteDetails) Access(*PRIVATE)
+    
+    * Map all fields onto panel
+    Get_Entry Number(1) From_List(#DF_NOTE_WorkingList)
+    
+    Set Com(#Buttonpanel) Visible(True)
+    
+    #Buttonpanel.SetVisibility( Save False )
+    #Buttonpanel.SetVisibility( Close True )
+    #Buttonpanel.SetVisibility( Delete False )
+    
+    * Show the
+    If_Status Is(*OKAY)
+    
+    Set Com(#DF_Note_QuillInterface #Header #Footer) Visible(True)
+    
+    #Buttonpanel.SetVisibility( Delete True )
+    
+    #NotFoundMessage.Visible := False
+    
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Quill interface being asked to show content")
+    #DF_Note_QuillInterface.setContent Input(#DF_NOTE_NoteJSON)
+    
+    #uSystem.uFrameworkManager.avRecordTrace Component(#COM_OWNER) Event("Quill interface is showing content")
+    
+    Signal Event(UpdatedNoteDetails) Guid(#DF_NOTE_GUID) Subject(#DF_NOTE_Subject) Updated(#DF_NOTE_Updated)
+    
+    Else
+    
+    Set Com(#DF_Note_QuillInterface #Header #Footer) Visible(False)
+    
+    #NotFoundMessage.Visible := True
+    
+    Signal Event(DeletedNoteDetails) Guid(#DF_NOTE_GUID)
+    
+    Endif
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Evtroutine Handling(#DF_NOTE_Subject.Changed #DF_Note_QuillInterface.Changed)
+    
+    #Buttonpanel.SetVisibility( Save True )
+    
+    Endroutine
+    
+    
+    * -----------------------------------
+    Mthroutine Name(SaveCurrentNote)
+    Define_Map For(*INPUT) Class(#Prim_boln) Name(#RefreshDisplay)
+     
+    Define_Com Class(#DF_NOTE_ServerModule.Save) Name(#Save)
+    
+    Clr_List Named(#DF_NOTE_WorkingList)
+    
+    #DF_NOTE_BusinessObjectType := #CurrentBOItem.avBusinessObjectReference.uUserObjectType
+    #DF_NOTE_BusinessObjectKey := #CurrentBOItem.CombinedKey
+    #DF_NOTE_NoteJSON := #DF_Note_QuillInterface.getContent
+    #DF_NOTE_NoteHTML := #DF_Note_QuillInterface.getHTML
+    #DF_NOTE_UpdatedBy := #uSystem.uFrameworkManager.avLoggedOnUser
+    
+    Add_Entry To_List(#DF_NOTE_WorkingList)
+    
+    #Save.Execute Fromfullworkinglist(#DF_NOTE_WorkingList)
+    
+    Evtroutine Handling(#Save.Completed)
+    If (#RefreshDisplay)
+    #COM_OWNER.ShowNoteDetails
+    Endif
+    Endroutine
+    
+    Evtroutine Handling(#Save.Failed) Handled(#Handled)
+    #Handled := #uSystem.uFrameworkManager.avHandleServerError( #ParentHandler )
+    Endroutine
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Evtroutine Handling(#Buttonpanel.ButtonClicked) Withid(#ButtonId)
+    
+    Case (#ButtonId)
+    
+    When (= Close)
+    #COM_OWNER.SaveCurrentNoteIfDirty Askfirst(True)
+    Signal Event(CloseNoteDetails)
+    
+    When (= Delete)
+    #COM_OWNER.DeleteCurrentNote
+    
+    When (= Save)
+    #COM_OWNER.SaveCurrentNote Refreshdisplay(true)
+    
+    Endcase
+    
+    
+    Endroutine
+    
+    * -------------------------------------------------------------------------
+    Mthroutine Name(DeleteCurrentNote) Access(*PRIVATE)
+    
+    Define_Com Class(#DF_NOTE_ServerModule.Delete) Name(#Delete)
+    Define_Com Class(#vf_elretc) Name(#ReturnCode)
+     
+    #Delete.Execute Forguid(#DF_NOTE_GUID) Returncode(#ReturnCode)
+    
+    Evtroutine Handling(#Delete.Completed)
+    Clr_List Named(#DF_NOTE_WorkingList)
+    #COM_OWNER.ShowNoteDetails
+    Endroutine
+    
+    Evtroutine Handling(#Delete.Failed) Handled(#Handled)
+    #Handled := #uSystem.uFrameworkManager.avHandleServerError( #ParentHandler )
+    Endroutine
+    
+    Endroutine
+    
+    End_Com

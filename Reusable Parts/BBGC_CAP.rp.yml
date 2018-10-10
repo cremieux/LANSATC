@@ -1,0 +1,240 @@
+﻿Reusable Part:
+  Name:               BBGC_CAP_GCASSETS_CUSTOM_Handler
+  Enabled For RDMLX:  Yes
+  Target Platform:    Browser
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Command Handler"
+
+  - FRA:
+      Description:        "Command Handler"
+
+  Source: |
+    * ---------------------------------------------------------------------------------
+    * This is a command handler in framework Griffin Capital Framework.
+    * It belongs to business object Assets.
+    * Created 27th September 2018 by USERID with Material Design style controls.
+    * ---------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #vf_ac010O) Height(737) Width(929)
+    
+    Define Field(#ServerModuleResult) Type(*BOOLEAN)
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_VS.Style) Name(#Style1) Foregroundbrush(#Brush1)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush1) Color(ThemeAccentMedium)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style2) Foregroundbrush(#Brush2)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush2) Color(Theme900)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style3) Foregroundbrush(#Brush3) Backgroundbrush(#Brush4)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush4) Color(Theme800)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush3) Color(Theme800)
+    
+    Define_Com Class(#PRIM_VS.Style) Name(#Style4) Backgroundbrush(#Brush5)
+    Define_Com Class(#PRIM_VS.SolidBrush) Name(#Brush5) Color(Theme800)
+    
+    Define_Com Class(#PRIM_ATLI) Name(#AttachBodyPanel) Manage(#BodyPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn1) Displayposition(1) Parent(#Layout)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn2) Displayposition(3) Parent(#Layout)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutColumn3) Displayposition(2) Parent(#Layout) Units(Pixels) Width(10)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow1) Displayposition(1) Parent(#Layout) Height(36) Units(Pixels)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow2) Displayposition(2) Parent(#Layout)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutRow3) Displayposition(3) Parent(#Layout)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem2) Alignment(TopLeft) Column(#LayoutColumn1) Manage(#Text) Parent(#Layout) Row(#LayoutRow1) Flow(Down)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem3) Column(#LayoutColumn1) Manage(#ListApproved) Parent(#Layout) Row(#LayoutRow2) Rowspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem1) Column(#LayoutColumn2) Manage(#ListSpent) Parent(#Layout) Row(#LayoutRow2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem5) Column(#LayoutColumn2) Manage(#TCWebGooglePieChart) Parent(#Layout) Row(#LayoutRow3)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn1) Displayposition(1) Parent(#LayoutList) Units(Pixels) Width(40)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn2) Displayposition(2) Parent(#LayoutList) Units(Pixels) Width(135)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutListColumn3) Displayposition(3) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutListRow1) Displayposition(1) Parent(#LayoutList)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem1) Column(#LayoutListColumn1) Manage(#ListIcon) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(None)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem2) Column(#LayoutListColumn2) Manage(#Label) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem3) Column(#LayoutListColumn2) Manage(#ListCapitalItemDescription1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical) Columnspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem4) Column(#LayoutListColumn2) Manage(#Label1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem5) Column(#LayoutListColumn2) Manage(#Label2) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem6) Column(#LayoutListColumn2) Manage(#Label3) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem7) Column(#LayoutListColumn3) Manage(#ListCapitalBudgetAmount1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical) Margintop(22)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem8) Column(#LayoutListColumn3) Manage(#ListCapitalApprovedAmount1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem9) Column(#LayoutListColumn3) Flow(CenterVertical) Manage(#ListGCTotalSpent1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem10) Column(#LayoutListColumn3) Flow(CenterVertical) Manage(#ListGCRemainingAmount1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem11) Alignment(BottomLeft) Column(#LayoutListColumn1) Manage(#Label4) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(FitToWidth) Columnspan(3)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutListItem12) Alignment(BottomRight) Column(#LayoutListColumn3) Manage(#ListCapitalApprovalNumber1) Parent(#LayoutList) Row(#LayoutListRow1) Sizing(None)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#Layout1Row1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#Layout1Column1) Displayposition(1) Parent(#Layout1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#Layout1Item1) Column(#Layout1Column1) Manage(#GCTotalSpent) Parent(#Layout1) Row(#Layout1Row1) Sizing(None) Flow(CenterVertical)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutItem4) Alignment(TopLeft) Column(#LayoutColumn2) Manage(#Text1) Parent(#Layout) Row(#LayoutRow1) Flow(Down)
+    
+    Define_Com Class(#PRIM_TBLO) Name(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column1) Displayposition(2) Parent(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Column) Name(#LayoutList1Column2) Displayposition(1) Parent(#LayoutList1) Units(Pixels) Width(100)
+    Define_Com Class(#PRIM_TBLO.Row) Name(#LayoutList1Row1) Displayposition(1) Parent(#LayoutList1)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item1) Column(#LayoutList1Column1) Flow(CenterVertical) Manage(#ListCapitalItemVendor1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Margintop(22)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item2) Column(#LayoutList1Column2) Flow(CenterVertical) Manage(#ListSpentCapitalDescription1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Columnspan(2)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item3) Column(#LayoutList1Column1) Flow(CenterVertical) Manage(#ListSpentCapitalAmount1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item4) Column(#LayoutList1Column1) Flow(CenterVertical) Manage(#ListSpentCapitalDate1) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item5) Column(#LayoutList1Column2) Flow(CenterVertical) Manage(#Text2) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item6) Column(#LayoutList1Column2) Flow(CenterVertical) Manage(#Text3) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item7) Column(#LayoutList1Column2) Flow(CenterVertical) Manage(#Text4) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth)
+    Define_Com Class(#PRIM_TBLO.Item) Name(#LayoutList1Item8) Alignment(BottomLeft) Column(#LayoutList1Column2) Manage(#Label5) Parent(#LayoutList1) Row(#LayoutList1Row1) Sizing(FitToWidth) Columnspan(2)
+    
+    Define_Com Class(#Prim_panl) Name(#BodyPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(737) Left(0) Top(0) Width(929) Horizontalscroll(True) Verticalscroll(True) Layoutmanager(#Layout)
+    
+    * ---------------------------------------------------------------------------------
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#Prim_atlm) Name(#BodyPanelAttachmentManager)
+    
+    * ---------------------------------------------------------------------------------
+    
+    
+    * ---------------------------------------------------------------------------------
+    Define_Com Class(#PRIM_MD.Label) Name(#Text) Caption('Approved Capital') Displayposition(1) Left(0) Parent(#BodyPanel) Tabposition(2) Themedrawstyle('LightTitle') Top(0) Width(460) Captionalignment(Center)
+    Define_Com Class(#PRIM_MD.List) Name(#ListApproved) Displayposition(2) Layoutmanager(#LayoutList) Left(0) Parent(#BodyPanel) Rowheight(120) Tabposition(3) Themedrawstyle('Card') Top(36) Width(460) Height(701)
+    Define_Com Class(#PRIM_MD.ListIcon) Name(#ListIcon) Displayposition(5) Height(32) Icon('warning') Iconimagesizing(Cropped) Left(4) Parent(#ListApproved) Tabposition(1) Top(44) Width(32) Style(#Style1)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label) Caption('Budgeted Amount') Displayposition(4) Dragstyle(None) Left(40) Parent(#ListApproved) Tabposition(6) Top(27) Width(135) Height(22) Themedrawstyle('ForegroundSecondary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCapitalItemDescription1) Caption('Captial Item Description') Displayposition(2) Dragstyle(None) Left(40) Parent(#ListApproved) Source(#CapitalItemDescription) Tabposition(7) Top(5) Width(418) Height(22) Themedrawstyle('ForegroundMediumPrimary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label1) Caption('Approved Amount') Displayposition(6) Dragstyle(None) Left(40) Parent(#ListApproved) Tabposition(5) Top(49) Width(135) Height(22) Themedrawstyle('ForegroundSecondary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label2) Caption('Total Spent') Displayposition(7) Dragstyle(None) Left(40) Parent(#ListApproved) Tabposition(4) Top(71) Width(135) Height(22) Themedrawstyle('ForegroundSecondary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label3) Displayposition(8) Dragstyle(None) Left(40) Parent(#ListApproved) Tabposition(2) Top(93) Width(135) Height(22) Caption('Remaining Amount') Themedrawstyle('ForegroundSecondary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCapitalBudgetAmount1) Caption('Budgeted Amount') Displayposition(9) Dragstyle(None) Left(175) Parent(#ListApproved) Source(#CapitalBudgetAmount) Tabposition(8) Top(27) Width(283) Height(22) Themedrawstyle('ForegroundTheme')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCapitalApprovedAmount1) Caption('Approved Amount') Displayposition(10) Dragstyle(None) Left(175) Parent(#ListApproved) Source(#CapitalApprovedAmount) Tabposition(9) Top(49) Width(283) Height(22) Themedrawstyle('ForegroundTheme')
+    Define_Com Class(#GCTotalSpent.Visual) Name(#GCTotalSpent) Displayposition(2) Left(-46) Tabposition(2) Top(1) Parent(#COM_OWNER)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListGCTotalSpent1) Caption('Total Spent') Displayposition(11) Dragstyle(None) Left(175) Parent(#ListApproved) Source(#GCTotalSpent) Tabposition(10) Top(71) Width(283) Height(22) Themedrawstyle('ForegroundTheme')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListGCRemainingAmount1) Caption('Remaining Amount') Displayposition(12) Dragstyle(None) Left(175) Parent(#ListApproved) Source(#GCRemainingAmount) Tabposition(11) Top(93) Width(283) Height(22) Themedrawstyle('ForegroundTheme')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label4) Displayposition(1) Dragstyle(None) Left(0) Parent(#ListApproved) Tabposition(12) Top(119) Width(458) Height(1) Style(#Style3)
+    Define_Com Class(#PRIM_MD.Label) Name(#Text1) Displayposition(3) Left(470) Parent(#BodyPanel) Tabposition(1) Themedrawstyle('LightTitle') Top(0) Width(459) Captionalignment(Center) Caption('Spent Summary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCapitalApprovalNumber1) Caption('Approval Number') Displayposition(13) Dragstyle(None) Left(358) Parent(#ListApproved) Source(#CapitalApprovalNumber) Tabposition(13) Top(84) Visible(False)
+    Define_Com Class(#PRIM_MD.List) Name(#ListSpent) Displayposition(4) Layoutmanager(#LayoutList1) Left(470) Parent(#BodyPanel) Rowheight(100) Tabposition(4) Themedrawstyle('Card') Top(36) Height(351) Width(459)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListCapitalItemVendor1) Caption('Vendor') Displayposition(6) Dragstyle(None) Parent(#ListSpent) Source(#CapitalItemVendor) Tabposition(1) Top(28) Width(357) Height(22) Left(100)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSpentCapitalDescription1) Caption('Description') Displayposition(2) Dragstyle(None) Left(0) Parent(#ListSpent) Source(#SpentCapitalDescription) Tabposition(5) Top(6) Width(457) Height(22) Themedrawstyle('ForegroundMediumPrimary')
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSpentCapitalAmount1) Caption('Spent Amount') Displayposition(7) Dragstyle(None) Parent(#ListSpent) Source(#SpentCapitalAmount) Tabposition(6) Top(50) Width(357) Height(22) Left(100)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#ListSpentCapitalDate1) Caption('Spent Date') Displayposition(8) Dragstyle(None) Parent(#ListSpent) Source(#SpentCapitalDate) Tabposition(7) Top(72) Width(357) Height(22) Left(100)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Text2) Caption('Vendor') Displayposition(5) Dragstyle(None) Left(0) Parent(#ListSpent) Tabposition(8) Themedrawstyle('ForegroundSecondary') Top(50) Height(22)
+    
+    Def_List Name(#ApprovedCapitalList) Fields(#ApprovedCapitalID #PropertyID #CapitalItem #CapitalItemDescription #CapitalBudgetAmount #CapitalApprovedAmount #CapitalApprovalNumber #GCTotalSpent #GCRemainingAmount) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    Def_List Name(#SpentCapitalList) Fields(#SpentCapitalID #PropertyID #CapitalApprovalNumber #CapitalItem #CapitalItemVendor #SpentCapitalDescription #SpentCapitalAmount #SpentCapitalDate) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    Define_Com Class(#BBGC_CAP_GCASSETS_CUSTOM_ServerModule.GetCapital) Name(#GetCapital)
+    Define_Com Class(#BBGC_CAP_GCASSETS_CUSTOM_ServerModule.GetApproved) Name(#GetApproved)
+    Define_Com Class(#BBGC_CAP_GCASSETS_CUSTOM_ServerModule.GetSpent) Name(#GetSpent)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Text3) Caption('Spent Amount') Displayposition(4) Dragstyle(None) Left(0) Parent(#ListSpent) Tabposition(2) Themedrawstyle('ForegroundSecondary') Top(28) Height(22)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Text4) Caption('Spent Date') Displayposition(9) Dragstyle(None) Left(0) Parent(#ListSpent) Tabposition(4) Themedrawstyle('ForegroundSecondary') Top(72) Height(22)
+    Define_Com Class(#PRIM_MD.ListLabel) Name(#Label5) Displayposition(1) Dragstyle(None) Left(0) Parent(#ListSpent) Tabposition(9) Top(99) Width(457) Height(1) Style(#Style4)
+    Define_Com Class(#TCWebGooglePieChart) Name(#TCWebGooglePieChart) Displayposition(5) Height(350) Left(470) Parent(#BodyPanel) Tabposition(5) Tabstop(False) Top(387) Width(459) Visible(False)
+    
+    Define_Com Class(#PRIM_TIMR) Name(#Timer1) Startup(Manual)
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(uExecute) Options(*REDEFINE)
+    * Do the ancestor thing
+    #COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+    * Add custom logic here
+    
+    * Go to busy state
+    #COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+    
+    If_Ref Com(#AVLISTMANAGER.CurrentInstance) Is_Not(*NULL)
+    #PropertyID := #Com_Self.avAssociatedInstance.avAKey1
+    Else
+    #AVFRAMEWORKMANAGER.avRestoreValue Withid1("CURRENT_PROP") Toavalue(#PropertyID)
+    Endif
+    #TCWebGooglePieChart.Visible := False
+    
+    * Ask Server Module to get the data from the server
+    #COM_OWNER.GetCapitalData
+    
+    * Go back to display free state
+    #com_Owner.avGotoFreeState
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+    
+    #ClearMessagesAfterDelay := True
+    Endroutine
+    
+    * ---------------------------------------------------------------------------------
+    Mthroutine Name(GetCapitalData)
+    
+    Clr_List Named(#ListApproved)
+    Clr_List Named(#ListSpent)
+    
+    #GetApproved.Execute Approvedcapitallist(#ApprovedCapitalList) Propertyid(#PropertyID)
+    Selectlist Named(#ApprovedCapitalList)
+    Add_Entry To_List(#ListApproved)
+    Endselect
+    If (*Not #ListApproved.Items.IsEmpty)
+    Get_Entry Number(1) From_List(#ListApproved)
+    #ListApproved.CurrentItem.Selected := True
+    
+    #COM_OWNER.LoadSpent
+    
+    #Timer1.Start
+    Endif
+    Endroutine
+    
+    Evtroutine Handling(#ListApproved.ItemClick)
+    #TCWebGooglePieChart.Visible := False
+    #COM_OWNER.LoadSpent
+    
+    If (*Not #ListApproved.Items.IsEmpty)
+    #COM_OWNER.LoadSpentChart
+    #Timer1.Stop
+    Endif
+    
+    Endroutine
+    
+    Mthroutine Name(LoadSpent)
+    #GetSpent.Execute Capitalapprovalnumber(#CapitalApprovalNumber) Spentcapitallist(#SpentCapitalList)
+    
+    Clr_List Named(#ListSpent)
+    
+    Selectlist Named(#SpentCapitalList)
+    Add_Entry To_List(#ListSpent)
+    Endselect
+    
+    Endroutine
+    Evtroutine Handling(#TCWebGooglePieChart.Initialize)
+    * Selectlist Named(#ListApproved)
+    * Leave
+    * Endselect
+    *
+    * #COM_OWNER.LoadSpentChart
+    
+    Endroutine
+    
+    Mthroutine Name(LoadSpentChart)
+    #TCWebGooglePieChart.Clear
+    
+    #TCWebGooglePieChart.Title := "Spent Capital Summary"
+    
+    #TCWebGooglePieChart.Insert Value(#GCTotalSpent) Caption("Remainder")
+    
+    #std_count := 0
+    Selectlist Named(#SpentCapitalList)
+    #std_count += 1
+    #std_text := "Spent " + #std_count.AsString
+    #TCWebGooglePieChart.Insert Value(#SpentCapitalAmount) Caption(#std_text)
+    Endselect
+    
+    #TCWebGooglePieChart.Visible := True
+    Endroutine
+    Evtroutine Handling(#Timer1.Tick)
+    Selectlist Named(#ListApproved)
+    Leave
+    Endselect
+    
+    If (*Not #ListApproved.Items.IsEmpty)
+    #COM_OWNER.LoadSpentChart
+    #Timer1.Stop
+    Else
+    Endif
+    Endroutine
+    End_Com

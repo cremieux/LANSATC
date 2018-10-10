@@ -1,0 +1,403 @@
+﻿File:
+  Name:                           AssetExcel
+  File Type:                      PC Other File
+  Library:                        DBO
+  Record Format Name:             ASSETEXCEL
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            No
+  Create RRNO Column:             No
+  Auto RRNO Is Fixed:             No
+  Convert Special Characters:     Yes
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "AssetExcel"
+
+  - FRA:
+      Description:        "AssetExcel"
+
+  Real Fields:
+  - PROPERTY2:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               PropertyID
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - NAME1:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Name
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - ADDRESS4:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Address
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - CITY1:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               City
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - STATE1:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               State
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - ZIP_CODE:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Zip Code
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - AM:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               AM
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - YEAR_BUIL:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Year Built
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - TENANT:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Tenant
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - EXPIRATIO:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Expiration
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - TYPE:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Type
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - OCCUPANCY:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Occupancy
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - TOTAL_SF:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Total SF
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - OFFICE_SF:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Office SF
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - OFFICE__:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Office %
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - INDUSTRIA:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Industrial SF
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - INDUSTRI1:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Industrial %
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - ACRES:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Acres
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - FAR:
+      Type:               Float
+      Length:             8
+      Decimals:           0
+
+      PC Column Data:
+        Name:               FAR
+        Data Type:          6
+        Precision:          53
+        Length:             8
+        Scale:              -1
+        Radix:              2
+        Nullable:           1
+
+  - TYPE1:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Type1
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - TYPE2:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Type2
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - TYPE3:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Type3
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - FLOORS:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Floors
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - TYPE4:
+      Type:               NVarChar
+      Length:             255
+      Decimals:           0
+
+      PC Column Data:
+        Name:               Type4
+        Data Type:          -9
+        Precision:          255
+        Length:             510
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  Other File Definition:
+    Table:              AssetExcel
+    Owner:              dbo
+    Database Type:      MSSQLS
+    Qualifier:          LANSASP2
+    Data Source:        LANSASP2
+    Encrypted:          Yes
+    Read-only File:     No
+    Add LOB Columns:    No
+    Quote Character:    "\""
+
+    Connection Parameters: |
+      EAFDB45B0F67640C36159542D36D1EE88BD116F9EB5AE0A5D9809BBAA8ABAA2DCA28BA1F969F80F2E3BDD33721CC974927F9
+      E3AF0A2A9D436B7D4A074CFC1950619CEBA77B300A2D5B679E34DE029A73D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595

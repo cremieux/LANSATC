@@ -1,0 +1,202 @@
+﻿File:
+  Name:                           XVENDOR
+  File Type:                      PC Other File
+  Library:                        XLANSA
+  Record Format Name:             XVENDOR
+  Module Library:                 Same Library As File
+  File Uses SQL on IBM i:         No
+  Enabled For RDMLX:              Yes
+  Enabled For Long Names:         Yes
+  Share Data Path:                No
+  Secure From File Overrides:     Yes
+  Strip Debug On Compile:         Yes
+  Suppress IOM0034 Message:       No
+  Ignore Decimal Data Error:      No
+  Create I/O Module:              Yes
+  Create Batch Control:           No
+  IBM i High Speed Table:         No
+  Auto RRN Generation:            No
+  Create RRNO Column:             No
+  Auto RRNO Is Fixed:             No
+  Convert Special Characters:     Yes
+  Enable Commitment Control:      No
+  Auto Commit:                    No
+  Parameters:                     SIZE( 10000 2000 3) LVLCHK(*YES)
+  Read-only Access:               No
+  Enable Database Triggers:       No
+
+  Multilingual Details:
+  - ENG:
+      Description:        "XVENDOR"
+
+  - FRA:
+      Description:        "XVENDOR"
+
+  Real Fields:
+  - XBUSINESS:
+      Type:               Integer
+      Length:             4
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xBusinessEntityID
+        Data Type:          4
+        Precision:          10
+        Length:             4
+        Scale:              0
+        Radix:              10
+        Nullable:           0
+
+  - XACCOUNTN:
+      Type:               NVarChar
+      Length:             15
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xAccountNumber
+        Data Type:          -9
+        Precision:          15
+        Length:             30
+        Scale:              -1
+        Radix:              -1
+        Nullable:           0
+
+  - XVENDORNA:
+      Type:               NVarChar
+      Length:             50
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xVendorName
+        Data Type:          -9
+        Precision:          50
+        Length:             100
+        Scale:              -1
+        Radix:              -1
+        Nullable:           0
+
+  - XCREDITRA:
+      Type:               Integer
+      Length:             2
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xCreditRating
+        Data Type:          5
+        Precision:          5
+        Length:             2
+        Scale:              0
+        Radix:              10
+        Nullable:           0
+
+  - XPREFERRE:
+      Type:               Signed
+      Length:             1
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xPreferredVendorStatus
+        Data Type:          3
+        Precision:          1
+        Length:             3
+        Scale:              0
+        Radix:              10
+        Nullable:           0
+
+  - XACTIVE:
+      Type:               Signed
+      Length:             1
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xActive
+        Data Type:          3
+        Precision:          1
+        Length:             3
+        Scale:              0
+        Radix:              10
+        Nullable:           0
+
+  - XPURCHASI:
+      Type:               NVarChar
+      Length:             1024
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xPurchasingWebServiceURL
+        Data Type:          -9
+        Precision:          1024
+        Length:             2048
+        Scale:              -1
+        Radix:              -1
+        Nullable:           1
+
+  - XMODIFIED:
+      Type:               Date Time
+      Length:             27
+      Decimals:           0
+
+      PC Column Data:
+        Name:               xModifiedDate
+        Data Type:          93
+        Precision:          27
+        Length:             16
+        Scale:              7
+        Radix:              -1
+        Nullable:           0
+
+  Primary Keys:
+  - XBUSINESS
+
+  Logical Views:
+  - PK__XVENDOR__FBA60D91411E4F0B:
+      Identifier:         PKXXXVENDO
+      Unique Key:         Yes
+      Access Path:        Immediate
+      Dynamic Select:     No
+      Parameters:         " "
+
+      Multilingual Details:
+      - ENG:
+          Description:        "External File, 'XVENDOR'"
+
+      - FRA:
+          Description:        "External File, 'XVENDOR'"
+
+      Keys:
+      - XBUSINESS:
+          Key Order:          Ascending
+          Numeric Ordering:   Signed
+
+  Other File Definition:
+    Table:              XVENDOR
+    Owner:              XLANSA
+    Database Type:      MSSQLS
+    Qualifier:          LANSA1
+    Data Source:        LANSA1
+    Encrypted:          Yes
+    Read-only File:     No
+    Add LOB Columns:    No
+    Quote Character:    "\""
+
+    Connection Parameters: |
+      EAFDB45B0F67640CE93CB9E6E7AE4367F033806F14DDEFAFDED87DDF264B741AC3A823C6EE3FFC949FF73DEE48B5C31E093C
+      3E64138C1685185648818DA61F5BDC352631C82674F367A94C3E81830DCAD14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595
+      D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D140
+      56A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A4
+      7D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D
+      8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595D14056A47D9D8595

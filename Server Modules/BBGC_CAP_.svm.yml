@@ -1,0 +1,80 @@
+﻿ServerModule:
+  Name:               BBGC_CAP_GCASSETS_CUSTOM_ServerModule
+  Target Platform:    Windows/IBM i/Linux
+
+  Multilingual Details:
+  - ENG:
+      Description:        "Server Module"
+
+  - FRA:
+      Description:        "Server Module"
+
+  Source: |
+    * ------------------------------------------------------------------------------------------------
+    * This is a server module in framework Griffin Capital Framework.
+    * It belongs to business object Assets.
+    * Created 27th September 2018 by USERID with Material Design style controls.
+    * ------------------------------------------------------------------------------------------------
+    Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('VLFONE')
+    
+    * ---------------------------------------------------------------------------------
+    * Declare the shared server system manager. It must be declared exactly this
+    * way in any server modules or reusable parts that want to use it.
+    Define_Com Class(#GC_ServerSystemManager) Name(#ServerSystemManager) Scope(*APPLICATION)
+    * These strings coming from the logon validator. They allow the logon validator to pass information
+    * into your shared server system manager. For example, an IBM i library list to be used, or
+    * details about the currently logged on user or other system states.
+    Define Field(#Persistent_ApplicationString1) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString2) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString3) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString4) Type(*NVARCHAR)
+    Define Field(#Persistent_ApplicationString5) Type(*NVARCHAR)
+    
+    * ------------------------------------------------------------------------------------------------
+    * Define the return code returned by all server routines
+    Define Field(#ServerModuleResult) Type(*BOOLEAN)
+    
+    * ------------------------------------------------------------------------------------------------
+    
+    Def_List Name(#BB_GC_CapitalList) Fields(#ApprovedCapitalID #PropertyID #CapitalItem #CapitalItemDescription #CapitalBudgetAmount #CapitalApprovedAmount #CapitalApprovalNumber #CapitalItemVendor #SpentCapitalDescription #SpentCapitalAmount #SpentCapitalDate #BB_GC_Remainder) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    Def_List Name(#ApprovedCapitalList) Fields(#ApprovedCapitalID #PropertyID #CapitalItem #CapitalItemDescription #CapitalBudgetAmount #CapitalApprovedAmount #CapitalApprovalNumber #GCTotalSpent #GCRemainingAmount) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    
+    Def_List Name(#SpentCapitalList) Fields(#SpentCapitalID #PropertyID #CapitalApprovalNumber #CapitalItem #CapitalItemVendor #SpentCapitalDescription #SpentCapitalAmount #SpentCapitalDate) Counter(#ListCount) Type(*WORKING) Entrys(*MAX)
+    * ------------------------------------------------------------------------------------------------
+    
+    Srvroutine Name(GetCapital)
+    Field_Map For(*INPUT) Field(#PropertyID)
+    List_Map For(*OUTPUT) List(#BB_GC_CapitalList)
+    
+    Select_Sql Fields(#ApprovedCapitalID (#PropertyID 'a.PropertyID') (#CapitalItem 'a.CapitalItem') #CapitalItemDescription #CapitalBudgetAmount #CapitalApprovedAmount (#CapitalApprovalNumber 'a.#CapitalApprovalNumber') #CapitalItemVendor #SpentCapitalDescription #SpentCapitalAmount #SpentCapitalDate (#BB_GC_Remainder '#CapitalApprovedAmount - #SpentCapitalAmount')) From_Files((GCApprovedCapital a)(GCSpentCapital s)) Where('a.CapitalApprovalNumber = s.CapitalApprovalNumber AND a.PropertyID = :PropertyID')
+    
+    Add_Entry To_List(#BB_GC_CapitalList)
+    Endselect
+    
+    Endroutine
+    
+    Srvroutine Name(GetApproved)
+    Field_Map For(*INPUT) Field(#PropertyID)
+    List_Map For(*OUTPUT) List(#ApprovedCapitalList)
+    Select Fields(*ALL) From_File(ApprovedCapitalByProperty) With_Key(#PropertyID)
+    * #GCTotalSpent := 0
+    Select Fields(*ALL) From_File(SpentCapitalByApproval) With_Key(#CapitalApprovalNumber)
+    #GCTotalSpent += #SpentCapitalAmount
+    Endselect
+    #GCRemainingAmount := #CapitalApprovedAmount - #GCTotalSpent
+    Add_Entry To_List(#ApprovedCapitalList)
+    Endselect
+    Endroutine
+    
+    Srvroutine Name(GetSpent)
+    Field_Map For(*INPUT) Field(#CapitalApprovalNumber)
+    List_Map For(*OUTPUT) List(#SpentCapitalList)
+    Select Fields(*ALL) From_File(SpentCapitalByApproval) With_Key(#CapitalApprovalNumber)
+    Add_Entry To_List(#SpentCapitalList)
+    Endselect
+    Endroutine
+    
+    
+    
+    End_Com
